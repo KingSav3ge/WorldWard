@@ -41,10 +41,19 @@ def notice(s, actor, at, key, text):
     records[key] = {'text': text, 'recorded_at': at, 'elapsed_seconds': s['elapsed_time']['seconds']}
 
 
+def _reserved_material(s, household, material, *, excluding=None):
+    """Unconsumed inputs reserved by active projects in this household.
+
+    Internal Core accounting only; this does not reserve a building place,
+    establish an allowance, transfer stock, or expose another actor's records.
+    """
+    return sum(p['timber'] if material == 'timber' else 1 if material == 'axe' else 0
+               for key, p in s['projects'].items()
+               if key != excluding and p['household'] == household and p['status'] == 'active')
+
+
 def _free(s, household, material, *, excluding=None):
-    reserved = sum(p['timber'] if material == 'timber' else 1 if material == 'axe' else 0
-                   for key, p in s['projects'].items()
-                   if key != excluding and p['household'] == household and p['status'] == 'active')
+    reserved = _reserved_material(s, household, material, excluding=excluding)
     seed = s['households'][household]['seed_reserve'] if material == 'grain' else 0
     return s['stocks'][household].get(material, 0) - reserved - seed
 
@@ -232,6 +241,10 @@ def operate_settlement_action(core, s, at, p):
         project['status'] = 'paused'
         message = 'The shelter work is paused. Its progress is retained and its inputs are released.'
     elif action == 'invite':
+        # This selected decision belongs to the actual NPC, never to a player.
+        # Recheck current existence/control instead of assuming the setup persists.
+        from player_actions import _present
+        assert 'oren' not in core.player_ids(s) and _present(s, 'oren')
         assert site == 'commons' and location(s, 'oren') == site and 'camp' in s['settlements']
         assert 'oren-move' not in s['migrations']
         _permission(s, household, 'camp')
@@ -251,6 +264,10 @@ def operate_settlement_action(core, s, at, p):
             # is a new explicit request and is evaluated against the then-current state.
             message = 'You describe the camp. Oren declines to move at this time. No departure or labor agreement is made.'
     elif action == 'arrange_departure':
+        # The founder cannot direct a now-player-controlled or absent person,
+        # even when an earlier NPC agreement remains in history.
+        from player_actions import _present
+        assert 'oren' not in core.player_ids(s) and _present(s, 'oren')
         assert site == 'commons'
         _permission(s, household, 'camp')
         migration = s['migrations']['oren-move']

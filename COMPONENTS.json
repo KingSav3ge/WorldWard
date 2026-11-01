@@ -5,7 +5,7 @@
   "engine": {
     "repository": "https://github.com/KingSav3ge/Fulcrum-Engine.git",
     "branch": "main",
-    "commit": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "commit": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
     "source_paths": [
       "IRGS_3_3",
       "engine",
@@ -15,7 +15,7 @@
   "app": {
     "repository": "https://github.com/KingSav3ge/WORLDWARD-APP-WEB.git",
     "branch": "main",
-    "commit": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+    "commit": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4",
     "source_paths": [
       "IRGS_Web",
       "Start-IRGS.cmd"
@@ -26,7 +26,7 @@
   "catalog": {
     "repository": "https://github.com/KingSav3ge/WorldWard-Catalog.git",
     "branch": "main",
-    "commit": "a18cb48928da25d40d057a182c69f71ef149ce80",
+    "commit": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
     "source_paths": [
       "IRGS_Catalog"
     ]

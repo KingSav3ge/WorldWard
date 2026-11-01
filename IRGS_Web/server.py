@@ -432,6 +432,10 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
             query = parse_qs(urlparse(self.path).query)
             mode=query.get('mode',['player'])[0]
             try:
+                if path == '/api/creator/drafts/options':
+                    self.creator(mode)
+                    from creator_preview import options
+                    return self.reply(200, options())
                 if path == '/api/ai/usage':
                     self.creator(mode)
                     from ai_usage import usage_snapshot
@@ -599,7 +603,7 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                         self.creator(mode)
                         return self.reply(200, presentation_binding(store.read(path.rsplit('/', 1)[1])['state']))
                 files = {'/': ('index.html', 'text/html'), '/app.js': ('app.js', 'text/javascript'), '/style.css': ('style.css', 'text/css'), '/voyage.svg': ('voyage.svg', 'image/svg+xml'), '/rise.js': ('rise.js', 'text/javascript'), '/catalogue.js': ('catalogue.js', 'text/javascript'), '/solo.js': ('solo.js', 'text/javascript'), '/processes.js': ('processes.js', 'text/javascript'), '/responses.data.js': ('responses.data.js', 'text/javascript'), '/responses.js': ('responses.js', 'text/javascript'), '/routine.js': ('routine.js', 'text/javascript'), '/themes.js': ('themes.js', 'text/javascript'), '/themes.css': ('themes.css', 'text/css')}
-                files.update({'/communications.js': ('communications.js', 'text/javascript'), '/intents.js': ('intents.js', 'text/javascript'), '/preview.js': ('preview.js', 'text/javascript'),
+                files.update({'/creator.js': ('creator.js', 'text/javascript'), '/communications.js': ('communications.js', 'text/javascript'), '/intents.js': ('intents.js', 'text/javascript'), '/preview.js': ('preview.js', 'text/javascript'),
                     '/preview.css': ('preview.css', 'text/css'), '/fonts.css': ('fonts.css', 'text/css'),
                     '/historical-landscape.jpg': ('historical-landscape.jpg', 'image/jpeg')})
                 for font in ('newsreader', 'fraunces', 'instrument-sans', 'ibm-plex-mono', 'im-fell-english', 'im-fell-english-sc'):
@@ -646,7 +650,13 @@ def make_server(port=8765, folder=None, *, reference_library=None, reference_err
                 with store.lock:
                     if path in ('/api/event','/api/frontier','/api/events','/api/mandate','/api/resolve','/api/fork'):
                         self.creator(mode)
-                    if path == '/api/rise/preview':
+                    if path == '/api/creator/drafts/preview':
+                        self.creator(mode)
+                        if set(data) - {'draft', 'options_digest', 'mode'} or not {'draft', 'options_digest'} <= set(data):
+                            raise ValueError('Submit only the selected draft and source review')
+                        from creator_preview import preview
+                        result = preview(data['draft'], data['options_digest'])
+                    elif path == '/api/rise/preview':
                         from settlement_setup import preview
                         result=preview(data.get('choices'))
                     elif path == '/api/rise/create':

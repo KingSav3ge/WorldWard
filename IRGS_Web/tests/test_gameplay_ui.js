@@ -40,6 +40,7 @@ function environment({startPreviewReply={schema_version:1,engine_start_context_c
   vm.runInContext(fs.readFileSync('IRGS_Web/static/communications.js','utf8'),context);
   vm.runInContext(fs.readFileSync('IRGS_Web/static/intents.js','utf8'),context);
   vm.runInContext(fs.readFileSync('IRGS_Web/static/preview.js','utf8'),context);
+  vm.runInContext(fs.readFileSync('IRGS_Web/static/creator.js','utf8'),context);
   vm.runInContext(source.slice(0,source.lastIndexOf('(async()=>{try{const campaigns=')),context);
   function run(code){return vm.runInContext(code,context);}
   return {run,context,elements,calls,storage,setFetch:fn=>responder=fn,reply:data=>({ok:true,status:200,json:async()=>data}),failure:(status=404)=>({ok:false,status,json:async()=>({error:'synthetic rejection'})})};
@@ -51,7 +52,146 @@ const responseView=(id='A',text='I ask what is needed before deciding.')=>({...p
 const options={available:true,source:'profile_setup',as_of:{label:'Campaign day 0'},selection_digest:'b'.repeat(64),scenarios:[{id:'individual',title:'Solo individual'}],default_scenario_id:'individual',characters:[],factions:[],character_creation_allowed:true};
 async function confirmListed(h){await h.context.document.querySelectorAll('[data-supported-action]')[0].click();assert(h.elements.get('action-review-dialog').open);await h.elements.get('confirm-reviewed-action').click();}
 async function test(name,fn){await fn();results.push('PASS '+name);}
+
+function creatorOptionsFixture(){
+ const text=(id,label)=>({id,label,kind:'text',max_length:80});
+ const select=(id,label,ids,optional=false)=>({id,label,kind:'select',optional,options:ids.map(id=>({id,label:id}))});
+ return {schema_version:'irgs-creator-preview-options-1',draft_schema:'irgs-world-draft-1',options_digest:'d'.repeat(64),profiles:[
+  {id:'rise-r00',title:'Greywater Reach',classification:'fictional',available:true,source_status:'Authored fictional demonstration',source_label:'authored-fictional:greywater-reach:v1',fields:[
+   ...['founder_name','household_name','settlement_name','region_name','date_label'].map(id=>text(id,id)),
+   select('company','Company',['solo','sibling','two_households']),select('permission','Permission',['seek','held']),
+   select('supplies','Supplies',['basic','stocked']),select('offer_profile','Offers',['founder-household-offer-v1'],true)]},
+  {id:'historical-quay',title:'Historical quay and fictional courier',classification:'mixed',available:true,
+   source_status:'Selected dated snapshot; fictional new human and opening',source_label:'11 August 1415',
+   snapshot_sha256:'a'.repeat(64),fields:[text('character_name','Character name'),select('opening_id','Opening',['quay-contact-v1','quay-contact-decision-v1'])]}]};
+}
+function creatorPreviewFixture(draft,text='Received original words.'){
+ return {schema_version:'irgs-world-initialization-preview-1',draft_id:draft.draft_id,profile_id:draft.profile_id,
+  status:'preview_only',committed:false,preview_identities_reusable:false,requires_explicit_acceptance:true,
+  review_digest:'e'.repeat(64),actor_view:{actor_id:'actual-preview-actor',received:{records:[
+   {text,status:'testimony',source_ref:'authored:synthetic-received'}]},capabilities:[{title:'Inspect the received scene'}]}};
+}
+function fillCreatorRise(h,name='Exact founder'){
+ for(const [key,value]of Object.entries({founder_name:name,household_name:'Independent household',
+  settlement_name:'Draft settlement',region_name:'Fictional region',date_label:'An authored opening label',
+  company:'solo',permission:'seek',supplies:'basic'})){
+  h.elements.get('creator-field-'+key).value=value;h.elements.get('creator-field-'+key).oninput();
+ }
+}
 (async()=>{
+
+ await test('Creator preview offers supported choices, returns a readable actor view and preserves Story',async()=>{
+  const h=environment(),current=projection('A'),options=creatorOptionsFixture();let sent;
+  h.run('current='+JSON.stringify(current)+";workspaceMode='creator';view='feature:campaign-builder';token='token';$('#declaration').value='My exact Story draft';");
+  h.setFetch((path,request)=>path.includes('/options')?h.reply(options):(sent=JSON.parse(request.body),h.reply(creatorPreviewFixture(sent.draft,'Received <script>literal</script> testimony.'))));
+  await h.run('renderCreatorDraftPreview()');
+  assert.equal(h.calls.length,1);assert(!h.elements.has('creator-preview-form'));assert(!h.elements.has('creator-draft-json'));
+  h.elements.get('creator-profile').value='rise-r00';h.elements.get('creator-profile').onchange();fillCreatorRise(h,'  My exact founder  ');
+  assert.equal(h.calls.length,1);await h.elements.get('creator-preview-form').requestSubmit();
+  assert.equal(sent.draft.choices.founder_name,'  My exact founder  ');assert(!('offer_profile' in sent.draft.choices));
+  assert.equal(sent.options_digest,options.options_digest);assert.equal(sent.mode,'creator');
+  assert(h.calls.at(-1).path.includes('/api/creator/drafts/preview?mode=creator'));
+  const markup=h.elements.get('creator-preview-result').innerHTML;
+  assert(markup.includes('What this character initially knows'));assert(markup.includes('Testimony'));
+  assert(markup.includes('Received &lt;script&gt;literal&lt;/script&gt; testimony.'));assert(!markup.includes('<script>'));
+  assert(markup.includes('Supported intentions'));assert(markup.includes('not guaranteed outcomes'));
+  assert.equal(h.elements.get('creator-preview-advanced').open,false);
+  assert.equal(h.elements.get('declaration').value,'My exact Story draft');assert.equal(h.run('JSON.stringify(current)'),JSON.stringify(current));
+  assert.equal(h.calls.filter(call=>call.body).length,1);assert(h.elements.get('creator-preview-status').textContent.includes('no campaign saved'));
+  assert(!h.elements.get('creator-fields').innerHTML.includes('Start campaign'));
+ });
+ await test('Creator profile drafts remain independent and mixed preview binds the selected snapshot and opening',async()=>{
+  const h=environment(),options=creatorOptionsFixture();let sent;
+  h.run("workspaceMode='creator';view='feature:playtest-validation';token='token';");
+  h.setFetch((path,request)=>path.includes('/options')?h.reply(options):(sent=JSON.parse(request.body),h.reply(creatorPreviewFixture(sent.draft))));
+  await h.run('renderCreatorDraftPreview()');
+  h.elements.get('creator-profile').value='rise-r00';h.elements.get('creator-profile').onchange();fillCreatorRise(h,'Rise draft retained');
+  h.elements.get('creator-profile').value='historical-quay';h.elements.get('creator-profile').onchange();
+  h.elements.get('creator-field-character_name').value='  Separate courier words  ';h.elements.get('creator-field-character_name').oninput();
+  h.elements.get('creator-field-opening_id').value='quay-contact-decision-v1';h.elements.get('creator-field-opening_id').onchange();
+  await h.elements.get('creator-preview-form').requestSubmit();
+  assert.equal(sent.draft.classification,'mixed');assert.equal(sent.draft.choices.snapshot_sha256,options.profiles[1].snapshot_sha256);
+  assert.deepEqual(sent.draft.choices.character,{kind:'new',name:'  Separate courier words  ',species:'human',opening_id:'quay-contact-decision-v1'});
+  assert(h.elements.get('creator-preview-result').innerHTML.includes('does not establish a historical hour'));
+  h.elements.get('creator-profile').value='rise-r00';h.elements.get('creator-profile').onchange();
+  assert.equal(h.elements.get('creator-field-founder_name').value,'Rise draft retained');
+  h.elements.get('creator-profile').value='historical-quay';h.elements.get('creator-profile').onchange();
+  assert.equal(h.elements.get('creator-field-character_name').value,'  Separate courier words  ');
+  assert.equal(h.calls.filter(call=>call.body).length,1);assert.equal(h.run('current'),null);
+ });
+ await test('Editing and cancelling a pending preview fences its response and retains exact separate draft text',async()=>{
+  const h=environment(),options=creatorOptionsFixture();let release;
+  h.run("workspaceMode='creator';view='feature:workshop';token='token';$('#declaration').value='Independent Story words';");
+  h.setFetch(()=>h.reply(options));await h.run('renderCreatorDraftPreview()');
+  h.elements.get('creator-profile').value='rise-r00';h.elements.get('creator-profile').onchange();fillCreatorRise(h);
+  h.setFetch((path,request)=>new Promise(resolve=>release=()=>resolve(h.reply(creatorPreviewFixture(JSON.parse(request.body).draft,'STALE_PREVIEW')))));
+  const pending=h.elements.get('creator-preview-form').requestSubmit();
+  h.elements.get('creator-field-founder_name').value='  Edited exact words  ';h.elements.get('creator-field-founder_name').oninput();
+  await h.elements.get('creator-preview-cancel').click();release();await pending;
+  assert.equal(h.elements.get('creator-preview-result').innerHTML,'');assert(h.elements.get('creator-preview-status').textContent.includes('cancelled'));
+  assert.equal(h.elements.get('declaration').value,'Independent Story words');assert.equal(h.calls.filter(call=>call.body).length,1);
+  h.setFetch(()=>h.reply(options));await h.run('renderCreatorDraftPreview()');
+  assert.equal(h.elements.get('creator-field-founder_name').value,'  Edited exact words  ');
+  assert(!h.storage.has('irgs-create-pending'));assert(!h.storage.has('irgs-draft:A:PC'));
+ });
+ await test('A superseded profile preview cannot replace a newer profile result',async()=>{
+  const h=environment(),options=creatorOptionsFixture();let release;
+  h.run("workspaceMode='creator';view='feature:campaign-builder';token='token';");
+  h.setFetch(()=>h.reply(options));await h.run('renderCreatorDraftPreview()');
+  h.elements.get('creator-profile').value='rise-r00';h.elements.get('creator-profile').onchange();fillCreatorRise(h);
+  h.setFetch((path,request)=>new Promise(resolve=>release=()=>resolve(h.reply(creatorPreviewFixture(JSON.parse(request.body).draft,'OLD_RISE_RESULT')))));
+  const old=h.elements.get('creator-preview-form').requestSubmit();
+  h.elements.get('creator-profile').value='historical-quay';h.elements.get('creator-profile').onchange();
+  h.elements.get('creator-field-character_name').value='New courier';h.elements.get('creator-field-character_name').oninput();
+  h.elements.get('creator-field-opening_id').value='quay-contact-v1';h.elements.get('creator-field-opening_id').onchange();
+  h.setFetch((path,request)=>h.reply(creatorPreviewFixture(JSON.parse(request.body).draft,'CURRENT_QUAY_RESULT')));
+  await h.elements.get('creator-preview-form').requestSubmit();release();await old;
+  assert(h.elements.get('creator-preview-result').innerHTML.includes('CURRENT_QUAY_RESULT'));
+  assert(!h.elements.get('creator-preview-result').innerHTML.includes('OLD_RISE_RESULT'));
+  assert.equal(h.calls.filter(call=>call.body).length,2);assert.equal(h.run('current'),null);
+ });
+ await test('Creator options and previews cannot overwrite navigation or player mode after a late response',async()=>{
+  const h=environment(),options=creatorOptionsFixture();let release;
+  h.run("workspaceMode='creator';view='feature:campaign-builder';token='token';");
+  h.setFetch(()=>new Promise(resolve=>release=()=>resolve(h.reply(options))));
+  const loading=h.run('renderCreatorDraftPreview()');
+  h.run("view='home';++inspectorRequest;$('#content').innerHTML='<p>Retained home</p>';");
+  release();await loading;assert.equal(h.elements.get('content').innerHTML,'<p>Retained home</p>');
+  h.run("view='feature:campaign-builder';");h.setFetch(()=>h.reply(options));await h.run('renderCreatorDraftPreview()');
+  h.elements.get('creator-profile').value='rise-r00';h.elements.get('creator-profile').onchange();fillCreatorRise(h);
+  h.setFetch((path,request)=>new Promise(resolve=>release=()=>resolve(h.reply(creatorPreviewFixture(JSON.parse(request.body).draft,'PRIVATE_LATE_CREATOR_RESULT')))));
+  const pending=h.elements.get('creator-preview-form').requestSubmit();
+  h.run("workspaceMode='player';view='story';$('#content').innerHTML='<p>Player Story remains</p>';");
+  release();await pending;assert.equal(h.elements.get('content').innerHTML,'<p>Player Story remains</p>');
+  const count=h.calls.length;await h.run('renderCreatorDraftPreview()');assert.equal(h.calls.length,count);
+ });
+ await test('Source-review failures retain Creator fields and refresh choices without an automatic preview',async()=>{
+  const h=environment(),options=creatorOptionsFixture();
+  h.run("workspaceMode='creator';view='feature:campaign-builder';token='token';");
+  h.setFetch(()=>h.reply(options));await h.run('renderCreatorDraftPreview()');
+  h.elements.get('creator-profile').value='rise-r00';h.elements.get('creator-profile').onchange();fillCreatorRise(h,'Keep these exact words');
+  h.setFetch(()=>({ok:false,status:400,json:async()=>({error:'Selected source or rules changed. Refresh profile choices; your draft is retained.'})}));
+  await h.elements.get('creator-preview-form').requestSubmit();
+  assert(h.elements.get('creator-preview-status').textContent.includes('changed'));assert.equal(h.elements.get('creator-field-founder_name').value,'Keep these exact words');
+  assert.equal(h.elements.get('creator-preview-submit').disabled,false);
+  h.setFetch(()=>h.reply({...options,options_digest:'f'.repeat(64)}));await h.elements.get('creator-refresh-options').click();
+  assert.equal(h.elements.get('creator-field-founder_name').value,'Keep these exact words');
+  assert.equal(h.calls.filter(call=>call.body).length,1);
+  h.elements.get('creator-field-company').value='unsupported-company';h.elements.get('creator-field-company').onchange();
+  await h.elements.get('creator-preview-form').requestSubmit();
+  assert(h.elements.get('creator-preview-status').textContent.includes('no longer available'));
+  assert.equal(h.calls.filter(call=>call.body).length,1);
+ });
+ await test('Creator preview rejects an accidental raw-state response without touching the current Story',async()=>{
+  const h=environment(),options=creatorOptionsFixture(),current=projection('A');
+  h.run('current='+JSON.stringify(current)+";workspaceMode='creator';view='feature:campaign-builder';token='token';");
+  h.setFetch(()=>h.reply(options));await h.run('renderCreatorDraftPreview()');
+  h.elements.get('creator-profile').value='rise-r00';h.elements.get('creator-profile').onchange();fillCreatorRise(h);
+  h.setFetch((path,request)=>h.reply({...creatorPreviewFixture(JSON.parse(request.body).draft),state:{private:'RAW_WORLD'}}));
+  await h.elements.get('creator-preview-form').requestSubmit();
+  assert.equal(h.elements.get('creator-preview-result').innerHTML,'');assert(h.elements.get('creator-preview-status').textContent.includes('incompatible'));
+  assert.equal(h.run('JSON.stringify(current)'),JSON.stringify(current));assert.equal(h.calls.filter(call=>call.body).length,1);
+ });
  await test('An older host without build metadata is identified honestly',async()=>{const h=environment();h.setFetch(()=>h.reply({token:'session',campaigns:[]}));await h.run('refreshList()');assert.equal(h.elements.get('build-identity').textContent,'Running host does not report its build');});
  await test('Rejected campaign creation returns to character details and retains the selected start and exact draft',async()=>{const h=environment();h.run("workspaceMode='creator';token='token';library={campaign_profiles:[{id:'military',name:'Military'}]};");await h.run('openCreateDialog()');h.elements.get('campaign-name').value='Retained campaign';h.setFetch(()=>h.reply(options));await h.run('wizardNext()');await h.run('wizardNext()');h.elements.get('new-character-name').value='Retained person';h.elements.get('new-character-species').value='Human';h.elements.get('new-character-background').value='Retained exact background';await h.run('wizardNext()');h.setFetch(()=>h.failure(400));await h.elements.get('create-form').requestSubmit();assert.equal(h.run('wizardStep'),2);assert.equal(h.elements.get('campaign-name').value,'Retained campaign');assert.equal(h.elements.get('new-character-name').value,'Retained person');assert.equal(h.elements.get('new-character-species').value,'Human');assert.equal(h.elements.get('new-character-background').value,'Retained exact background');assert(h.run('validStartingOptions()'));assert.equal(h.run('reviewSelection'),null);assert(!h.storage.has('irgs-create-pending'));assert(h.elements.get('create-error').textContent.includes('entries have been kept'));h.elements.get('new-character-species').value='human';await h.run('wizardNext()');assert.equal(h.run('wizardStep'),3);assert.equal(h.run('reviewSelection.payload.character.name'),'Retained person');assert.equal(h.calls.filter(call=>call.body).length,1);});
  await test('Player campaign loading uses a token and filtered playthrough only',async()=>{const h=environment();h.run("token='token';");h.setFetch(()=>h.reply(projection('A')));await h.run("openCampaign('A')");assert.equal(h.calls.length,1);assert.equal(h.calls[0].path,'/api/playthrough/A');assert.equal(h.calls[0].options.headers['X-IRGS-Token'],'token');assert(!h.run('current.state'));assert(h.elements.get('content').innerHTML.includes('Accessible testimony'));assert(!h.elements.get('content').innerHTML.includes('[object Object]'));assert(h.elements.get('library-nav').hidden);});
@@ -451,6 +591,37 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
   const h=environment();let release;h.run("token='token';view='saves';campaignSummaries=[{id:'A',name:'Saved story'}];renderPreviewSaves();");h.setFetch(()=>new Promise(resolve=>release=()=>resolve(h.reply(projection('A')))));
   const pending=h.context.document.querySelectorAll('[data-resume-campaign]')[0].click();h.run("changeView('home')");release();await pending;
   assert.equal(h.run('view'),'home');assert.equal(h.calls.length,1);assert.equal(h.calls[0].body,undefined);
+ });
+
+ await test('Saved journey cards use the latest loaded host revision rather than an original action receipt',async()=>{
+  const h=environment(),latest={...projection('A'),name:'Fresh host title',revision:18};
+  h.run("token='token';campaignSummaries=[{id:'A',name:'Old title',revision:0,profile_id:'retained-profile'},{id:'B',name:'Other world',revision:4}];current="+JSON.stringify(projection('A'))+";$('#campaign').value='A';$('#declaration').value='My unsent words';");
+  h.setFetch(path=>{assert.equal(path,'/api/playthrough/A?actor_id=PC');return h.reply(latest);});
+  await h.run("finishAction({endpoint:'action',body:{id:'A',actor:'PC',request_id:'old-receipt'}},{status:'completed_successfully',revision:2,outcome:{summary:'Original stored result'}})");
+  h.run("changeView('saves')");
+  const markup=h.elements.get('content').innerHTML;
+  assert(markup.includes('Fresh host title'));assert(markup.includes('revision 18'));assert(!markup.includes('revision 2<'));
+  assert.equal(h.run("campaignSummaries.find(item=>item.id==='B').revision"),4);
+  assert.equal(h.run("campaignSummaries.find(item=>item.id==='A').profile_id"),'retained-profile');
+  assert.equal(h.elements.get('declaration').value,'My unsent words');
+  assert.equal(h.calls.length,1);assert.equal(h.calls[0].body,undefined);
+ });
+ await test('A host-restored lower revision replaces a stale higher saved-card revision without adding a campaign',async()=>{
+  const h=environment();h.run("token='token';campaignSummaries=[{id:'A',name:'Before restore',revision:18}];");
+  h.setFetch(()=>h.reply({...projection('A'),name:'Restored host title',revision:3}));
+  await h.run("openCampaign('A')");h.run("changeView('saves')");
+  assert(h.elements.get('content').innerHTML.includes('revision 3'));assert(!h.elements.get('content').innerHTML.includes('revision 18'));
+  h.run('campaignSummaries=[]');await h.run("openCampaign('A')");assert.equal(h.run('campaignSummaries.length'),0);
+  assert(h.calls.every(call=>call.body===undefined));
+ });
+ await test('A superseded playthrough read cannot change another saved-card revision',async()=>{
+  const h=environment();let release;
+  h.run("token='token';campaignSummaries=[{id:'A',name:'A',revision:0},{id:'B',name:'B',revision:0}];");
+  h.setFetch(path=>path.endsWith('/A')?new Promise(resolve=>release=()=>resolve(h.reply({...projection('A'),revision:99}))):h.reply({...projection('B'),revision:7}));
+  const older=h.run("openCampaign('A')");await h.run("openCampaign('B')");release();await older;
+  assert.equal(h.run('current.id'),'B');assert.equal(h.run("campaignSummaries.find(item=>item.id==='A').revision"),0);
+  assert.equal(h.run("campaignSummaries.find(item=>item.id==='B').revision"),7);
+  assert(h.calls.every(call=>call.body===undefined));
  });
  await test('Reading-room tools show received records and exact zero inventory without seeded character statistics',async()=>{
   const h=environment(),p={...projection('A'),inventory:[{name:'Recorded timber',quantity:0}],chronicle:[{kind:'received_evidence',text:'Received <script>words</script>'}]};h.run('current='+JSON.stringify(p)+";view='story';render();");

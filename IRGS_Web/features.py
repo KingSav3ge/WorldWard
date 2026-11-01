@@ -33,7 +33,7 @@ FEATURES = [
     _feature('character-creation', 'Character Creation', 30, lifecycle='functional', backend='api/starting-options', description='Review a permitted character and starting point before an atomic new save.'),
     _feature('play', 'Play', 40, lifecycle='functional', backend='api/playthrough', description='One saved world; server-filtered views and unresolved player declarations.'),
     _feature('ai-network', 'AI Network', 50, roles=('developer',), description='Planned six-category Director network; no provider or autonomous narrator is connected.'),
-    _feature('workshop', 'Campaign Workshop', 60, roles=('creator',), description='Planned reusable authoring; follows the playable campaign directory.'),
+    _feature('workshop', 'Campaign Workshop', 60, roles=('creator',), lifecycle='in_development', backend='api/creator/drafts/preview', description='Bounded disposable draft preview; durable playtests and broader authoring remain unavailable.'),
     _feature('marketplace', 'Marketplace / Publish', 70, roles=('creator',), description='Planned publishing and commerce; no listings, prices or balances are active.'),
     _feature('account', 'Account', 80, description='Planned account services; this installation has a local campaign owner, not hosted accounts.'),
     _feature('developer', 'Developer / Administration', 90, roles=('developer',), description='Local-owner diagnostics and planned administration; each data route remains independently guarded.'),
@@ -86,12 +86,12 @@ _children('institutions', [('governance', 'Governance'), ('institution-members',
     ('institution-contracts', 'Contracts'), ('institution-history', 'History')])
 FEATURES.append(_feature('historical-comparison', 'Historical Comparison', 40.99, 'world', roles=('creator',),
     description='Planned creator-only historical baseline comparison; never character knowledge.'))
-_children('workshop', [('workshop-dashboard', 'Workshop Dashboard'), ('campaign-builder', 'Campaign Builder'),
+_children('workshop', [('workshop-dashboard', 'Workshop Dashboard'), ('campaign-builder', 'Campaign Builder', {'lifecycle': 'in_development', 'backend': 'api/creator/drafts/preview', 'description': 'Creator-only data editor for the two selected Engine draft profiles; preview saves no campaign.'}),
     ('scenario-builder', 'Entry Point & Scenario Builder'), ('npc-templates', 'Character & NPC Templates'),
     ('item-templates', 'Item & Equipment Templates'), ('map-authoring', 'Geography / Map Authoring'),
     ('institution-authoring', 'Governments / Factions / Institutions'), ('technical-modules', 'Technical Content Libraries / Modules'),
     ('clone-extend', 'Templates / Clone / Extend'), ('historical-research', 'Research & Historical Data'),
-    ('playtest-validation', 'Validation / Playtest'), ('versions-exports', 'Versions / Exports / Dependencies'),
+    ('playtest-validation', 'Validation / Playtest', {'lifecycle': 'in_development', 'backend': 'api/creator/drafts/preview', 'description': 'Disposable actor-filtered initialization preview only; durable playtest creation remains unavailable.'}), ('versions-exports', 'Versions / Exports / Dependencies'),
     ('workshop-access', 'Workshop Access / Time / Credits / Packs')], roles=('creator',))
 _children('marketplace', [('marketplace-browse', 'Marketplace Browse'), ('product-detail', 'Product Detail / Contributors'),
     ('bundles', 'Bundles / Entry-Point Upgrades'), ('merged-campaigns', 'Merged Campaigns'), ('publish', 'Publish / Submission'),
