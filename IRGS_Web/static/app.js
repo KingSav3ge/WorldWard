@@ -71,6 +71,8 @@ async function openCampaign(id,options={}){
     if(request!==campaignRequest||$('#campaign').value!==selected||workspaceMode!==mode)return false;
     if(result.id!==selected||(mode==='player'&&Object.prototype.hasOwnProperty.call(result,'state')))throw new Error('The host returned an incompatible playthrough view.');
     current=result;currentBinding=result.binding;loadingCampaign=false;localStorage.setItem('irgs-active',selected);
+    // Refresh only an existing shelf entry from this accepted host view, never an action receipt.
+    if(Number.isSafeInteger(result.revision))campaignSummaries=campaignSummaries.map(summary=>summary.id===result.id?{...summary,name:result.name,revision:result.revision}:summary);
     $('#player-character').innerHTML=(result.controlled_actors||[]).map(actor=>`<option value="${esc(actor.id)}">${esc(actor.name)}</option>`).join('')||'<option value="">No selected player character</option>';$('#player-character').value=result.actor_id||'';
     loadDraft();render();restoreScroll();return true;
   }catch(error){if(request!==campaignRequest||$('#campaign').value!==selected||workspaceMode!==mode)return false;loadingCampaign=false;render();throw error;}

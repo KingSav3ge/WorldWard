@@ -1,0 +1,207 @@
+{
+  "schema": "worldward-coordinator-retained-test-receipt-v1",
+  "purpose": "Sanitized extracts from retained coordinator executions; no test rerun, CI execution, owner adoption or release qualification is claimed.",
+  "tested_source_commit": "2f4ca609372555148a1f7fbc7ad48ec22860ed70",
+  "tested_source_branch": "codex/recovered-app-saves-summary-20261101t011718z",
+  "baseline_joined_commit": "7327290fbb057ad320cfeb3a009e4138944b078c",
+  "baseline_app_commit": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+  "source_pin_note": "The candidate was committed after execution from the same verified source bytes. This receipt-only successor does not change the tested source pin. Source identities below refer to the candidate, including its original development manifest.",
+  "commands_note": "Executed command forms from the joined repository root. EVIDENCE_DIR substitutes only the retained outside-source output directory; local paths and synthetic campaign IDs are omitted. Commands are evidence, not a claim of new execution.",
+  "checks": [
+    {
+      "name": "frontend",
+      "command": "node IRGS_Web/tests/test_gameplay_ui.js",
+      "recorded_status": "passed",
+      "count": 161,
+      "excerpt_file": "excerpts.txt",
+      "covers": [
+        "latest host view instead of original action receipt",
+        "lower restored revision",
+        "superseded campaign read",
+        "draft preservation",
+        "no extra writes"
+      ]
+    },
+    {
+      "name": "baseline_real_host_browser",
+      "command": "NODE_PATH=/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules node tools/qualify_saves_revision.js \"$EVIDENCE_DIR/confirmed-baseline-browser.json\" --baseline",
+      "driver_source_commit": "2f4ca609372555148a1f7fbc7ad48ec22860ed70",
+      "app_asset_commit": "7327290fbb057ad320cfeb3a009e4138944b078c",
+      "recorded_status": "failed",
+      "classification": "expected defect reproduction",
+      "durable_revision": 2,
+      "card_revision": 0,
+      "error": "AssertionError [ERR_ASSERTION]: Saves card must show the current durable revision without reloading",
+      "provider_calls": 0,
+      "browser_errors": []
+    },
+    {
+      "name": "patched_real_host_browser",
+      "command": "NODE_PATH=/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules node tools/qualify_saves_revision.js \"$EVIDENCE_DIR/final-browser.json\"",
+      "recorded_status": "passed",
+      "durable_revision": 2,
+      "card_revision": 2,
+      "checks": [
+        "Two normal committed actions update the Saves card without reload or extra writes",
+        "Repeated Saves/Continue navigation preserves the draft and exact saved bytes",
+        "Reload retains the same current card revision without changing the saved world"
+      ],
+      "provider_calls": 0,
+      "browser_errors": []
+    },
+    {
+      "name": "existing_interface_browser",
+      "command": "NODE_PATH=/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules node tools/qualify_interface_port.js \"$EVIDENCE_DIR/existing-interface-browser.json\"",
+      "recorded_result": {
+        "status": "passed",
+        "desktop_width": 1568,
+        "mobile_width": 390,
+        "concepts": 44,
+        "reading_preferences_survive_reload": true,
+        "drawers_escape_and_focus": true,
+        "reviewed_character_creation": true,
+        "posts_before_explicit_creation": 0,
+        "explicit_creations": 1,
+        "original_fixture_saves_unchanged": true,
+        "local_assets_only": true,
+        "provider_calls": 0,
+        "browser_errors": 0
+      }
+    },
+    {
+      "name": "candidate_development_integrity",
+      "command": "python3 -B tools/verify_development.py",
+      "recorded_result": {
+        "status": "verified",
+        "version": "3.4.8",
+        "previous_version": "3.3.3",
+        "development_files": 1165,
+        "app_release": {
+          "component": "IRGS-APP-WEB",
+          "files": 93,
+          "status": "verified"
+        }
+      }
+    }
+  ],
+  "candidate_file_identities": [
+    {
+      "path": "IRGS_Web/static/app.js",
+      "bytes": 146185,
+      "sha256": "68feeaba35cd2f34f3071964cbe36eb8f5aa130b7f9334115aee674937071c2f"
+    },
+    {
+      "path": "IRGS_Web/tests/test_gameplay_ui.js",
+      "bytes": 169982,
+      "sha256": "7f88a71b93aab3ba2a1163a8a624f778e99927f972118a9f572ca27cf838d663"
+    },
+    {
+      "path": "IRGS_Web/release.json",
+      "bytes": 9399,
+      "sha256": "892d73f6e8de03f08da9f7d23d4a0dea68fcd940ab6f2b3bca375804df9415bc"
+    },
+    {
+      "path": "tools/qualify_saves_revision.js",
+      "bytes": 7206,
+      "sha256": "9b407158094987cb61c4c666ed4829f65e293a14c72945d23f5dcebba8bc1ea9"
+    },
+    {
+      "path": "DEVELOPMENT_MANIFEST.json",
+      "bytes": 216598,
+      "sha256": "7cd40f1bf812b08bbba3e75c553e674d79538ed96954aaac7f78d4bef5cb1133"
+    }
+  ],
+  "baseline_app_blob_matches": [
+    {
+      "path": "IRGS_Web/static/app.js",
+      "joined_matches_published_app": true,
+      "bytes": 145902,
+      "sha256": "96fd8ad2baf4509f686f88d338ebbfba63e1dc632688c446f38c1e345d71fad9"
+    },
+    {
+      "path": "IRGS_Web/tests/test_gameplay_ui.js",
+      "joined_matches_published_app": true,
+      "bytes": 167181,
+      "sha256": "49019c9b461a646bf8fd25c5cb0f198ea58cd11c79de83a19a590d9aa960f82a"
+    },
+    {
+      "path": "IRGS_Web/release.json",
+      "joined_matches_published_app": true,
+      "bytes": 9399,
+      "sha256": "786e6bef8f94465602d9a5c30c6c8f26aab00631831824a28bc632f14cc3faad"
+    }
+  ],
+  "unchanged_candidate_metadata": [
+    {
+      "path": "VERSION.json",
+      "bytes": 107,
+      "sha256": "2b70ab891f15dad3d7b9830fdac75e103af1911e9070243571a277c295f42bac"
+    },
+    {
+      "path": "COMPONENTS.json",
+      "bytes": 976,
+      "sha256": "3dbd011adf58d7a4c7f13b248e2f126c5469cc54754017d1829ca81e36cdc2e7"
+    },
+    {
+      "path": "COORDINATION.json",
+      "bytes": 11727,
+      "sha256": "4b31970082d1da2852053942f8df3068da8c20f3db3df876f12abed7f1e48d97"
+    }
+  ],
+  "retained_original_evidence_identities": [
+    {
+      "retained_name": "logs/fixed-ui.log",
+      "bytes": 14640,
+      "sha256": "2035ea3c6a100db6fedcc47cac75ad718bf653d533a71587652d46b8c16a0e4b",
+      "full_original_published": false
+    },
+    {
+      "retained_name": "logs/baseline-ui.log",
+      "bytes": 11220,
+      "sha256": "a007cc06b335cae0fa377bca62f2041c3a3d40a9b5fc8a1c4b0d1ddd7d722d22",
+      "full_original_published": false
+    },
+    {
+      "retained_name": "confirmed-baseline-browser.json",
+      "bytes": 830,
+      "sha256": "81cb11e10ef6e69f3c269c3e0e5940aa60aac719dd759fc98ce683cf7ee73dde",
+      "full_original_published": false
+    },
+    {
+      "retained_name": "final-browser.json",
+      "bytes": 665,
+      "sha256": "513de8d24b0e82ef09fbab8f1677f6ed00543dc5d1f5ab3c7a50227d64b04c2d",
+      "full_original_published": false
+    },
+    {
+      "retained_name": "existing-interface-browser.json",
+      "bytes": 4889,
+      "sha256": "e4cdb9104fcb212d2aa10b7ef291e4f9ee4a44e5648f88b89cf93942e6a5bb9f",
+      "full_original_published": false
+    },
+    {
+      "retained_name": "logs/final-integrity-verify.log",
+      "bytes": 4792,
+      "sha256": "e950a9c81d1df5011baf304d615a2cd3643480d6aaeedaa4ce930d20be01bea8",
+      "full_original_published": false
+    }
+  ],
+  "review_and_adoption": {
+    "app_owner": "01a164a6-687b-723a-ac81-acb55e3d50d2",
+    "source_recommendation": "adoption recommended per supported relay; direct thread read failed at bridge",
+    "owner_execution": "unavailable; no independently executed owner tests claimed",
+    "adopted": false,
+    "pr_approval": false,
+    "component_push": false,
+    "owner_workspace_preservation_verified": false,
+    "ci_execution_claimed": false,
+    "next_supported_step": "Existing App owner reviews this accessible evidence; platform repairs/reprovisions its unusable execution environment. Owner then verifies actual root, HEAD, dirty and unpushed work, preserves it, and adopts/tests App files under the existing workflow."
+  },
+  "limits": [
+    "No new gameplay test execution for this receipt",
+    "Earlier sandbox spawn/bind failures and incomplete browser-driver attempts are retained locally and excluded from passing evidence",
+    "No full joined regression, fresh operation capture, independent consumers, clean package, Windows, live-provider or Alpha qualification",
+    "No change to component mains, canonical main, edition or dependency pins",
+    "No saves, settings, credentials, full runtime logs or screenshots published"
+  ]
+}
