@@ -5450,6 +5450,16 @@
       "sha256": "14a9010994263b062e17c54db878908b49f83a779143b5235baa25a3ec317026"
     },
     {
+      "path": "provenance/qa/recovered_app_saves_20261101/excerpts.txt",
+      "bytes": 1936,
+      "sha256": "14a7be49b73f975d89c83048df55f6ad4e39704a10356a677d42c737003cdf15"
+    },
+    {
+      "path": "provenance/qa/recovered_app_saves_20261101/receipt.json",
+      "bytes": 8563,
+      "sha256": "90c0ba8e805d179af0c7c6d267045c6971f7b5eed6d892f28dfd3f28141d58d5"
+    },
+    {
       "path": "provenance/qa/repository_functional_audit_2026_10_23.json",
       "bytes": 7854,
       "sha256": "dd83dc87a97a5811e5648033f297f43e2cd012119bef7d7e339e50b0cb4ff531"

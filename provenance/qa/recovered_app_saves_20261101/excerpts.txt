@@ -1,0 +1,38 @@
+Retained coordinator execution excerpts for source candidate
+2f4ca609372555148a1f7fbc7ad48ec22860ed70.
+Published after execution; receipt-only successor is not a new tested source.
+No CI run or independently executed App-owner test is claimed.
+
+Frontend / logs/fixed-ui.log:
+PASS Saved journey cards use the latest loaded host revision rather than an original action receipt
+PASS A host-restored lower revision replaces a stale higher saved-card revision without adding a campaign
+PASS A superseded playthrough read cannot change another saved-card revision
+161 frontend checks passed. No real save or live server was used.
+
+Baseline frontend / logs/baseline-ui.log (expected defect reproduction):
+  assert(markup.includes('Fresh host title'))
+
+Real host / confirmed-baseline-browser.json (expected defect reproduction):
+  status: failed
+  durable revision: 2; Saves card revision: 0
+  AssertionError [ERR_ASSERTION]: Saves card must show the current durable revision without reloading
+
+Real host / final-browser.json:
+  status: passed
+  durable revision: 2; Saves card revision: 2
+  navigation preserves saved bytes and retained draft; reload preserves revision
+  live provider calls: 0; browser errors: []
+
+Existing desktop/mobile interface / existing-interface-browser.json:
+  status: passed; desktop: 1568; mobile: 390; concepts: 44
+  preferences, drawer focus, reviewed character creation, original fixture bytes: passed
+  posts before explicit creation: 0; explicit creations: 1
+  provider calls: 0; browser errors: 0
+
+Candidate manifest / logs/final-integrity-verify.log:
+  status: verified; edition: 3.4.8; previous_version: 3.3.3
+  development files: 1165; App release: verified (93 files)
+
+Original-file hashes and exact candidate source hashes are in receipt.json.
+Absolute fixture paths and campaign IDs were omitted. No new gameplay run was
+performed for this publication. Original stores, logs and screenshots stay local.
