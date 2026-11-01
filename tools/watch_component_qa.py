@@ -114,10 +114,10 @@ def cycle(args,state):
 
 def main():
  parser=argparse.ArgumentParser(description=__doc__)
- parser.add_argument('--joined',type=Path,default=Path('/workspace/IRGS'))
- parser.add_argument('--engine',type=Path,default=Path('/workspace/IRGS-Engine'))
- parser.add_argument('--app',type=Path,default=Path('/workspace/IRGS-APP-WEB'))
- parser.add_argument('--catalog',type=Path,default=Path('/workspace/IRGS-Catalog'))
+ parser.add_argument('--joined',type=Path,default=Path('/workspace/WorldWard'))
+ parser.add_argument('--engine',type=Path,default=Path('/workspace/Fulcrum-Engine'))
+ parser.add_argument('--app',type=Path,default=Path('/workspace/WORLDWARD-APP-WEB'))
+ parser.add_argument('--catalog',type=Path,default=Path('/workspace/WorldWard-Catalog'))
  parser.add_argument('--storage',type=Path,default=Path('/workspace/irgs-cloud/component-qa'))
  parser.add_argument('--interval',type=int,default=60);parser.add_argument('--once',action='store_true')
  args=parser.parse_args()

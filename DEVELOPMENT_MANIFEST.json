@@ -5831,8 +5831,8 @@
     },
     {
       "path": "tools/watch_component_qa.py",
-      "bytes": 9555,
-      "sha256": "3476ec451e173fa5fa7d81f38663e2d54bd003f0a465fac0a2096d5465e16899"
+      "bytes": 9573,
+      "sha256": "61b34ce3a7f7376e6a7fffb3df38c1769a1b20401c83d3bae34ff95be1463108"
     }
   ]
 }
