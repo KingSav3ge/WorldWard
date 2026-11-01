@@ -2,7 +2,7 @@
 
 ## Finite 3.4.9 Pre-Alpha consolidation — 1 November 2026
 
-This candidate rounds out the present owner deliveries: Engine reservation/control
+This increment rounds out the present owner deliveries: Engine reservation/control
 fixes, App Saves and disposable Creator previews, Catalog unselected proposals
 and independent consumers, and coordinator tooling/evidence. Read
 CONSOLIDATION_3_4_9.md for exact selected pins, checks and residuals. Previous

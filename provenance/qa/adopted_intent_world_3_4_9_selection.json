@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "fixture_id": "coordinator-adopted-intent-world-3.4.9-1",
+  "components": {
+    "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+    "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+    "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda"
+  },
+  "original_fixture_id": "irgs-intent-world-draft-v1",
+  "original_consumer_sha256": "ffe9054fc77a5c13cfd6d266b6439b7e7d80f11e2a6ab746f4d605553ab97975",
+  "original_base_consumer_sha256": "200d8a7caa0f1141d93d0791b394b5a3b04b8e165825237c90d84eed5a11940a",
+  "fixture_files_sha256": {
+    "README.md": "533aeed609cd16964d1e801364eb8cc358a4192c85c8cbf6cd860c8d8ff658f7",
+    "manifest.json": "48c64ac631e5d74007649ac67d70261dfba89c653edcba5365f270ba50834e98",
+    "SOURCE_DOSSIER.md": "e465f87d4852e49c4a8d6c14cfda02fdc354b204a67ba7802491ddc784412261",
+    "actor_inputs/cases.json": "872b3242fd98e1bb63a612b4477c5750c938d46ba61b66a868db36b663e8fa27",
+    "evaluator_only/expectations.json": "22b3645afe7bc711fefa35f63828d5cfc017cbec0c06e1cf77727f45cbe88157"
+  },
+  "scope": "New explicit selected-set execution of unchanged independent Catalog test methods; original fixture source guards and original evidence remain unchanged. This does not relabel the original R00-only selection as a broader authoring evaluation.",
+  "prior_selection_fixture_id": "coordinator-adopted-intent-world-3.4.8-1"
+}

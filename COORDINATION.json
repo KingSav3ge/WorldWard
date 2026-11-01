@@ -118,9 +118,9 @@
       "tested_candidate": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4"
     }
   },
-  "integration_status": "assembled_final_mains_pending_joined_qualification",
+  "integration_status": "qualified_portable_pre_alpha_subject_to_exact_final_package_gate",
   "component_source_integration_performed": true,
-  "current_published_version": "3.4.8",
+  "current_published_version": "3.4.9",
   "target_version": "3.4.9",
   "previous_version": "3.3.3",
   "target_version_status": "pre_alpha",
@@ -158,6 +158,27 @@
     "Direct owner bridge unavailable; actual source ownership/admissions relayed",
     "Reports and work orders do not wake chats"
   ],
-  "publication_hold": "Joined capture/regression/browser/independent consumers/clean package must pass before one main push",
-  "actual_component_mains_verified": true
+  "publication_hold": "No main push until the exact final source package passes extraction, integrity, smoke and independent checks; receipt published on WorldWard PR6",
+  "actual_component_mains_verified": true,
+  "previous_published_version": "3.4.8",
+  "fresh_capture": {
+    "source": "engine/qualification/operation_register.json",
+    "tests_run": 820,
+    "passed": 819,
+    "skipped": 1,
+    "all_branches_certified": false
+  },
+  "joined_regression": {
+    "web_run": 288,
+    "web_passed": 281,
+    "web_windows_skips": 7,
+    "dom_checks": 168,
+    "tooling": 32,
+    "independent_ordinary": 2,
+    "independent_intents": 3,
+    "independent_decisions": 4,
+    "independent_mechanics": 8,
+    "browsers": "Saves,Creator,Story,interface passed",
+    "strict_sustained_consumer": "2 passed; held, G10 unqualified"
+  }
 }

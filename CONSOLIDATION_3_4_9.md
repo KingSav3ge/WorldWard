@@ -1,12 +1,12 @@
 # WorldWard 3.4.9 Pre-Alpha consolidation
 
-Status: isolated release preparation; main publication and exact final pins are pending. Previous release field: 3.3.3. This finite increment rounds out already active owner deliveries; it is not Alpha 5.0.
+Status: portable source/regression qualified; exact final package must pass before main publication. Previous release field: 3.3.3. This finite increment rounds out already active owner deliveries; it is not Alpha 5.0.
 
 Engine consolidates the existing material reservation calculation, guards a continuing R00 contact decision/departure against current player control and availability, and carries reconciled Creator host contract proposals. App consolidates Saves summary invalidation, real-Store fault characterization and disposable Creator previews for the selected fictional R00 and mixed historical quay profiles. Catalog includes versioned fictional expansion proposals and separate actor/evaluator cases plus an exact-source sustained-journey consumer. The proposals remain unselected and are not runtime allowance/authority rules.
 
 Creator preview uses the selected Engine's controlled-actor initialization view. It changes no campaign bytes and exposes no durable-create route/button. Store characterization establishes bounded POSIX replacement/synchronization behavior, not a cross-store transaction, cross-process serialization or immutable Creator creation/recovery protocol.
 
-The coordinator retains the original 5.0 planning target, corrects observer default roots while preserving the running observer's explicit paths, and records actual per-candidate execution. Source/evidence identities and final compatible pins will be recorded in COMPONENTS.json, COORDINATION.json and provenance/qa/portable_convergence_3_4_9/ after qualification.
+The coordinator retains the original 5.0 planning target, corrects observer default roots while preserving the running observer's explicit paths, and records actual per-candidate execution. Source/evidence identities and final compatible pins are recorded in COMPONENTS.json, COORDINATION.json and provenance/qa/portable_convergence_3_4_9/.
 
 ## Retained executed evidence
 
@@ -38,3 +38,17 @@ node tools/qualify_story_flow.js /tmp/worldward-story.json
 ```
 
 The Creator browser helper requires a new external evidence directory and selects the visible desktop account control or mobile menu before switching workspace. It uses normal Campaign Workshop navigation, exact profile forms, separate drafts and held real responses; it never force-clicks or mutates workspace mode directly. Failed harness runs are not product failures. Chromium/Playwright must already be available; these Linux browser checks are not native Windows qualification. The original independent Catalog sustained consumer remains in its component repository under tools/tests; joined imports only Catalog-owned data/design paths under the existing source boundary. Its exact source SHA and compatible-set execution are retained separately.
+
+## Final source and joined evidence
+
+| Component | Actual main selected |
+| --- | --- |
+| Engine | `e7b7212f0d339eb186eac401edd8da2bf6db1359` |
+| App | `e3a321b31cf5518cf2c3972702e0fa8e7d601cf0` |
+| Catalog | `7ef54aba82d292f1a487e0253d8479abdc78dfda` |
+
+All four root editions are3.4.9/development, previous_version3.3.3. Appgitlinks match the actual Engine/Catalog mains. Their merge trees were verified against the executed owner candidates; this is not adoption of inaccessible old-local work.
+
+Joined checks:820 captured runtime tests (819pass/one private-save skip),288 Web (281pass/seven Windows PowerShell skips),168 DOM checks,32 tooling,2 ordinary +3 intent +4 decision +8 independent mechanics cases. Actual Saves/Creator/Story/interface browser journeys pass, including desktop/mobile and preserved bytes/drafts. The actual-main compatible sustained consumer passes2 three-process journeys with strict statusheld; G10 remains unqualified. The importer repair protects joined-owned coordination on both intake and removal;11 originals were restored byte-identically, and source parity has zero changed/removed component paths.
+
+The exact final package smoke/extraction receipt is published on WorldWard PR6 before the single main push. Its own archive hash is kept outside the archive to avoid a recursive artifact hash. Main must not advance unless that final gate passes. GitHub reports no component status/workflow executions; this is not CIpassed. All12 functional Alpha gates remain unqualified.

@@ -6,8 +6,8 @@
   "qualified": false,
   "classification": "unqualified_development_target",
   "current_published": {
-    "version": "3.4.8",
-    "joined_commit": "7327290fbb057ad320cfeb3a009e4138944b078c",
+    "version": "3.4.9",
+    "joined_identity": "Git main/HEAD after the publication gate; exact component identities in COMPONENTS.json",
     "previous_version": "3.3.3"
   },
   "baseline_components": {
@@ -279,10 +279,15 @@
   "owner_dispatch_claimed": false,
   "finite_pre_alpha_convergence": {
     "version": "3.4.9",
-    "status": "in_review",
+    "status": "portable_pre_alpha_increment_not_alpha",
     "record": "CONSOLIDATION_3_4_9.md",
     "new_feature_work": "stopped",
     "qualified_alpha": false
   },
-  "source_only_owner_route": "existing owners accepted bounded separate review refs via supported relay; no old-local adoption"
+  "source_only_owner_route": "existing owners accepted bounded separate review refs via supported relay; no old-local adoption",
+  "initial_planning_published": {
+    "version": "3.4.8",
+    "joined_commit": "7327290fbb057ad320cfeb3a009e4138944b078c",
+    "previous_version": "3.3.3"
+  }
 }

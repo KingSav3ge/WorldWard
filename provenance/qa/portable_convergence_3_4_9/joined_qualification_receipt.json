@@ -1,0 +1,707 @@
+{
+  "schema_version": 1,
+  "kind": "joined_3.4.9_portable_qualification",
+  "edition": "3.4.9",
+  "previous_version": "3.3.3",
+  "classification": "Pre-Alpha",
+  "components": {
+    "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+    "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+    "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda"
+  },
+  "stable_source_commit_before_capture": "8777674d0bf255256520d7e90a66bb7b9d54791d",
+  "fresh_operation_capture": {
+    "status": "captured",
+    "operation_spellings": 87,
+    "backend_operation_pairs": 172,
+    "backends": [
+      "CoreWorld",
+      "R7World",
+      "ReceiverWorld",
+      "World"
+    ],
+    "pairs_with_success": 89,
+    "pairs_with_failed_path_evidence": 36,
+    "pairs_without_success": 83,
+    "unqualified_pairs": 81,
+    "observations_outside_declared_backend_pairs": 0,
+    "all_branches_certified": false,
+    "tests": {
+      "tests_run": 820,
+      "passed": 819,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0,
+      "tests_successful": true,
+      "capture_records": 2589,
+      "captured_executions": 6774,
+      "capture_origin_counts": {
+        "actual_apply": 5635,
+        "direct_observe": 1139
+      },
+      "actual_committed_apply_count": 5568,
+      "excluded_unknown_operations": 7,
+      "external_fixture_policy_skips": [
+        "test_suite.SuiteTests.test_legacy_ast_save_load_does_not_rewrite"
+      ],
+      "scope": "Current synthetic test executions and detached probes; no all-branch certification",
+      "limits": [
+        "Repeated probes are observations, not unique committed world events.",
+        "Failed-attempt writes are scratch attempts, never committed effects.",
+        "Paths are unioned per operation/backend/profile/test/status, not branch-complete.",
+        "Rejected probes mirror the current R9 backend selection policy."
+      ]
+    }
+  },
+  "full_web": {
+    "run": 288,
+    "passed": 281,
+    "skipped": 7,
+    "failures": 0,
+    "errors": 0,
+    "skips": "installed Windows PowerShell launcher tests"
+  },
+  "dom_checks": 168,
+  "tooling": {
+    "run": 32,
+    "passed": 32,
+    "focused_preservation_run": 1
+  },
+  "independent_consumers": {
+    "ordinary": {
+      "schema_version": 1,
+      "fixture_id": "coordinator-adopted-ordinary-3.4.9-1",
+      "components": {
+        "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+        "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+        "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda"
+      },
+      "selection_mode": "joined_or_clean_extracted_source",
+      "original_catalog_fixture": "irgs-current-ordinary-communication-v1",
+      "original_consumer_preserved_sha256": "200d8a7caa0f1141d93d0791b394b5a3b04b8e165825237c90d84eed5a11940a",
+      "tests_run": 2,
+      "passed": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "status": "passed",
+      "provider_calls": 0,
+      "user_saves_opened": false,
+      "alpha_qualified": false
+    },
+    "intents": {
+      "schema_version": 1,
+      "fixture_id": "coordinator-adopted-intent-world-3.4.9-1",
+      "components": {
+        "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+        "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+        "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda"
+      },
+      "selection_mode": "joined_or_clean_extracted_source",
+      "original_fixture_id": "irgs-intent-world-draft-v1",
+      "original_consumer_preserved_sha256": "ffe9054fc77a5c13cfd6d266b6439b7e7d80f11e2a6ab746f4d605553ab97975",
+      "tests_run": 3,
+      "passed": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "status": "passed",
+      "provider_calls": 0,
+      "user_saves_opened": false,
+      "alpha_qualified": false
+    },
+    "decisions": {
+      "schema_version": 1,
+      "fixture_id": "coordinator-adopted-decisions-3.4.9-1",
+      "components": {
+        "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+        "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+        "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda"
+      },
+      "selection_mode": "joined_or_clean_extracted_source",
+      "status": "passed",
+      "tests_run": 4,
+      "passed": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "original_catalog_consumers_preserved": true,
+      "coordinator_extension": "ordinary quay refusal/conserved delivery/restart/restore",
+      "provider_calls": 0,
+      "user_saves_opened": false,
+      "alpha_qualified": false
+    }
+  },
+  "independent_mechanics": {
+    "tests_run": 8,
+    "passed": 8,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      {
+        "test": "test_concurrent_retry_has_one_commit_and_one_elapsed_span",
+        "status": "passed"
+      },
+      {
+        "test": "test_core_location_confirmation_remains_usable",
+        "status": "passed",
+        "finding_id": "IRGS-QA-002"
+      },
+      {
+        "test": "test_founding_delegation_migration_and_material_continuity",
+        "status": "passed"
+      },
+      {
+        "test": "test_freeform_is_retained_intent_with_no_automatic_elapsed_effect",
+        "status": "passed"
+      },
+      {
+        "test": "test_new_material_does_not_break_committed_campaign",
+        "status": "passed",
+        "finding_id": "IRGS-QA-001"
+      },
+      {
+        "test": "test_pause_resume_preserves_work_and_finishes_once",
+        "status": "passed"
+      },
+      {
+        "test": "test_private_state_and_hidden_permission_do_not_select_player_options",
+        "status": "passed"
+      },
+      {
+        "test": "test_results_survive_host_restart_and_trash_restore",
+        "status": "passed"
+      }
+    ]
+  },
+  "browsers": {
+    "saves": {
+      "status": "passed",
+      "baseline_app_asset_commit": null,
+      "live_provider_calls": 0,
+      "browser_errors": [],
+      "checks": [
+        "Two normal committed actions update the Saves card without reload or extra writes",
+        "Repeated Saves/Continue navigation preserves the draft and exact saved bytes",
+        "Reload retains the same current card revision without changing the saved world"
+      ],
+      "phase": "actions",
+      "authoritative_revision": 2,
+      "saved_card_text": "S\nSaves summary regression\n\nSaved campaign \u00b7 revision 2\n\nContinue story"
+    },
+    "story": {
+      "status": "passed",
+      "contexts": [
+        {
+          "context": "authored_scene",
+          "entries": 4,
+          "chronological": true,
+          "choices_and_composer_below_tale": true,
+          "one_reading_viewport": true,
+          "review_cancel_no_effect": true,
+          "one_confirmed_commit": true,
+          "draft_and_reload_preserved": true,
+          "widths": [
+            1568,
+            390
+          ]
+        },
+        {
+          "context": "settlement",
+          "entries": 5,
+          "chronological": true,
+          "choices_and_composer_below_tale": true,
+          "one_reading_viewport": true,
+          "review_cancel_no_effect": true,
+          "one_confirmed_commit": true,
+          "draft_and_reload_preserved": true,
+          "widths": [
+            1568,
+            390
+          ]
+        }
+      ],
+      "known_view_replay": null,
+      "browser_errors": 0,
+      "provider_calls": 0,
+      "external_requests": 0,
+      "user_saves_opened": false
+    },
+    "interface": {
+      "status": "passed",
+      "desktop_width": 1568,
+      "mobile_width": 390,
+      "concepts": 44,
+      "reading_preferences_survive_reload": true,
+      "drawers_escape_and_focus": true,
+      "reviewed_character_creation": true,
+      "posts_before_explicit_creation": 0,
+      "explicit_creations": 1,
+      "original_fixture_saves_unchanged": true,
+      "local_assets_only": true,
+      "provider_calls": 0,
+      "browser_errors": 0,
+      "layout": {
+        "context-panel": {
+          "x": 24,
+          "width": 358.046875
+        },
+        "content": {
+          "x": 407.046875,
+          "width": 753.890625
+        },
+        "play-tools": {
+          "x": 1185.9375,
+          "width": 358.0625
+        }
+      },
+      "assets": [
+        {
+          "url": "/fonts.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.css",
+          "status": 200
+        },
+        {
+          "url": "/style.css",
+          "status": 200
+        },
+        {
+          "url": "/preview.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.data.js",
+          "status": 200
+        },
+        {
+          "url": "/routine.js",
+          "status": 200
+        },
+        {
+          "url": "/rise.js",
+          "status": 200
+        },
+        {
+          "url": "/catalogue.js",
+          "status": 200
+        },
+        {
+          "url": "/solo.js",
+          "status": 200
+        },
+        {
+          "url": "/communications.js",
+          "status": 200
+        },
+        {
+          "url": "/processes.js",
+          "status": 200
+        },
+        {
+          "url": "/intents.js",
+          "status": 200
+        },
+        {
+          "url": "/creator.js",
+          "status": 200
+        },
+        {
+          "url": "/preview.js",
+          "status": 200
+        },
+        {
+          "url": "/app.js",
+          "status": 200
+        },
+        {
+          "url": "/instrument-sans-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fraunces-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/ibm-plex-mono-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/newsreader-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/historical-landscape.jpg",
+          "status": 200
+        },
+        {
+          "url": "/im-fell-english-sc-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fonts.css",
+          "status": 200
+        },
+        {
+          "url": "/style.css",
+          "status": 200
+        },
+        {
+          "url": "/preview.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.data.js",
+          "status": 200
+        },
+        {
+          "url": "/rise.js",
+          "status": 200
+        },
+        {
+          "url": "/catalogue.js",
+          "status": 200
+        },
+        {
+          "url": "/routine.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.js",
+          "status": 200
+        },
+        {
+          "url": "/solo.js",
+          "status": 200
+        },
+        {
+          "url": "/communications.js",
+          "status": 200
+        },
+        {
+          "url": "/creator.js",
+          "status": 200
+        },
+        {
+          "url": "/intents.js",
+          "status": 200
+        },
+        {
+          "url": "/preview.js",
+          "status": 200
+        },
+        {
+          "url": "/app.js",
+          "status": 200
+        },
+        {
+          "url": "/processes.js",
+          "status": 200
+        },
+        {
+          "url": "/instrument-sans-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fraunces-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/ibm-plex-mono-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/newsreader-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/historical-landscape.jpg",
+          "status": 200
+        },
+        {
+          "url": "/im-fell-english-sc-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fonts.css",
+          "status": 200
+        },
+        {
+          "url": "/style.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.css",
+          "status": 200
+        },
+        {
+          "url": "/preview.css",
+          "status": 200
+        },
+        {
+          "url": "/themes.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.data.js",
+          "status": 200
+        },
+        {
+          "url": "/rise.js",
+          "status": 200
+        },
+        {
+          "url": "/catalogue.js",
+          "status": 200
+        },
+        {
+          "url": "/routine.js",
+          "status": 200
+        },
+        {
+          "url": "/responses.js",
+          "status": 200
+        },
+        {
+          "url": "/solo.js",
+          "status": 200
+        },
+        {
+          "url": "/processes.js",
+          "status": 200
+        },
+        {
+          "url": "/communications.js",
+          "status": 200
+        },
+        {
+          "url": "/preview.js",
+          "status": 200
+        },
+        {
+          "url": "/intents.js",
+          "status": 200
+        },
+        {
+          "url": "/creator.js",
+          "status": 200
+        },
+        {
+          "url": "/app.js",
+          "status": 200
+        },
+        {
+          "url": "/instrument-sans-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/fraunces-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/ibm-plex-mono-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/im-fell-english-sc-latin.woff2",
+          "status": 200
+        },
+        {
+          "url": "/newsreader-latin.woff2",
+          "status": 200
+        }
+      ]
+    },
+    "creator": {
+      "candidate": "8777674d0bf255256520d7e90a66bb7b9d54791d",
+      "status": "passed",
+      "phase": "mobile-late-preview",
+      "checks": [
+        {
+          "viewport": "desktop",
+          "width": 1360,
+          "profiles": [
+            "rise-r00",
+            "historical-quay"
+          ],
+          "preview_edit_cancel": true,
+          "independent_profile_drafts": true,
+          "advanced_details": true,
+          "late_preview_navigation_fenced": true,
+          "story_draft_preserved": true,
+          "campaign_directory_bytes_unchanged": true
+        },
+        {
+          "viewport": "mobile",
+          "width": 390,
+          "profiles": [
+            "rise-r00",
+            "historical-quay"
+          ],
+          "preview_edit_cancel": true,
+          "independent_profile_drafts": true,
+          "advanced_details": true,
+          "late_preview_navigation_fenced": true,
+          "story_draft_preserved": true,
+          "campaign_directory_bytes_unchanged": true
+        }
+      ],
+      "browser_errors": [],
+      "provider_attempts": 0,
+      "external_requests": [],
+      "preview_dtos": [
+        {
+          "profile_id": "rise-r00",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "historical-quay",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "rise-r00",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "rise-r00",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "historical-quay",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "rise-r00",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        }
+      ],
+      "initial_campaign_files": 4
+    }
+  },
+  "actual_main_sustained_consumer": {
+    "source": {
+      "mode": "compatible",
+      "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+      "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+      "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+      "catalog_base": "a18cb48928da25d40d057a182c69f71ef149ce80",
+      "authored_baseline": {
+        "engine": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+        "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+        "catalog": "a18cb48928da25d40d057a182c69f71ef149ce80"
+      },
+      "app_engine_pin": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+      "app_catalog_pin": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+      "engine_override": false,
+      "catalog_override": false,
+      "admission": "accepted_exact_sources",
+      "committed_pins_match_tested_sources": true
+    },
+    "runtime_tests": {
+      "run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "failure_details": []
+    },
+    "gate_status": "held"
+  },
+  "integration_gate": {
+    "cycle_id": "portable-consolidation-3.4.9",
+    "status": "ready",
+    "ready": true,
+    "selected_components": {
+      "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+      "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+      "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda"
+    },
+    "reasons": []
+  },
+  "component_source_parity": {
+    "applied": false,
+    "engine_commit": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+    "app_commit": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+    "catalog_commit": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+    "changed_paths": [],
+    "removed_paths": [],
+    "integration_gate": {
+      "cycle_id": "portable-consolidation-3.4.9",
+      "status": "ready",
+      "ready": true,
+      "selected_components": {
+        "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+        "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+        "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda"
+      },
+      "reasons": []
+    },
+    "committed": false,
+    "pushed": false
+  },
+  "raw_evidence_sha256": {
+    "fresh-operation-capture.json": "0dc36b6cffdf38edf6a28dc07977980d8110a0fb655856f45202aaa2a8b1d7f5",
+    "joined-full-web.txt": "7eecb57a2724c4135c2969ea845bbe6ef744a7c0c130f326209e5e0b45567a0e",
+    "joined-dom.txt": "006fc4b861b36164a2997497dc83a7634014cd027c5ebde91b23968acf69c778",
+    "importer-focused-regression.txt": "abbd679986e8f6ee067486c9337b0b052ca9872013106cbec9854b1888299a0d",
+    "importer-tooling-regression.txt": "1ed9ecc4962a1bf30126f5b62fb60421a401e0d0993ca50b977c60a3e6cb0e21",
+    "final-integration-gate.json": "6a8070bcd81dd433a6fc2b9b0762ef8cc5132cf7293098907e912fbbe7d77961",
+    "final-source-parity.json": "f04a6fdf65719cbc3f0a47893c759185672ad05f9dd5fa3e9844e398726f5d0a",
+    "actual-main-compatible-consumer.json": "2dd74bd2340a64a6cb272761483574e7e9269570acac2f1b5956c53184046e1c",
+    "joined-independent-ordinary.json": "3f3a2cb83bbbb8b539ad668703dcab332eed6bcd89845674b2646bb2f0a256a8",
+    "joined-independent-intents.json": "6f76ef9088bcd289a643a2ddfad0bfe87676633f620e094c20f4fda1ea93a944",
+    "joined-independent-decisions.json": "c469c5c00d9d64e3ab426f5e63243576b593d6b6cac2340f46c717ad638f935a",
+    "joined-independent-qa.json": "73a2f0b7fc480cac1c46c2128a6d0628383f6e4f1e682e4b9fc74cf3dd78a1c7",
+    "joined-saves-browser.json": "11d9b2fd8a0f49b2ea560aa1d05d4ef1fb24859401c195051b12e4c22061a4b8",
+    "joined-story-browser.json": "3fea0b1a57662ec40a60d8748e6a29ea542972253365dc215f2d6e5a7ddddfae",
+    "joined-interface-browser.json": "8e98a1a76e3bb8557cf52a930b1be61baf51fff9509a27588aaf079d66c424d2",
+    "joined-creator-browser/preview-browser-final-report.json": "33f9a7569fd4dd7c6388bea647686132eeb8133db7c1983f862fcd86ceb52d4b",
+    "superseded-capture-operation.json": "e032f64d0b5f0ee4b5fcec88c1043988fe5a3beff4787d186e932029a22a4cf6",
+    "superseded-operation-capture.txt": "ce6f864a40c8e0c2ab7dc5bb0f97673f7c5bc76bad4934d90a53b963ca173ee5"
+  },
+  "superseded_capture": "interrupted exit130; no passing result; partial log preserved; hashes not edited",
+  "native_windows": "not executed; prior policy denial preserved",
+  "live_provider_calls": 0,
+  "functional_alpha_qualified": false,
+  "clean_package_requirement": "Exact final committed source must pass clean extraction/integrity/smoke/consumers before main push; public receipt on WorldWard PR6. Archive hash stays outside source to avoid recursion.",
+  "owner_local_work": "unknown inaccessible old snapshots untouched/unadopted; no owner-local parity claim",
+  "canonical_source_workspace": "/workspace/WorldWard; updated only after qualified push",
+  "observer_pid15578": "preserved"
+}

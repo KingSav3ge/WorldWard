@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "fixture_id": "coordinator-adopted-decisions-3.4.9-1",
+  "components": {
+    "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+    "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+    "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda"
+  },
+  "original_consumers_sha256": {
+    "test_current_ordinary_cases.py": "200d8a7caa0f1141d93d0791b394b5a3b04b8e165825237c90d84eed5a11940a",
+    "test_intent_world_draft_cases.py": "ffe9054fc77a5c13cfd6d266b6439b7e7d80f11e2a6ab746f4d605553ab97975",
+    "test_adopted_consequences_cases.py": "ff43801ed731402b4865b36a474c4adb19cc8bb5dc9200211a29fe6f46331dc8",
+    "test_invitation_decision_cases.py": "fd66508a8dd78ab520286246a539d84c884e9413b8ec365d416ba9115f2fb6d0"
+  },
+  "catalog_fixture_files_sha256": {
+    "evaluation/adopted_consequences_v1/README.md": "0e8dbc7b7693af2bc8ae0f55db49483f37b321a68a276d78af6b679309c4b355",
+    "evaluation/adopted_consequences_v1/manifest.json": "72b3216c1cbcd8eaf0d59e44a681653f6b8273acbd8daa688357e4592aa38be3",
+    "evaluation/adopted_consequences_v1/evaluator_only/expectations.json": "2f7529199bd533321cebe13efacf1a6906383de53befe1657698407975319f6e",
+    "evaluation/adopted_consequences_v1/actor_inputs/cases.json": "b12d32d7d82fde7c0c29c62ae4baaebd36acfc57a1ba649856cef1186767ad66",
+    "evaluation/invitation_decision_v1/README.md": "a35b5c2874d9f0714ed86f93fc552e457847bc9f63c1ddafaa0c9b4f96dd7932",
+    "evaluation/invitation_decision_v1/manifest.json": "efd44f87e1b0a2736406bc6a611294047001bbed2377bcbd3fe5ecd47cf76f2d",
+    "evaluation/invitation_decision_v1/evaluator_only/expectations.json": "87ce2f12bb8192ba40a40ff575177b27b35735547f42dd18591e35a642899990",
+    "evaluation/invitation_decision_v1/actor_inputs/cases.json": "e914f1dc77d7f9c9b3c1959cffc3137b9e95e5a7799d968be1789b3c3bf9d9ba"
+  },
+  "quay_extension_files_sha256": {
+    "evaluator_only.json": "a86d2e90a64a6acb041f71957bd1e6b15f497e37841b25502aa67e50b9e7e495",
+    "actor_inputs.json": "be809021ea56258ccfacc0ee336f6c9c68a910ddbf52cfc48c38193352a0af5b"
+  },
+  "scope": "Separately qualify the unchanged Catalog invitation/consequence/draft methods at this adopted set. Add a coordinator-authored ordinary quay decision/delivery/restart/restore case, with actor inputs separated from evaluator truth. Original source guards, fixtures and evidence are unchanged.",
+  "prior_selection_fixture_id": "coordinator-adopted-decisions-3.4.8-1"
+}
