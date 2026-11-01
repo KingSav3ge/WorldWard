@@ -5470,6 +5470,16 @@
       "sha256": "07f338c578c9d9c5ecaf861c4c8e4edf8ba0a951e29a95d3b58a0739413e8445"
     },
     {
+      "path": "provenance/qa/portable_convergence_batch_20261101/excerpts.txt",
+      "bytes": 5703,
+      "sha256": "0c7b0991b6368a0b6505f432ce251a15c20ca661297e2b61e77f0b4f7c0f0248"
+    },
+    {
+      "path": "provenance/qa/portable_convergence_batch_20261101/receipt.json",
+      "bytes": 20763,
+      "sha256": "6323d0e5914189d4618ed0d83c5dae50cf50a8b1e7029a1ee550d6d3da1704b8"
+    },
+    {
       "path": "provenance/qa/primary_update_3_4_0_review.json",
       "bytes": 11997,
       "sha256": "14a9010994263b062e17c54db878908b49f83a779143b5235baa25a3ec317026"

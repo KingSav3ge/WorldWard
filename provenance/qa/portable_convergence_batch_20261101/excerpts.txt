@@ -1,0 +1,88 @@
+FILE preview-host-tests.txt
+127.0.0.1 - - [01/Nov/2026 18:39:54] "POST /api/creator/drafts/preview HTTP/1.1" 403 -
+127.0.0.1 - - [01/Nov/2026 18:39:54] "GET /api/creator/drafts/options?mode=creator HTTP/1.1" 403 -
+127.0.0.1 - - [01/Nov/2026 18:39:54] "POST /api/creator/drafts/preview HTTP/1.1" 403 -
+ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.093s
+
+OK
+
+FILE preview-dom-tests.txt
+PASS A delayed communication preparation never opens a modal after navigation away from Story
+PASS Recovery retries a missing effect-free preparation using the original body and identity
+PASS An unavailable channel remains explicit and a retained review stays visible after reload
+PASS Versioned communication review retains unsupported words without preparing or confirming
+PASS Versioned communication binds the Engine selection and retains the prepare route on recovery
+PASS Operator readiness renders only allowlisted local route status
+PASS Explicit Engine intent selection reviews exact words without inferring an operation
+PASS WorldWard landing uses the selected studio and engine credits without submitting
+165 frontend checks passed. No real save or live server was used.
+
+FILE preview-full-web-tests.txt
+127.0.0.1 - - [01/Nov/2026 18:43:37] "GET /api/starting-options?profile_id=military HTTP/1.1" 200 -
+127.0.0.1 - - [01/Nov/2026 18:43:37] "POST /api/create HTTP/1.1" 503 -
+127.0.0.1 - - [01/Nov/2026 18:43:37] "POST /api/create HTTP/1.1" 200 -
+ok
+
+----------------------------------------------------------------------
+Ran 284 tests in 196.465s
+
+OK (skipped=7)
+
+FILE store-fixed-tests.txt
+test_failed_replace_preserves_visible_record_or_absence (test_store_write_characterization.StoreWriteCharacterizationTests.test_failed_replace_preserves_visible_record_or_absence) ... ok
+test_file_fsync_failure_preserves_visible_record_or_absence (test_store_write_characterization.StoreWriteCharacterizationTests.test_file_fsync_failure_preserves_visible_record_or_absence) ... ok
+test_parent_sync_failure_leaves_complete_replacement_visible (test_store_write_characterization.StoreWriteCharacterizationTests.test_parent_sync_failure_leaves_complete_replacement_visible) ... ok
+test_sync_only_confirmation_preserves_complete_visible_bytes (test_store_write_characterization.StoreWriteCharacterizationTests.test_sync_only_confirmation_preserves_complete_visible_bytes) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.016s
+
+OK
+
+FILE catalog-combined-structural.txt
+test_complete_distinct_cases_and_nonleaking_setup (tools.tests.test_proposed_rise_expansion_v2_contract.ProposedRiseExpansionV2Contract.test_complete_distinct_cases_and_nonleaking_setup) ... ok
+test_deferred_conflicts_and_no_reservation_refund_are_recorded (tools.tests.test_proposed_rise_expansion_v2_contract.ProposedRiseExpansionV2Contract.test_deferred_conflicts_and_no_reservation_refund_are_recorded) ... ok
+test_proposed_values_and_open_contracts (tools.tests.test_proposed_rise_expansion_v2_contract.ProposedRiseExpansionV2Contract.test_proposed_values_and_open_contracts) ... ok
+test_unselected_and_separate_actor_truth (tools.tests.test_proposed_rise_expansion_v2_contract.ProposedRiseExpansionV2Contract.test_unselected_and_separate_actor_truth) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+OK
+
+FILE engine-combined-focused.txt
+  File "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/engine-combined-source/IRGS_3_3/runtime/test_continuing_npc_control.py", line 137, in test_no_new_npc_decision_if_target_is_player_controlled
+    self.assertNotIn('shared:not-an-npc:invitation', self.world.s['settlement_receipts']['oren'])
+                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+KeyError: 'oren'
+
+----------------------------------------------------------------------
+Ran 37 tests in 3.238s
+
+FAILED (errors=1)
+
+FILE engine-corrected-focused.txt
+test_original_contact_profile_remains_without_selected_decision (test_quay_contact_decision.QuayContactDecisionTests.test_original_contact_profile_remains_without_selected_decision) ... ok
+test_persistence_failure_does_not_record_the_conversation (test_quay_contact_decision.QuayContactDecisionTests.test_persistence_failure_does_not_record_the_conversation) ... ok
+test_selected_refusal_then_actual_delivery_retry_and_restore (test_quay_contact_decision.QuayContactDecisionTests.test_selected_refusal_then_actual_delivery_retry_and_restore) ... ok
+test_worker_under_player_control_does_not_receive_scripted_decision (test_quay_contact_decision.QuayContactDecisionTests.test_worker_under_player_control_does_not_receive_scripted_decision) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 4.315s
+
+OK
+
+FILE engine-corrected-safe-tests.txt
+test_disposable_preview_is_scoped_and_does_not_publish_or_mutate_draft (test_world_draft.WorldDraftTests.test_disposable_preview_is_scoped_and_does_not_publish_or_mutate_draft) ... ok
+test_invalid_fields_and_stale_review_are_rejected (test_world_draft.WorldDraftTests.test_invalid_fields_and_stale_review_are_rejected) ... ok
+test_preview_and_explicit_initialization_match_existing_review (test_world_draft.WorldDraftTests.test_preview_and_explicit_initialization_match_existing_review) ... ok
+test_reviewed_mixed_quay_uses_actual_selected_snapshot_and_opening (test_world_draft.WorldDraftTests.test_reviewed_mixed_quay_uses_actual_selected_snapshot_and_opening) ... ok
+
+----------------------------------------------------------------------
+Ran 820 tests in 114.476s
+
+OK (skipped=1)
+

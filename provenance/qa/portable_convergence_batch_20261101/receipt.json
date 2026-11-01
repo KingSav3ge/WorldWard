@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "kind": "exact-candidate-finite-pre-alpha-convergence-evidence",
+  "published_baseline": {
+    "joined": "7327290fbb057ad320cfeb3a009e4138944b078c",
+    "edition": "3.4.8"
+  },
+  "release_selection": "3.4.9 Pre-Alpha pending final owner main metadata/pins and joined qualification",
+  "app_preview": {
+    "candidate": "1fa64ca1b9710826a8990fc03f8bbef05fc56fcf",
+    "engine_pin": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "catalog_pin": "a18cb48928da25d40d057a182c69f71ef149ce80",
+    "commands": [
+      {
+        "command": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "IRGS_Web/tests",
+          "-p",
+          "test_creator_preview.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "output": "preview-host-tests.txt",
+        "elapsed_seconds": 3.507
+      },
+      {
+        "command": [
+          "node",
+          "IRGS_Web/tests/test_gameplay_ui.js"
+        ],
+        "exit_code": 0,
+        "output": "preview-dom-tests.txt",
+        "elapsed_seconds": 10.118
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "tools/verify_components.py",
+          "--component",
+          "app"
+        ],
+        "exit_code": 0,
+        "output": "preview-component-integrity.json",
+        "elapsed_seconds": 15.907
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "IRGS_Web/tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "output": "preview-full-web-tests.txt",
+        "elapsed_seconds": 196.958
+      }
+    ],
+    "host": {
+      "run": 5,
+      "passed": 5,
+      "skipped": 0
+    },
+    "synthetic_dom_checks": 165,
+    "full_web": {
+      "run": 284,
+      "passed": 277,
+      "skipped": 7,
+      "failures": 0,
+      "errors": 0
+    },
+    "real_chromium": {
+      "candidate": "1fa64ca1b9710826a8990fc03f8bbef05fc56fcf",
+      "status": "passed",
+      "phase": "mobile-late-preview",
+      "checks": [
+        {
+          "viewport": "desktop",
+          "width": 1360,
+          "profiles": [
+            "rise-r00",
+            "historical-quay"
+          ],
+          "preview_edit_cancel": true,
+          "independent_profile_drafts": true,
+          "advanced_details": true,
+          "late_preview_navigation_fenced": true,
+          "story_draft_preserved": true,
+          "campaign_directory_bytes_unchanged": true
+        },
+        {
+          "viewport": "mobile",
+          "width": 390,
+          "profiles": [
+            "rise-r00",
+            "historical-quay"
+          ],
+          "preview_edit_cancel": true,
+          "independent_profile_drafts": true,
+          "advanced_details": true,
+          "late_preview_navigation_fenced": true,
+          "story_draft_preserved": true,
+          "campaign_directory_bytes_unchanged": true
+        }
+      ],
+      "browser_errors": [],
+      "provider_attempts": 0,
+      "external_requests": [],
+      "preview_dtos": [
+        {
+          "profile_id": "rise-r00",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "historical-quay",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "rise-r00",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "rise-r00",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "historical-quay",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        },
+        {
+          "profile_id": "rise-r00",
+          "schema": "irgs-world-initialization-preview-1",
+          "private_keys": [],
+          "committed": false,
+          "identities_reusable": false
+        }
+      ],
+      "initial_campaign_files": 4
+    },
+    "retained_harness_failures": {
+      "first": "hidden legacy mode control before preview",
+      "v2": "wrong invented route before preview",
+      "v3": "unbounded interceptor waiting for omitted mode query; stopped only identified synthetic processes",
+      "v4": "bounded query-matching diagnostic; real preview completed but interception did not match",
+      "v5": "desktop passed; mobile hidden desktop account selector"
+    },
+    "component_source_changed_by_harness": false,
+    "force_click_or_direct_mode_mutation": false
+  },
+  "app_store_corrected": {
+    "candidate": "6381803b402f48492efeda74d64a1d33582e2130",
+    "commands": [
+      {
+        "command": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "IRGS_Web/tests",
+          "-p",
+          "test_store_write_characterization.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "output": "store-fixed-tests.txt",
+        "elapsed_seconds": 0.667,
+        "PYTHONPATH": "absent"
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "tools/verify_components.py",
+          "--component",
+          "app"
+        ],
+        "exit_code": 0,
+        "output": "store-fixed-integrity.json",
+        "elapsed_seconds": 19.716,
+        "PYTHONPATH": "absent"
+      }
+    ],
+    "run": 4,
+    "passed": 4,
+    "skipped": 0,
+    "platform": "Linux POSIX",
+    "original_failure_preserved": "f8bfa2853d348b7371439d07fc19e0ec9cb92767",
+    "durable_creator_implemented": false
+  },
+  "catalog_corrected_individual": {
+    "candidate": "e94a91a941b43f33ea02881af87261b13211d42f",
+    "commands": [
+      {
+        "command": [
+          "python",
+          "-B",
+          "tools/tests/test_sustained_ordinary_consumers.py",
+          "--engine-source",
+          "/workspace/irgs-cloud/candidate-tests/20261101T175014Z/app-source/Engine",
+          "--app-source",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/app-baseline-source",
+          "--catalog-commit",
+          "e94a91a941b43f33ea02881af87261b13211d42f",
+          "--output",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/sustained-fixed-report.json",
+          "--require-g10"
+        ],
+        "exit_code": 2,
+        "output": "sustained-fixed-log.txt",
+        "elapsed_seconds": 11.597
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "IRGS_Catalog/verify_catalog.py"
+        ],
+        "exit_code": 0,
+        "output": "sustained-fixed-integrity.json",
+        "elapsed_seconds": 13.672
+      }
+    ],
+    "runtime_tests": {
+      "run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "failure_details": []
+    },
+    "gate_status": "held",
+    "original_failure_preserved": "932bf5007386c8d5fe67cf6f7bb1ab3356025153"
+  },
+  "catalog_combined": {
+    "candidate": "e4fbac2972f1349975cf940ef33c237c875413c2",
+    "commands": [
+      {
+        "command": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "tools.tests.test_proposed_rise_expansion_contract",
+          "tools.tests.test_proposed_rise_expansion_v2_contract",
+          "-v"
+        ],
+        "exit_code": 0,
+        "expected_exit": 0,
+        "output": "catalog-combined-structural.txt",
+        "elapsed_seconds": 0.115
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "IRGS_Catalog/verify_catalog.py"
+        ],
+        "exit_code": 0,
+        "expected_exit": 0,
+        "output": "catalog-combined-integrity.json",
+        "elapsed_seconds": 12.993
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "tools/tests/test_sustained_ordinary_consumers.py",
+          "--engine-source",
+          "/workspace/irgs-cloud/candidate-tests/20261101T175014Z/app-source/Engine",
+          "--app-source",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/app-baseline-source",
+          "--catalog-commit",
+          "e4fbac2972f1349975cf940ef33c237c875413c2",
+          "--output",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/catalog-combined-baseline-report.json",
+          "--require-g10"
+        ],
+        "exit_code": 2,
+        "expected_exit": 2,
+        "output": "catalog-combined-baseline.txt",
+        "elapsed_seconds": 9.575
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "tools/tests/test_sustained_ordinary_consumers.py",
+          "--engine-source",
+          "/workspace/irgs-cloud/candidate-tests/20261101T175014Z/app-source/Engine",
+          "--app-source",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/app-baseline-source",
+          "--catalog-commit",
+          "e4fbac2972f1349975cf940ef33c237c875413c2",
+          "--selection-mode",
+          "compatible",
+          "--engine-commit",
+          "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+          "--app-commit",
+          "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+          "--output",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/catalog-combined-negative-report.json",
+          "--require-g10"
+        ],
+        "exit_code": 1,
+        "expected_exit": 1,
+        "output": "catalog-combined-negative.txt",
+        "elapsed_seconds": 0.19
+      }
+    ],
+    "structural_tests": {
+      "run": 7,
+      "passed": 7,
+      "skipped": 0
+    },
+    "integrity_files": 252,
+    "baseline_runtime_tests": {
+      "run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "failure_details": []
+    },
+    "source_selection": {
+      "mode": "historical-baseline-override",
+      "engine": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+      "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+      "catalog": "e4fbac2972f1349975cf940ef33c237c875413c2",
+      "catalog_base": "a18cb48928da25d40d057a182c69f71ef149ce80",
+      "authored_baseline": {
+        "engine": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+        "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+        "catalog": "a18cb48928da25d40d057a182c69f71ef149ce80"
+      },
+      "source_roots": {
+        "engine": "/workspace/irgs-cloud/candidate-tests/20261101T175014Z/app-source/Engine",
+        "app": "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/app-baseline-source",
+        "catalog": "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/catalog-combined-source"
+      },
+      "app_engine_pin": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+      "app_catalog_pin": "a18cb48928da25d40d057a182c69f71ef149ce80",
+      "engine_override": false,
+      "catalog_override": true,
+      "admission": "accepted_exact_sources",
+      "committed_pins_match_tested_sources": false
+    },
+    "gate_status": "held",
+    "negative_admission": {
+      "exit": 1,
+      "journeys_run": 0,
+      "reason": "old App Catalog gitlink does not match selected new Catalog"
+    },
+    "merged_main_observed": "9ce2bb678474c4c90acb468f2be34628cac799cd",
+    "merged_tree_identical": true,
+    "merged_main_version_observed": "3.4.8",
+    "edition_alignment_pending": true
+  },
+  "engine_combined_failed": {
+    "candidate": "34abd2ef9cfc5a47c34136249c28ede4c0a3dbcc",
+    "commands": [
+      {
+        "command": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "test_material_reservation_regression",
+          "test_continuing_npc_control",
+          "test_settlement",
+          "test_ordinary_invitation_decision",
+          "test_world_draft",
+          "test_draft_intent_offers",
+          "test_quay_contact_decision",
+          "-v"
+        ],
+        "exit_code": 1,
+        "output": "engine-combined-focused.txt",
+        "elapsed_seconds": 3.523
+      }
+    ],
+    "run": 37,
+    "passed": 36,
+    "errors": 1,
+    "reason": "new assertion indexed absent Oren receipts map after legitimate rejection",
+    "integrity": "verified"
+  },
+  "engine_combined_corrected": {
+    "candidate": "cc6f96712b6491874a3e36d37756791903820de7",
+    "commands": [
+      {
+        "command": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "test_material_reservation_regression",
+          "test_continuing_npc_control",
+          "test_settlement",
+          "test_ordinary_invitation_decision",
+          "test_world_draft",
+          "test_draft_intent_offers",
+          "test_quay_contact_decision",
+          "-v"
+        ],
+        "exit_code": 0,
+        "output": "engine-corrected-focused.txt",
+        "elapsed_seconds": 4.673
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "tools/verify_components.py",
+          "--component",
+          "engine"
+        ],
+        "exit_code": 0,
+        "output": "engine-corrected-integrity.json",
+        "elapsed_seconds": 0.363
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/run-engine-corrected-safe-suite.py",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/engine-corrected-source/IRGS_3_3/runtime",
+          "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/engine-corrected-safe-summary.json"
+        ],
+        "exit_code": 0,
+        "output": "engine-corrected-safe-tests.txt",
+        "elapsed_seconds": 115.819
+      }
+    ],
+    "focused": {
+      "run": 37,
+      "passed": 37,
+      "skipped": 0
+    },
+    "safe_suite": {
+      "candidate": "cc6f96712b6491874a3e36d37756791903820de7",
+      "tests_run": 820,
+      "passed": 819,
+      "failures": 0,
+      "errors": 0,
+      "skipped": [
+        {
+          "test": "test_suite.SuiteTests.test_legacy_ast_save_load_does_not_rewrite",
+          "reason": "Coverage capture uses synthetic fixtures only; external historical saves are not opened"
+        }
+      ],
+      "successful": true,
+      "external_private_fixture_opened": false,
+      "source_policy": "existing coordinator coverage_capture.EXTERNAL_FIXTURE_TEST/_PolicySkip",
+      "operation_capture_claimed": false
+    },
+    "runtime_diff_from_failed_candidate": false,
+    "coordinator_merge_readiness": "accepted finite portable scope; actual owner main/edition readback pending"
+  },
+  "excluded": {
+    "launcher_engine": "6b88eb6f9006b3fa4927401cc21734f73c2dfd57",
+    "launcher_native_result": "not_executed; prior Windows policy denial preserved; no retry/bypass",
+    "paired_app_launcher": "excluded",
+    "durable_creator": "not implemented by proposal or Store characterization",
+    "live_provider": "not executed or budget authorized"
+  },
+  "observer_unchanged": {
+    "start_ticks": "2850392",
+    "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3\u0000-u\u0000-B\u0000/workspace/WorldWard/tools/watch_component_qa.py\u0000--joined\u0000/workspace/WorldWard\u0000--engine\u0000/workspace/Fulcrum-Engine\u0000--app\u0000/workspace/WORLDWARD-APP-WEB\u0000--catalog\u0000/workspace/WorldWard-Catalog\u0000--storage\u0000/workspace/irgs-cloud/component-qa\u0000--interval\u000060\u0000",
+    "watcher_sha256": "3476ec451e173fa5fa7d81f38663e2d54bd003f0a465fac0a2096d5465e16899",
+    "qa_sha256": "315c4af3adc2d2383e9240a49a2903c11d63860ae655c9e0c9a5fa737b742705"
+  },
+  "clean_sources": {
+    "/workspace/WorldWard": true,
+    "/workspace/Fulcrum-Engine": true,
+    "/workspace/WORLDWARD-APP-WEB": true,
+    "/workspace/WorldWard-Catalog": true,
+    "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/engine-corrected-source": true,
+    "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/app-preview-source": true,
+    "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z/catalog-combined-source": true
+  },
+  "raw_evidence_sha256": {
+    "preview-command-results.json": "bd927d75797bcd421d9f76e3484faceadc0f4b63fe7148a30badef908d6d74d4",
+    "preview-host-tests.txt": "4b8324efa05d14d492c4c44addb79f49d93e5e51e9a8ae4ca752398627d784af",
+    "preview-dom-tests.txt": "7e7af88fbee1d071684c0e5809a5feb5f8819d2dd606f6e24dc87b87fe51b3ba",
+    "preview-component-integrity.json": "d39d060a4fcc25e73c92228b03477c5d0ed1e101ff6098ba04ec5d324e74720d",
+    "preview-full-web-tests.txt": "6a0b74ba8ceac30cad203e633ec9ff8d818973161fc911253a0480c9f0f4c21f",
+    "preview-browser-report.json": "4c45214f03277d48e4125420d78d8f96be2a5bbb8114ee7f66d615e2c8787f89",
+    "preview-browser-v2-report.json": "2338dc1590c5a4ca823a115e107975e0c14cc7774cb9cb7894124e775448c046",
+    "preview-browser-v3-operation.json": "5d6804572b207193d5e1c81ee10f02a20cd5fab7e24443be9df54cc88462244c",
+    "preview-browser-v4-report.json": "d748ce5938dcd72ed8786c66fbb00f4156b839697cd7dfa592463da21456bbc5",
+    "preview-browser-v5-report.json": "f34148557fc07352108ab34e6b208ce2a9363270b4b1b0c656ed4df945fc75cc",
+    "preview-browser-v6-report.json": "669dc947d32b4c48cbeb3203be8c6a42cdd9076dfe2ef36d946e8e6e980e886d",
+    "preview-browser-v6.js": "e7c33b7a9743eed4440e3423dadbe4fec003bd7656fa093b484ca8b0f57fc53f",
+    "store-fixed-command-results.json": "6fedf36504ac0f8b067fc0b1155f3034a7359dab0db6ae8f5e30212728a04130",
+    "store-fixed-tests.txt": "a18a6915e2056431ae78abd72fcc5ec22e23e82b31462d376732338388f665fc",
+    "store-fixed-integrity.json": "de6426fd6b7dd3e6ed7855f6e12c93a5592334cf1babf95c41a067d581e13c7e",
+    "sustained-fixed-command-results.json": "5655842dbc6f0e236cd6ca37f2f616fae4d3e49377268796ae04992e3b3e7c23",
+    "sustained-fixed-report.json": "eae6f938b7aea1fc0787c379ccc215b60d016bf91e66fad037ec3a3deb547188",
+    "catalog-combined-admission.json": "de034a352ddb6ccfa74896564912edf897dfee975cf99a817c4418071c17a013",
+    "catalog-combined-command-results.json": "91a8cace51a724b13094a5b503c8cc2ba4784fb5420d898569631c90e69289e1",
+    "catalog-combined-structural.txt": "846982912f7cc62881e726f371565fb0254690492d3af6339786a3d53b071ff9",
+    "catalog-combined-integrity.json": "cdad9484771d2542fa1a49cedfb0a49435718ee365f394664110667924a1cd15",
+    "catalog-combined-baseline-report.json": "17f5bb495389fe08fac8182ab6016971abcd437d534a25762c805248dfa6d27d",
+    "catalog-combined-negative-report.json": "ba2a9b78c6c6fe76722bba4947b559b6614dff8caf1634f67f32e0aa6400f39e",
+    "engine-combined-admission.json": "2033a2b63968dc5617b3e98649d66444dd37a931aa84661bd9d262046d6a4011",
+    "engine-combined-command-results.json": "31a888e556f378e94d4ef609c059b71f7f7fcdea2b80ebe86ea0fb8ae5e0ea7c",
+    "engine-combined-focused.txt": "aadc9ba84765bc00d4387da5bdfaefd9a5ae00d1e471efdf2285bfc71770d92b",
+    "engine-combined-integrity.json": "8f387515b0280326c221b2ece417fffee226a28cef035adb10fb07b983df44bc",
+    "engine-corrected-admission.json": "7c67fed6683922ab16aac0e73c691efa0dfed864921999146cd4a47f12735a38",
+    "engine-corrected-command-results.json": "38f2ba5855435310f9b62cfea69e4f7b1c5af623bd66f80fed062bd72c5cb41f",
+    "engine-corrected-focused.txt": "933990a6845ed226b6fb6813536f38ca3b40e835b28994eb9cf55a2d0daa02a1",
+    "engine-corrected-integrity.json": "8f387515b0280326c221b2ece417fffee226a28cef035adb10fb07b983df44bc",
+    "engine-corrected-safe-summary.json": "505e80818ce2796e9c352883f57e524694236234ea140dee082d36ebcfd0a808",
+    "engine-corrected-safe-tests.txt": "1e895bcb0a87530fcdacab66303dba4c46bdcf96b5be168ef3c6807d96ccaaec",
+    "run-engine-corrected-safe-suite.py": "3a45201f2a79d400e301e4753b79e78657dd39e208c4491aa12ec3741e28af82"
+  },
+  "raw_logs_retained_outside_source": "/workspace/irgs-cloud/candidate-tests/WW-QUAL-NEXT-1fa64ca-932bf50/20261101T183406Z",
+  "alpha_gates_qualified": 0,
+  "alpha_gates_total": 12,
+  "old_owner_snapshots": "inaccessible; untouched/unadopted; no local parity claim",
+  "external_deployment": false,
+  "component_main_writes_by_coordinator": false,
+  "source_ownership": "existing sole Engine/App/Catalog owners; coordinator tests/evidence/assembly only"
+}
