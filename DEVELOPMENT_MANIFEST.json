@@ -5205,6 +5205,16 @@
       "sha256": "f6bc0a2866bf2ec8b673d07268ef69184f52641b107cde3e5a6fd2c869ff5639"
     },
     {
+      "path": "provenance/qa/alpha5_independent_first_batch_20261101/excerpts.txt",
+      "bytes": 1296,
+      "sha256": "5332468f1938b91095a9402235a8e452bc0d33c61956f42d969f9e4ddd204e46"
+    },
+    {
+      "path": "provenance/qa/alpha5_independent_first_batch_20261101/receipt.json",
+      "bytes": 8878,
+      "sha256": "53717c7d17caa1c2a35fb3f8cba4b3660422cb49c462fd35588c19788e6d2eba"
+    },
+    {
       "path": "provenance/qa/completed_cycles/decisions-3.4.7_coordination.json",
       "bytes": 12686,
       "sha256": "df2476be64a3bcae6a0f9aca16551cd5739d1f755766ce988d6ee2dbdd112bd1"

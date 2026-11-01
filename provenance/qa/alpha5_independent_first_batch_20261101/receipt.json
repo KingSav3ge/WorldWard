@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "kind": "coordinator-independent-candidate-evidence",
+  "status": "bounded_checks_passed;not_release_qualification",
+  "executor": "existing coordinator Linux executor; owner executors not recovered",
+  "ownership": "Existing Engine/App/Catalog owners remain sole candidate branch writers; scope acceptances were explicitly relayed before testing.",
+  "catalog_v1": {
+    "candidate": "92998f768e699496711f9ec2238584216655f6b2",
+    "base_parent": "a18cb48928da25d40d057a182c69f71ef149ce80",
+    "commands": [
+      {
+        "command": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "tools.tests.test_proposed_rise_expansion_contract",
+          "-v"
+        ],
+        "exit_code": 0,
+        "output": "catalog-contract-tests.txt",
+        "elapsed_seconds": 0.116
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "IRGS_Catalog/verify_catalog.py"
+        ],
+        "exit_code": 0,
+        "output": "catalog-integrity.json",
+        "elapsed_seconds": 15.819
+      }
+    ],
+    "structural_tests": 3,
+    "paired_cases": 9,
+    "integrity": {
+      "status": "verified",
+      "files": 244,
+      "concepts": 44,
+      "prior_manifest_entries_unchanged": true,
+      "new_catalog_hashes": 4
+    },
+    "skips": 0,
+    "classification": "proposed/unselected; no Core execution"
+  },
+  "catalog_v2": {
+    "candidate": "ce4e503e7464e899092cb65917a1b005fa8a01c4",
+    "parent": "92998f768e699496711f9ec2238584216655f6b2",
+    "published_base": "a18cb48928da25d40d057a182c69f71ef149ce80",
+    "commands": [
+      {
+        "command": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "tools.tests.test_proposed_rise_expansion_v2_contract",
+          "-v"
+        ],
+        "exit_code": 0,
+        "output": "catalog-v2-contract-tests.txt",
+        "elapsed_seconds": 0.115
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "IRGS_Catalog/verify_catalog.py"
+        ],
+        "exit_code": 0,
+        "output": "catalog-v2-integrity.json",
+        "elapsed_seconds": 17.328
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/tests",
+          "-p",
+          "test_proposed_rise_expansion*_contract.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "output": "catalog-both-contract-tests.txt",
+        "elapsed_seconds": 0.486
+      }
+    ],
+    "v2_structural_tests": 4,
+    "focused_v1_v2_discovery_tests": 7,
+    "paired_cases": 10,
+    "integrity": {
+      "status": "verified",
+      "files": 248,
+      "concepts": 44,
+      "prior_manifest_entries_unchanged": true,
+      "new_catalog_hashes": 4
+    },
+    "skips": 0,
+    "classification": "additive proposed/unselected revision; Engine reconciliation pending"
+  },
+  "app_saves": {
+    "candidate": "197d41a910b37b5c8b27d0f7dc9224b068244364",
+    "base_parent": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+    "engine_pin": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "catalog_pin": "a18cb48928da25d40d057a182c69f71ef149ce80",
+    "scope": [
+      "IRGS_Web/static/app.js",
+      "IRGS_Web/tests/test_gameplay_ui.js",
+      "IRGS_Web/release.json"
+    ],
+    "scope_and_parent_verified": true,
+    "three_app_blobs_equal_reviewed_joined_source": "2f4ca609372555148a1f7fbc7ad48ec22860ed70",
+    "release_change": "exactly two hash values; no inventory/pin/edition change",
+    "dom": {
+      "command": [
+        "node",
+        "IRGS_Web/tests/test_gameplay_ui.js"
+      ],
+      "tests_passed": 161,
+      "classification": "synthetic DOM and delayed transport; not browser"
+    },
+    "component_integrity": {
+      "command": [
+        "python",
+        "-B",
+        "tools/verify_components.py",
+        "--component",
+        "app"
+      ],
+      "status": "verified",
+      "declared_and_checked_out_dependencies_match": true
+    },
+    "real_browser": {
+      "command": [
+        "node",
+        "tools/qualify_saves_revision.js"
+      ],
+      "helper_source_commit": "2f4ca609372555148a1f7fbc7ad48ec22860ed70",
+      "helper_outside_app_source": true,
+      "helper_unmodified": true,
+      "source_mapping": "fixture imports exact App snapshot; Engine/Catalog use exact App pins",
+      "status": "passed",
+      "durable_revision": 2,
+      "card_revision": 2,
+      "checks": [
+        "Two normal committed actions update the Saves card without reload or extra writes",
+        "Repeated Saves/Continue navigation preserves the draft and exact saved bytes",
+        "Reload retains the same current card revision without changing the saved world"
+      ],
+      "browser_errors": [],
+      "provider_calls": 0
+    },
+    "real_host_recovery": {
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "test_gameplay.GameplayTests.test_lost_ack_replay_is_exact_and_text_preserves_no_outcomes",
+        "test_intent_bridge.IntentBridgeTests.test_restore_invalidates_uncommitted_request_without_changing_save",
+        "test_intent_bridge.IntentBridgeTests.test_failed_save_restart_and_uncertain_sync_recover_original_once",
+        "-v"
+      ],
+      "tests_passed": 3,
+      "classification": "existing synthetic HTTP host tests; not Creator creation or native filesystem crash tests"
+    },
+    "skips": 0
+  },
+  "coverage_limits": [
+    "Historical receipt versus current host revision, lower restored revision and superseded A/B reads pass in synthetic DOM tests; no real-browser coverage is claimed for those three injected cases.",
+    "The real browser uses two normally committed synthetic Rise actions, checks current saved revision, draft retention and navigation/reload saved-byte preservation.",
+    "Catalog tests verify proposal markers, paired case completeness, demonstration consistency and literal separation of evaluator marker/setup/assertion strings; they do not establish semantic information-flow security or gameplay outcomes.",
+    "No newly observed failure in the executed bounded checks; whole-product correctness is not inferred.",
+    "Catalog v2 still needs Engine identity/authority/review/expiry/migration/transition reconciliation. No profile is selected runtime policy.",
+    "Creator documentation 4053b5a/7d17ec6 is unimplemented prose, not passing tests. Engine runtime4f85d2183bd85757eb81febfc2952bda481f709b is fetched only and remains untested in this first batch.",
+    "No new Creator endpoint, storage-characterization candidate, paid provider, native Windows, clean package or full-compatible-set qualification is covered."
+  ],
+  "preservation": {
+    "canonical_joined_main": "7327290fbb057ad320cfeb3a009e4138944b078c",
+    "published_version": "3.4.8",
+    "component_mains_unchanged": true,
+    "app_pins_unchanged": true,
+    "old_owner_snapshots_untouched": true,
+    "observer_pid": 15578,
+    "same_process_and_active_source_hashes": true,
+    "owner_workspace_adoption": false,
+    "candidate_source_mutated": false
+  },
+  "all_twelve_functional_gates": "remain unqualified",
+  "progress": [
+    "G09/G11: bounded App recovery/presentation regression evidence",
+    "Future G04-G07/G10: Catalog design/independent-case groundwork",
+    "G12: exact source/scope/pin admission evidence; no release qualification"
+  ],
+  "raw_log_identities": {
+    "catalog-contract-tests.txt": {
+      "bytes": 625,
+      "sha256": "be98936fb182cb68fa197a51fe86ca4c8ae62d8d020fe7c2b6e357ab17092cb7"
+    },
+    "catalog-integrity.json": {
+      "bytes": 4371,
+      "sha256": "4998b9b6a01c1d18d9aed97f8d8d3d198429e8c77d75a4a51978c30f5763ae6e"
+    },
+    "catalog-v2-contract-tests.txt": {
+      "bytes": 862,
+      "sha256": "d025c755da57387b50b171055344e8b15cfcc76080bd1509cfaa04fae195964a"
+    },
+    "catalog-v2-integrity.json": {
+      "bytes": 4371,
+      "sha256": "f4f25898560b13559434555bc5bc8cb68d1751f7a63a98056a35fd957385dffe"
+    },
+    "catalog-both-contract-tests.txt": {
+      "bytes": 1305,
+      "sha256": "197b15872f52428bad85690421e8e3d56c2dfcc090cdaf190a0ba7a9261a8271"
+    },
+    "app-dom-tests.txt": {
+      "bytes": 14640,
+      "sha256": "2035ea3c6a100db6fedcc47cac75ad718bf653d533a71587652d46b8c16a0e4b"
+    },
+    "app-component-integrity.json": {
+      "bytes": 4753,
+      "sha256": "2da2282663f78c2ca37f02368036318acb4bd86d31a838d802cc68c166daaba3"
+    },
+    "app-real-browser.json": {
+      "bytes": 543,
+      "sha256": "d4ed7ea6716b6a07fe5443e2a84137aa5c80f2778bc4f7fb20380006eb09a21c"
+    },
+    "app-http-recovery-tests.txt": {
+      "bytes": 3231,
+      "sha256": "b13132cf35badd991aebd9cd04dd30c53ab85524fa4d88ccb1abdfbe3d68fb3d"
+    }
+  },
+  "recording_only": "No candidate tests are rerun for receipt publication. Temporary fixture paths, campaign IDs, tokens and full HTTP logs omitted."
+}
