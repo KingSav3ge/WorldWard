@@ -92,7 +92,12 @@ class CatalogBoundaryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             base = Path(folder)
             engine, app, catalog, joined = (base / name for name in ('engine', 'app', 'catalog', 'joined'))
-            e = repository(engine, {'IRGS_3_3/source.txt': 'engine'})
+            e = repository(engine, {'IRGS_3_3/source.txt': 'engine',
+                'provenance/source.md': 'selected Engine provenance',
+                'provenance/qa/current_report.md': 'stale component QA',
+                'engine/qualification/operation_register.json': 'stale operation register',
+                'engine/OPERATION_COVERAGE.md': 'stale operation coverage',
+                'provenance/coordination/owners/app/COORDINATOR_WORK_ORDER.md': 'stale component copy'})
             c = repository(catalog, {'IRGS_Catalog/data.json': 'current catalog'})
             repository(app, {'IRGS_Web/view.txt': 'viewer'})
             git(app, 'clone', '--quiet', '--no-hardlinks', str(engine), 'Engine')
@@ -108,11 +113,21 @@ class CatalogBoundaryTests(unittest.TestCase):
                     for name, commit in commits.items()}}
             repository(joined, {'IRGS_Catalog/old.json': 'obsolete', 'keep.txt': 'retained',
                 'provenance/qa/current_report.md': 'retained QA',
+                'provenance/obsolete.md': 'obsolete Engine provenance',
+                'engine/qualification/operation_register.json': 'current joined register',
+                'engine/OPERATION_COVERAGE.md': 'current joined coverage',
+                'provenance/coordination/owners/app/COORDINATOR_WORK_ORDER.md': 'current joined handoff',
+                'provenance/coordination/target_5_0/ENGINE.md': 'current joined target',
                 'COORDINATION.json': json.dumps(cycle),
                 'COMPONENTS.json': json.dumps({n: {} for n in ('engine', 'app', 'catalog')})})
             with patch.object(sync, 'ROOT', joined):
                 planned = sync.sync(engine, app, catalog)
                 self.assertIn('IRGS_Catalog/old.json', planned['removed_paths'])
+                self.assertIn('provenance/obsolete.md', planned['removed_paths'])
+                self.assertFalse(any(name in planned['changed_paths'] + planned['removed_paths']
+                    for name in ('engine/qualification/operation_register.json', 'engine/OPERATION_COVERAGE.md', 'provenance/qa/current_report.md')))
+                self.assertFalse(any(name.startswith('provenance/coordination/')
+                    for name in planned['changed_paths'] + planned['removed_paths']))
                 self.assertFalse((joined / 'IRGS_Catalog/data.json').exists())
                 cycle['reviews']['catalog']['status'] = 'pending'
                 (joined / 'COORDINATION.json').write_text(json.dumps(cycle))
@@ -131,6 +146,12 @@ class CatalogBoundaryTests(unittest.TestCase):
                 self.assertFalse((joined / 'IRGS_Catalog/old.json').exists())
                 self.assertEqual((joined / 'keep.txt').read_text(), 'retained')
                 self.assertEqual((joined / 'provenance/qa/current_report.md').read_text(), 'retained QA')
+                self.assertEqual((joined / 'provenance/source.md').read_text(), 'selected Engine provenance')
+                self.assertFalse((joined / 'provenance/obsolete.md').exists())
+                self.assertEqual((joined / 'engine/qualification/operation_register.json').read_text(), 'current joined register')
+                self.assertEqual((joined / 'engine/OPERATION_COVERAGE.md').read_text(), 'current joined coverage')
+                self.assertEqual((joined / 'provenance/coordination/owners/app/COORDINATOR_WORK_ORDER.md').read_text(), 'current joined handoff')
+                self.assertEqual((joined / 'provenance/coordination/target_5_0/ENGINE.md').read_text(), 'current joined target')
                 self.assertEqual(json.loads((joined / 'COMPONENTS.json').read_text())['catalog']['commit'], c)
                 git(joined, 'add', '.')
                 git(joined, 'commit', '-qm', 'Synthetic integration')

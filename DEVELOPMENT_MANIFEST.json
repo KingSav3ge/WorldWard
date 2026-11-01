@@ -172,7 +172,7 @@
     {
       "path": "COMPONENTS.json",
       "bytes": 976,
-      "sha256": "09d3736b07eebd0c1cbe03ff894788ced0af59610fe15f19f48c06fe630ee5f4"
+      "sha256": "ee3063a436f3a466ddd30bfd989f27b19cb2149f1ab0d5f770c9b316bb833e0b"
     },
     {
       "path": "COMPONENT_PUBLISH_VALIDATION.json",
@@ -196,8 +196,8 @@
     },
     {
       "path": "COORDINATION.json",
-      "bytes": 6702,
-      "sha256": "61fe5c85a9985060316be8e46349d1656d1421baa76b433e26209dedb9ecca9f"
+      "bytes": 6822,
+      "sha256": "63ab2d2bfcfdffcb64c8140da6c3fd15917517cae7adf2890b2ac3c81b0e947c"
     },
     {
       "path": "COORDINATION.md",
@@ -5120,6 +5120,61 @@
       "sha256": "4a0ae5ded18e21c5c368f11f9c823fe2454510c30281481eae4089447a10c954"
     },
     {
+      "path": "provenance/coordination/owners/app/COORDINATOR_WORK_ORDER.md",
+      "bytes": 3101,
+      "sha256": "e1e1648de94e88f0a4e0af2c3dab56950ddeb9cea00ce919386a67dd54abcf1c"
+    },
+    {
+      "path": "provenance/coordination/owners/app/COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md",
+      "bytes": 2091,
+      "sha256": "c27041cf376614522fdf3515d7354735c55111147b0774ca79cd28a6ca0325c2"
+    },
+    {
+      "path": "provenance/coordination/owners/catalog/COORDINATOR_WORK_ORDER.md",
+      "bytes": 2993,
+      "sha256": "bc2df27b6d19958537c9ef24cf787105bbc0e1d022bd87b124dfbdfd2ebe1928"
+    },
+    {
+      "path": "provenance/coordination/owners/catalog/COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md",
+      "bytes": 2021,
+      "sha256": "c76c9a559261ad145aaa7c094982db4719d992c24c0df3339d0f79f499d5e8bf"
+    },
+    {
+      "path": "provenance/coordination/owners/engine/COORDINATOR_WORK_ORDER.md",
+      "bytes": 3087,
+      "sha256": "97bf0f10000df1ad112f2284bac22bd0da838061548f87d0a3ac1c396ad76afc"
+    },
+    {
+      "path": "provenance/coordination/owners/engine/COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md",
+      "bytes": 2010,
+      "sha256": "e9ad627dab5bc95e720aae312839ce699d65e3c440dbe75f8b4b62e46d52f385"
+    },
+    {
+      "path": "provenance/coordination/target_5_0/APP.md",
+      "bytes": 2602,
+      "sha256": "5d6d5138699e11e00447eff8d7348ec06e749f7fbb5e855326b71596dc2d66fb"
+    },
+    {
+      "path": "provenance/coordination/target_5_0/CATALOG.md",
+      "bytes": 2393,
+      "sha256": "f222f6571ea0f37bfdd9aed0197e64b0d23fb0e0e426c83da18985aa0562b62e"
+    },
+    {
+      "path": "provenance/coordination/target_5_0/CHECKPOINT.json",
+      "bytes": 1901,
+      "sha256": "b238b6fc11544bc038b5a39ddc56abe978679c6869e52c31c1fbdfe99cf907a6"
+    },
+    {
+      "path": "provenance/coordination/target_5_0/ENGINE.md",
+      "bytes": 2202,
+      "sha256": "28fe7148cf0296bb48d6b2a97ee926724d28053c045dbc0d32ad6ea0e1819a2b"
+    },
+    {
+      "path": "provenance/coordination/target_5_0/INITIAL_PLAN_3f174ff.md",
+      "bytes": 6662,
+      "sha256": "869f9f03c5f87c2c28ab76f583c4a49fb900b775bd338aadb29e5d79f271de13"
+    },
+    {
       "path": "provenance/core_consolidation_validation/cloud_QA_59f2434.json",
       "bytes": 5168,
       "sha256": "74c826ff0bb672a4dafbb39c89d07979295c4add993e0b261499a7f2474cf218"
@@ -5585,6 +5640,11 @@
       "sha256": "e9cfbf4bb63fac5ad149ff8980785d12c3215bdc5393921022aae203720053e7"
     },
     {
+      "path": "provenance/qa/portable_convergence_3_4_9/importer_preservation_review.json",
+      "bytes": 1849,
+      "sha256": "0b56191e0f19fba3465455429f8593a21595a90e463b7a94c2493fd31884e282"
+    },
+    {
       "path": "provenance/qa/portable_convergence_batch_20261101/excerpts.txt",
       "bytes": 5703,
       "sha256": "0c7b0991b6368a0b6505f432ce251a15c20ca661297e2b61e77f0b4f7c0f0248"
@@ -5941,13 +6001,13 @@
     },
     {
       "path": "tools/sync_components.py",
-      "bytes": 5003,
-      "sha256": "180da20a0a67744862fb3f7539de370fcbe48977ea1233ed9478430ab82d47bd"
+      "bytes": 5050,
+      "sha256": "b3262b04ddf2205bc20b9b4cdecbb7b024aa1bc351951ede5db23e9339d12ad4"
     },
     {
       "path": "tools/tests/test_catalog_components.py",
-      "bytes": 8603,
-      "sha256": "ed83f208486fe87703df81463853bbd75d9f8b90590d0ff0d695b68734c01965"
+      "bytes": 10657,
+      "sha256": "69cdec4753ba73c58a786116eaed0a7f9ea7c2975c9ffbf1147826b6e88e00c4"
     },
     {
       "path": "tools/tests/test_coverage_capture.py",

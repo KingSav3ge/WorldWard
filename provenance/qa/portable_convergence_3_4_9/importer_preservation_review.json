@@ -1,0 +1,21 @@
+{
+  "source_commit_with_originals": "b96c86c55afe1a5b892f35ce5a0c285a200e29f7",
+  "restored_files": {
+    "provenance/coordination/owners/app/COORDINATOR_WORK_ORDER.md": "e1e1648de94e88f0a4e0af2c3dab56950ddeb9cea00ce919386a67dd54abcf1c",
+    "provenance/coordination/owners/app/COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md": "c27041cf376614522fdf3515d7354735c55111147b0774ca79cd28a6ca0325c2",
+    "provenance/coordination/owners/catalog/COORDINATOR_WORK_ORDER.md": "bc2df27b6d19958537c9ef24cf787105bbc0e1d022bd87b124dfbdfd2ebe1928",
+    "provenance/coordination/owners/catalog/COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md": "c76c9a559261ad145aaa7c094982db4719d992c24c0df3339d0f79f499d5e8bf",
+    "provenance/coordination/owners/engine/COORDINATOR_WORK_ORDER.md": "97bf0f10000df1ad112f2284bac22bd0da838061548f87d0a3ac1c396ad76afc",
+    "provenance/coordination/owners/engine/COORDINATOR_WORK_ORDER_RISE_EXPANSION_01.md": "e9ad627dab5bc95e720aae312839ce699d65e3c440dbe75f8b4b62e46d52f385",
+    "provenance/coordination/target_5_0/APP.md": "5d6d5138699e11e00447eff8d7348ec06e749f7fbb5e855326b71596dc2d66fb",
+    "provenance/coordination/target_5_0/CATALOG.md": "f222f6571ea0f37bfdd9aed0197e64b0d23fb0e0e426c83da18985aa0562b62e",
+    "provenance/coordination/target_5_0/CHECKPOINT.json": "b238b6fc11544bc038b5a39ddc56abe978679c6869e52c31c1fbdfe99cf907a6",
+    "provenance/coordination/target_5_0/ENGINE.md": "28fe7148cf0296bb48d6b2a97ee926724d28053c045dbc0d32ad6ea0e1819a2b",
+    "provenance/coordination/target_5_0/INITIAL_PLAN_3f174ff.md": "869f9f03c5f87c2c28ab76f583c4a49fb900b775bd338aadb29e5d79f271de13"
+  },
+  "all_byte_identical": true,
+  "excluded_namespace": "provenance/coordination/",
+  "both_snapshot_and_removal_protected": true,
+  "legitimate_engine_provenance_ownership_retained": true,
+  "component_product_source_changed_by_fix": false
+}

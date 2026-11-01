@@ -14,6 +14,10 @@ CATALOG_PATHS = ('IRGS_Catalog',)
 JOINED_EVIDENCE = {'engine/qualification/operation_register.json', 'engine/OPERATION_COVERAGE.md'}
 
 
+def joined_owned_path(name):
+    return name.startswith(('provenance/qa/', 'provenance/coordination/')) or name in JOINED_EVIDENCE
+
+
 def git(repo, *args):
     return subprocess.check_output(['git', '-C', str(repo), *args])
 
@@ -35,7 +39,7 @@ def snapshot(repo, prefixes):
         for member in archive:
             if member.isdir():
                 continue
-            if member.name.startswith('provenance/qa/') or member.name in JOINED_EVIDENCE:
+            if joined_owned_path(member.name):
                 continue  # Current QA reports belong to joined integration.
             path = PurePosixPath(member.name)
             if (not member.isfile() or path.is_absolute() or '..' in path.parts
@@ -63,7 +67,7 @@ def sync(engine, app, catalog, apply=False):
         require_ready(ROOT, commits, pins)
     sources = engine_files | app_files | catalog_files
     old = {name for name in git(ROOT, 'ls-files', '--', *ENGINE_PATHS, *APP_PATHS, *CATALOG_PATHS).decode().splitlines()
-           if not name.startswith('provenance/qa/') and name not in JOINED_EVIDENCE}
+           if not joined_owned_path(name)}
     changed = sorted(name for name, data in sources.items()
         if not (ROOT / name).exists() or (ROOT / name).read_bytes() != data)
     removed = sorted(old - sources.keys())

@@ -49,7 +49,7 @@
   "selected_components": {
     "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
     "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
-    "app": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4"
+    "app": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0"
   },
   "reviews": {
     "engine": {
@@ -94,9 +94,9 @@
     },
     "app": {
       "status": "approved",
-      "commit": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4",
+      "commit": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
       "deliverable": "component_update",
-      "scope": "accepted finite App consolidation at exact final dependency pins; actual main publication pending",
+      "scope": "Actual merged main is tree-identical to accepted finite App candidate; exact pins retained",
       "checks": [
         {
           "name": "Exact source/97-entry manifest,3.4.9 edition and committed Engine/Catalog pins reviewed",
@@ -114,11 +114,12 @@
           "name": "Exact compatible Catalog consumer2 bounded journeys pass/strictheld; no Alpha claim",
           "status": "passed"
         }
-      ]
+      ],
+      "tested_candidate": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4"
     }
   },
-  "integration_status": "ready_isolated_candidate_assembly_actual_app_main_pending",
-  "component_source_integration_performed": false,
+  "integration_status": "assembled_final_mains_pending_joined_qualification",
+  "component_source_integration_performed": true,
   "current_published_version": "3.4.8",
   "target_version": "3.4.9",
   "previous_version": "3.3.3",
@@ -157,5 +158,6 @@
     "Direct owner bridge unavailable; actual source ownership/admissions relayed",
     "Reports and work orders do not wake chats"
   ],
-  "publication_hold": "App main must be confirmed and compared tree-identical before joined main push"
+  "publication_hold": "Joined capture/regression/browser/independent consumers/clean package must pass before one main push",
+  "actual_component_mains_verified": true
 }
