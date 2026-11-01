@@ -1,5 +1,28 @@
 ## Requested 5.0 coordination target — 1 November 2026
 
+## Finite 3.4.9 Pre-Alpha consolidation — 1 November 2026
+
+This candidate rounds out the present owner deliveries: Engine reservation/control
+fixes, App Saves and disposable Creator previews, Catalog unselected proposals
+and independent consumers, and coordinator tooling/evidence. Read
+CONSOLIDATION_3_4_9.md for exact selected pins, checks and residuals. Previous
+release field remains 3.3.3; the next joined publication after 3.4.9 is 3.5.0.
+
+No new feature batch is started by this publication. All twelve functional Alpha
+criteria remain unqualified. Keep one Core, nine K owners, six Directors,
+actor-scoped information, original receipts, conserved stock/time and save
+compatibility. Existing owner workspaces remain inaccessible and untouched;
+the separately authored/tested review candidates do not adopt unknown local work.
+Launcher/native Windows qualification, live inference, durable Creator and the
+unselected Rise allowance remain outside this increment. Preserve denied actions,
+original archives, evidence, saves/settings and owner history.
+
+Earlier dated plans and results below retain their original scope. The 5.0 target
+uses the original ALPHA_4_0_ACCEPTANCE.json criteria; unselected expansion/council
+proposals are not automatically G02/G05 acceptance prerequisites. Existing owner
+handoffs keep the pinned TARGET_5_0.md link from 3f174ff as their planning source.
+
+
 The user requests the **5.0** iteration. Read [TARGET_5_0.md](TARGET_5_0.md),
 [TARGET_5_0.json](TARGET_5_0.json) and the live COORDINATION.json before new work.
 Published source remains 3.4.8; 5.0.0 is unqualified. Existing Engine/App/Catalog

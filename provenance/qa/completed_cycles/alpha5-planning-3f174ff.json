@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "cycle_id": "worldward-5.0-functional-01",
+  "assigned_on": "2026-11-01",
+  "instruction_timezone": "America/Halifax",
+  "objective": "Coordinate the requested functional 5.0 iteration through existing Engine/App/Catalog owners; no release qualification or product implementation is implied.",
+  "coordinator": {
+    "title": "IRGS Enviroment",
+    "thread_id": "01a160b2-07ac-74f6-a1e2-90975ba000c8",
+    "host_id": "durable"
+  },
+  "threads": {
+    "engine": {
+      "title": "IRGS Engine",
+      "thread_id": "01a164cf-5c1b-74ae-a63e-ff93cc9d10da",
+      "host_id": "durable",
+      "message_dispatched": false,
+      "work_order": "provenance/coordination/target_5_0/ENGINE.md",
+      "observed_status": "direct_thread_read_failed_bridge_connection_closed",
+      "owner_workspace_verified": false
+    },
+    "app": {
+      "title": "IRGS App/Website",
+      "thread_id": "01a164a6-687b-723a-ac81-acb55e3d50d2",
+      "host_id": "durable",
+      "message_dispatched": false,
+      "work_order": "provenance/coordination/target_5_0/APP.md",
+      "observed_status": "direct_thread_read_failed_bridge_connection_closed",
+      "owner_workspace_verified": false
+    },
+    "catalog": {
+      "title": "IRGS Catalog",
+      "thread_id": "01a164ac-89ba-72ff-b5b3-32cca95ec0c7",
+      "host_id": "durable",
+      "message_dispatched": false,
+      "work_order": "provenance/coordination/target_5_0/CATALOG.md",
+      "observed_status": "direct_thread_read_failed_bridge_connection_closed",
+      "owner_workspace_verified": false
+    }
+  },
+  "baseline_components": {
+    "engine": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+    "catalog": "a18cb48928da25d40d057a182c69f71ef149ce80"
+  },
+  "selected_components": {
+    "engine": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+    "catalog": "a18cb48928da25d40d057a182c69f71ef149ce80"
+  },
+  "reviews": {
+    "engine": {
+      "status": "pending",
+      "commit": null,
+      "deliverable": "component_update",
+      "checks": []
+    },
+    "app": {
+      "status": "pending",
+      "commit": null,
+      "deliverable": "component_update",
+      "checks": []
+    },
+    "catalog": {
+      "status": "pending",
+      "commit": null,
+      "deliverable": "component_update",
+      "checks": []
+    }
+  },
+  "integration_status": "held_awaiting_new_owner_deliveries_and_exact_candidate",
+  "component_source_integration_performed": false,
+  "current_published_version": "3.4.8",
+  "target_version": "5.0.0",
+  "target_version_status": "planned_unqualified",
+  "acceptance_register": "TARGET_5_0.json",
+  "previous_completed_cycle": {
+    "cycle_id": "unification-3.4.8",
+    "record": "provenance/qa/completed_cycles/unification-3.4.8.json",
+    "joined_commit": "7327290fbb057ad320cfeb3a009e4138944b078c",
+    "status": "published_3.4.8_offline_qualification_only"
+  },
+  "next_assignments": {
+    "engine": "Preserve owner workspace, resolve RISE-EXPANSION-01 contract and Creator durability/restore questions, then shared needs/continuing-agency contracts.",
+    "app": "Preserve owner workspace, adopt/test reviewed Saves candidate via own component; consume exact Engine DTOs; bounded Creator preview before any durable create.",
+    "catalog": "Preserve owner workspace, author first fictional Rise cap/issuer/expansion policy with independent cases, then shared multi-session evaluation."
+  },
+  "pending_app_recovery": {
+    "pr": "https://github.com/KingSav3ge/WorldWard/pull/2",
+    "tested_source_commit": "2f4ca609372555148a1f7fbc7ad48ec22860ed70",
+    "receipt_only_commit": "fe09d17eb986e1b130f3b9d764177ae16f2b1ad7",
+    "source_review": "recommended_adoption_per_supported_relay",
+    "adopted": false,
+    "owner_tests_executed": false
+  },
+  "blockers": [
+    "Existing owner environments: last supported relay reports provisioning failures; current owner-local roots/HEAD/dirty/unpushed work remain unverified.",
+    "Direct owner thread reads fail at the bridge; no dispatch/resume capability is available here.",
+    "No new component deliveries or all-three compatible 5.0 candidate exists.",
+    "All twelve inherited functional gates remain unqualified; live-provider gate additionally requires scoped finite budget and eligible server-side configuration."
+  ],
+  "coordination_limitations": [
+    "Published work orders do not wake owners or prove acceptance.",
+    "Healthy coordinator clones do not establish owner workspace preservation or parity.",
+    "Do not retry unchanged startup, alter locked configuration or retry the denied Vercel source transfer."
+  ],
+  "release_policy": {
+    "published_edition_unchanged": true,
+    "next_maintenance_edition": "3.4.9",
+    "requested_major_target": "5.0.0",
+    "major_target_qualified": false,
+    "each_joined_main_push_increments_edition": true,
+    "planning_branch_is_not_a_release": true
+  },
+  "live_inference_authorized": false,
+  "external_deployment_authorized": false
+}

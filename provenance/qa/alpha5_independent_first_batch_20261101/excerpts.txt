@@ -1,0 +1,33 @@
+Retained coordinator execution excerpts. This receipt does not claim CI or owner-local execution.
+Exact tested commits are in receipt.json.
+
+catalog-contract-tests.txt:
+Ran 3 tests in 0.001s
+OK
+
+catalog-v2-contract-tests.txt:
+Ran 4 tests in 0.001s
+OK
+
+catalog-both-contract-tests.txt:
+Ran 7 tests in 0.002s
+OK
+
+app-dom-tests.txt:
+PASS Saved journey cards use the latest loaded host revision rather than an original action receipt
+PASS A host-restored lower revision replaces a stale higher saved-card revision without adding a campaign
+PASS A superseded playthrough read cannot change another saved-card revision
+161 frontend checks passed. No real save or live server was used.
+
+app-http-recovery-tests.txt:
+Ran 3 tests in 2.767s
+OK
+
+app-real-browser.json:
+status: passed; durable revision: 2; card revision: 2; provider calls: 0; browser errors: []
+Two normal committed actions update the Saves card without reload or extra writes
+Repeated Saves/Continue navigation preserves the draft and exact saved bytes
+Reload retains the same current card revision without changing the saved world
+
+Source integrity: Catalog v1 verified244 files/44 concepts; Catalog v2 verified248/44; App component and exact dependency pins verified.
+No raw fixture/store paths, campaign IDs or HTTP logs are published.

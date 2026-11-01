@@ -27,7 +27,7 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     args=parser.parse_args()
     selection=json.loads(args.selection.read_text())
-    assert selection['fixture_id'] in {'coordinator-adopted-ordinary-3.4.4-1','coordinator-adopted-ordinary-3.4.5-1','coordinator-adopted-ordinary-3.4.6-1','coordinator-adopted-ordinary-3.4.7-1','coordinator-adopted-ordinary-3.4.8-1'}
+    assert selection['fixture_id'] in {'coordinator-adopted-ordinary-3.4.4-1','coordinator-adopted-ordinary-3.4.5-1','coordinator-adopted-ordinary-3.4.6-1','coordinator-adopted-ordinary-3.4.7-1','coordinator-adopted-ordinary-3.4.8-1','coordinator-adopted-ordinary-3.4.9-1'}
     if args.source_root:
         root=args.source_root.resolve()
         for key in ['engine','app','catalog']:

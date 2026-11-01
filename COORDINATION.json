@@ -1,9 +1,8 @@
 {
   "schema_version": 1,
-  "cycle_id": "worldward-5.0-functional-01",
+  "cycle_id": "portable-consolidation-3.4.9",
   "assigned_on": "2026-11-01",
-  "instruction_timezone": "America/Halifax",
-  "objective": "Coordinate the requested functional 5.0 iteration through existing Engine/App/Catalog owners; no release qualification or product implementation is implied.",
+  "objective": "Round out present owner work and publish one verified compatible Pre-Alpha increment; stop new feature work",
   "coordinator": {
     "title": "IRGS Enviroment",
     "thread_id": "01a160b2-07ac-74f6-a1e2-90975ba000c8",
@@ -15,27 +14,30 @@
       "thread_id": "01a164cf-5c1b-74ae-a63e-ff93cc9d10da",
       "host_id": "durable",
       "message_dispatched": false,
-      "work_order": "provenance/coordination/target_5_0/ENGINE.md",
-      "observed_status": "direct_thread_read_failed_bridge_connection_closed",
-      "owner_workspace_verified": false
+      "work_order": "https://github.com/KingSav3ge/WorldWard/blob/3f174ffad14e2219c483dd5366bb56254e08a401/TARGET_5_0.md",
+      "observed_status": "existing sole owner accepted finite scope; source-only connector route; old executor inaccessible",
+      "owner_workspace_verified": false,
+      "accepted_via_supported_relay": true
     },
     "app": {
       "title": "IRGS App/Website",
       "thread_id": "01a164a6-687b-723a-ac81-acb55e3d50d2",
       "host_id": "durable",
       "message_dispatched": false,
-      "work_order": "provenance/coordination/target_5_0/APP.md",
-      "observed_status": "direct_thread_read_failed_bridge_connection_closed",
-      "owner_workspace_verified": false
+      "work_order": "https://github.com/KingSav3ge/WorldWard/blob/3f174ffad14e2219c483dd5366bb56254e08a401/TARGET_5_0.md",
+      "observed_status": "existing sole owner accepted finite scope; source-only connector route; old executor inaccessible",
+      "owner_workspace_verified": false,
+      "accepted_via_supported_relay": true
     },
     "catalog": {
       "title": "IRGS Catalog",
       "thread_id": "01a164ac-89ba-72ff-b5b3-32cca95ec0c7",
       "host_id": "durable",
       "message_dispatched": false,
-      "work_order": "provenance/coordination/target_5_0/CATALOG.md",
-      "observed_status": "direct_thread_read_failed_bridge_connection_closed",
-      "owner_workspace_verified": false
+      "work_order": "https://github.com/KingSav3ge/WorldWard/blob/3f174ffad14e2219c483dd5366bb56254e08a401/TARGET_5_0.md",
+      "observed_status": "existing sole owner accepted finite scope; source-only connector route; old executor inaccessible",
+      "owner_workspace_verified": false,
+      "accepted_via_supported_relay": true
     }
   },
   "baseline_components": {
@@ -43,75 +45,98 @@
     "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
     "catalog": "a18cb48928da25d40d057a182c69f71ef149ce80"
   },
+  "cycle_start_joined": "7327290fbb057ad320cfeb3a009e4138944b078c",
   "selected_components": {
-    "engine": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
-    "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
-    "catalog": "a18cb48928da25d40d057a182c69f71ef149ce80"
+    "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+    "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+    "app": null
   },
   "reviews": {
     "engine": {
-      "status": "pending",
-      "commit": null,
+      "status": "approved",
+      "commit": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
       "deliverable": "component_update",
-      "checks": []
+      "scope": "finite portable Pre-Alpha source; no Alpha qualification",
+      "checks": [
+        {
+          "name": "Exact source/edition/merge tree reviewed; actual main3.4.9",
+          "status": "passed"
+        },
+        {
+          "name": "37 focused and820 safe runtime run/819 pass/one private-save policy skip at unchanged runtimecc6f967",
+          "status": "passed"
+        },
+        {
+          "name": "Component integrity verified; launcher excluded",
+          "status": "passed"
+        }
+      ]
+    },
+    "catalog": {
+      "status": "approved",
+      "commit": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+      "deliverable": "component_update",
+      "scope": "finite portable Pre-Alpha source; no Alpha qualification",
+      "checks": [
+        {
+          "name": "Exact source/edition/merge tree reviewed; actual main3.4.9",
+          "status": "passed"
+        },
+        {
+          "name": "7 structural tests passed;252-file Catalog integrity verified",
+          "status": "passed"
+        },
+        {
+          "name": "Two bounded baseline journeys passed/strictheld; incompatible App pin negative control rejected before journeys",
+          "status": "passed"
+        }
+      ]
     },
     "app": {
       "status": "pending",
       "commit": null,
       "deliverable": "component_update",
       "checks": []
-    },
-    "catalog": {
-      "status": "pending",
-      "commit": null,
-      "deliverable": "component_update",
-      "checks": []
     }
   },
-  "integration_status": "held_awaiting_new_owner_deliveries_and_exact_candidate",
+  "integration_status": "held_final_app_pins_and_combined_checks",
   "component_source_integration_performed": false,
   "current_published_version": "3.4.8",
-  "target_version": "5.0.0",
-  "target_version_status": "planned_unqualified",
+  "target_version": "3.4.9",
+  "previous_version": "3.3.3",
+  "target_version_status": "pre_alpha",
+  "alpha_target": "5.0.0",
+  "alpha_qualified": false,
   "acceptance_register": "TARGET_5_0.json",
+  "functional_residuals": "provenance/qa/portable_convergence_3_4_9/functional_residuals.json",
+  "excluded": [
+    "launcher6b88 and paired App fixture; native policy denial preserved",
+    "durable Creator endpoint",
+    "selected runtime allowance/council policy",
+    "new continuing-institution feature",
+    "live-provider evaluation"
+  ],
+  "owner_local_preservation": "inaccessible old work/snapshots untouched and unadopted; later CMRR required",
+  "observer": "PID15578 preserved with explicit canonical paths",
+  "blocked_transfer": "Earlier App Vercel source transfer remains denied; no retry or alternative transfer",
+  "external_deployment_performed": false,
+  "paid_calls": 0,
+  "pr_approval_performed": false,
+  "force_push_performed": false,
   "previous_completed_cycle": {
     "cycle_id": "unification-3.4.8",
-    "record": "provenance/qa/completed_cycles/unification-3.4.8.json",
-    "joined_commit": "7327290fbb057ad320cfeb3a009e4138944b078c",
-    "status": "published_3.4.8_offline_qualification_only"
+    "record": "provenance/qa/completed_cycles/unification-3.4.8.json"
   },
-  "next_assignments": {
-    "engine": "Preserve owner workspace, resolve RISE-EXPANSION-01 contract and Creator durability/restore questions, then shared needs/continuing-agency contracts.",
-    "app": "Preserve owner workspace, adopt/test reviewed Saves candidate via own component; consume exact Engine DTOs; bounded Creator preview before any durable create.",
-    "catalog": "Preserve owner workspace, author first fictional Rise cap/issuer/expansion policy with independent cases, then shared multi-session evaluation."
-  },
-  "pending_app_recovery": {
-    "pr": "https://github.com/KingSav3ge/WorldWard/pull/2",
-    "tested_source_commit": "2f4ca609372555148a1f7fbc7ad48ec22860ed70",
-    "receipt_only_commit": "fe09d17eb986e1b130f3b9d764177ae16f2b1ad7",
-    "source_review": "recommended_adoption_per_supported_relay",
-    "adopted": false,
-    "owner_tests_executed": false
-  },
-  "blockers": [
-    "Existing owner environments: last supported relay reports provisioning failures; current owner-local roots/HEAD/dirty/unpushed work remain unverified.",
-    "Direct owner thread reads fail at the bridge; no dispatch/resume capability is available here.",
-    "No new component deliveries or all-three compatible 5.0 candidate exists.",
-    "All twelve inherited functional gates remain unqualified; live-provider gate additionally requires scoped finite budget and eligible server-side configuration."
+  "planning_snapshot": "provenance/qa/completed_cycles/alpha5-planning-3f174ff.json",
+  "evidence": [
+    "provenance/qa/alpha5_independent_first_batch_20261101/receipt.json",
+    "provenance/qa/alpha5_independent_second_batch_20261101/receipt.json",
+    "provenance/qa/portable_convergence_batch_20261101/receipt.json"
   ],
-  "coordination_limitations": [
-    "Published work orders do not wake owners or prove acceptance.",
-    "Healthy coordinator clones do not establish owner workspace preservation or parity.",
-    "Do not retry unchanged startup, alter locked configuration or retry the denied Vercel source transfer."
-  ],
-  "release_policy": {
-    "published_edition_unchanged": true,
-    "next_maintenance_edition": "3.4.9",
-    "requested_major_target": "5.0.0",
-    "major_target_qualified": false,
-    "each_joined_main_push_increments_edition": true,
-    "planning_branch_is_not_a_release": true
-  },
-  "live_inference_authorized": false,
-  "external_deployment_authorized": false
+  "limitations": [
+    "No native Windows/live-provider/Alpha pass from Linux tests",
+    "Component CI has no statuses/workflow execution, not a pass",
+    "Direct owner bridge unavailable; actual source ownership/admissions relayed",
+    "Reports and work orders do not wake chats"
+  ]
 }

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "edition": "3.4.9",
+  "classification": "pre-alpha",
+  "target": "5.0.0",
+  "requirements_source": "ALPHA_4_0_ACCEPTANCE.json",
+  "gates": [
+    {
+      "id": "A4-G01",
+      "acceptance": "Clean normal launch, correct build/dependency identity, understandable offline and missing-config paths; no developer world seeding.",
+      "qualification_state": "not_qualified",
+      "remaining": "Portable offline launch/build checks remain bounded; excluded launcher identity correction and native Windows launch/setup are unqualified."
+    },
+    {
+      "id": "A4-G02",
+      "acceptance": "Reviewed atomic creation gives real actor/location/knowledge/capabilities; unsupported starts remain limited.",
+      "qualification_state": "not_qualified",
+      "remaining": "Reviewed R00 and quay normal creation exist; exact final compatible selection still needs independent normal-start acceptance. No unselected allowance/council is required by this criterion."
+    },
+    {
+      "id": "A4-G03",
+      "acceptance": "Suggestions and own responses map to exact versioned attempts, commit only on acceptance, and preserve unsupported/ambiguous intent.",
+      "qualification_state": "not_qualified",
+      "remaining": "Versioned attempts, review and unsupported declarations exist; final compatible browser/HTTP intent and ambiguity acceptance remains required."
+    },
+    {
+      "id": "A4-G04",
+      "acceptance": "Selected movement/perception, work/needs/recovery, stock and commitments persist across interruption; no invented time/resources.",
+      "qualification_state": "not_qualified",
+      "remaining": "Finite stock/work/movement and interruption persist; selected ordinary needs/recovery and provisioning-deficit replenishment remain missing in the supported contexts."
+    },
+    {
+      "id": "A4-G05",
+      "acceptance": "Normal-start participants/channels and real social consequences keep received testimony, offer, consent and fulfillment distinct.",
+      "qualification_state": "not_qualified",
+      "remaining": "Received testimony, optional offers and bounded refusal/agreement are distinct; cross-context social consequences and obligation fulfillment need full ordinary-start acceptance. A fictional council proposal is not the minimum contract."
+    },
+    {
+      "id": "A4-G06",
+      "acceptance": "At least one NPC and local institution act on legitimate knowledge/authority/shared resources and alter later choices across continuation.",
+      "qualification_state": "not_qualified",
+      "remaining": "Oren player-control/availability guards protect continuing decisions; a continuing local institution acting with legitimate knowledge/authority/shared resources and changing later choices remains missing."
+    },
+    {
+      "id": "A4-G07",
+      "acceptance": "An adopted bounded profile supports consequential success/failure/withdrawal and persistent recovery, not narrator truth writes.",
+      "qualification_state": "not_qualified",
+      "remaining": "Failed prerequisites and a blocked route are bounded failures; an adopted risk profile with consequential success/failure/withdrawal and persistent recovery is not implemented."
+    },
+    {
+      "id": "A4-G08",
+      "acceptance": "One protected provider completes a budgeted live synthetic cycle; invalid output, cancellation, timeout, outage and budget exhaustion remain safe; routine calls zero.",
+      "qualification_state": "not_qualified",
+      "remaining": "Offline/failure foundations exist; an eligible protected route and explicit finite budget for a live synthetic cycle remain absent. No paid calls authorized."
+    },
+    {
+      "id": "A4-G09",
+      "acceptance": "Atomic result/state, immutable original receipt, no duplication, lost-reply recovery, stale handling and restore fencing in multi-session play.",
+      "qualification_state": "not_qualified",
+      "remaining": "Saves revision fix, exact retry/restore and real Store fault characterization are bounded evidence. Multi-session full acceptance remains open; Creator creation/recovery semantics are proposals, not atomic durability guarantees."
+    },
+    {
+      "id": "A4-G10",
+      "acceptance": "Two independent ordinary contexts from distinct families including non-Rise personal play; actual different constraints, evolving consequences and retained R00 regressions.",
+      "qualification_state": "not_qualified",
+      "remaining": "Two bounded three-process journeys preserve different material constraints and consequences. Sustained depth, ordinary recovery, continuing agency and selected risk remain incomplete; strict consumer status is held."
+    },
+    {
+      "id": "A4-G11",
+      "acceptance": "Actual browser plus native Windows clean-package launch, responsive/keyboard controls, truthful status/time, saves and actionable errors.",
+      "qualification_state": "not_qualified",
+      "remaining": "Linux Chromium desktop/mobile preview and Saves checks pass. Native Windows clean-package launch and its required setup/usability evidence remain unexecuted; policy denial is preserved."
+    },
+    {
+      "id": "A4-G12",
+      "acceptance": "One exact compatible set/pins with all mandatory gates reviewed, scoped DEV/C2 evidence, preserved archives, clean package and no blocking ordinary-play/privacy/data-loss defect.",
+      "qualification_state": "not_qualified",
+      "remaining": "Pre-Alpha compatible-set/package qualification is distinct from Alpha. All mandatory functional criteria must qualify on one exact release set; this increment does not satisfy that condition."
+    }
+  ],
+  "all_twelve_qualified": false,
+  "unselected_rise_proposals_are_runtime_policy": false,
+  "native_windows_or_live_provider_claimed": false
+}

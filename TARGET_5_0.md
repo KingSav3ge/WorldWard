@@ -1,109 +1,99 @@
-# WorldWard 5.0 coordination target
+# WorldWard functional Alpha 5.0 target
 
-Requested target: **5.0.0**. Published source remains **3.4.8 Pre-Alpha** at
-`7327290fbb057ad320cfeb3a009e4138944b078c`. This is a development target with
-no release candidate or qualification. T!DEMARCH Studios, WorldWard and Fulcrum
-Engine retain their existing roles and source/save identities.
+The requested target is **5.0.0 Alpha**. The finite coordinated increment is
+**3.4.9 Pre-Alpha**, previous release field **3.3.3**. Its exact component pins,
+release checks and residuals belong to COMPONENTS.json, COORDINATION.json and
+CONSOLIDATION_3_4_9.md. A version request does not qualify functional Alpha.
 
-## Scope and acceptance
+Carry forward the twelve criteria in ALPHA_4_0_ACCEPTANCE.json with their stable
+A4 IDs. TARGET_5_0.json remains unqualified. No intervening 4.0 publication,
+multiplayer, marketplace, all catalogue concepts, general combat or world economy
+is required by the new number. Preserve one Core, nine existing K owners and the
+six Directors. T!DEMARCH Studios is the studio, WorldWard the product and Fulcrum
+Engine the technology; technical paths, schemas and saved identities remain.
 
-Complete functional Solo play across the existing supported Rise and ordinary
-non-Rise contexts. Carry forward the twelve functional criteria in
-ALPHA_4_0_ACCEPTANCE.json using their stable A4 IDs; TARGET_5_0.json records them
-as unqualified for this target. Existing bounded implementations remain partial
-foundations. The version request does not require an intervening 4.0 publication
-and does not add multiplayer, a marketplace, all catalogue concepts or a new
-simulation authority. The current acceptance register is requirements, not tests.
+## Finite present-work convergence
 
-Ordinary starts must support honest player knowledge and capabilities, reviewed
-intent, selected resource/work/needs/recovery rules, consequential communication,
-continuing NPC/institution decisions, an adopted risk procedure and multi-session
-recovery. Actual live-provider and native Windows qualification remain required
-where specified. A provider key alone cannot satisfy these systems.
+The 1 November instruction rounds out existing work and publishes one honest
+Pre-Alpha increment. New feature/proposal work stops for this convergence. The
+selected Engine fixes preserve existing material reservation rules and recheck a
+continuing contact's player-control/availability. App combines Saves summary
+invalidation, real-Store fault characterization and bounded Creator preview.
+Catalog retains unselected versioned fictional proposals and independent journeys.
+Coordinator source defaults, guides and actual evidence join the same release.
 
-Rise must enforce finite admitted buildings until a valid effective expansion
-grant. The first fictional profile, counted/reserved scope, authority, terms and
-decision procedure remain Catalog deliverables; do not invent a universal cap or
-automatic grant. Existing Creator preview/durable creation is proposed. Preview
-can proceed only against the existing draft contract; durable creation waits for
-the parent-directory-sync uncertainty and public/private restore-identity
-questions in WB_APP_01_CREATOR_DRAFT_HANDOFF.md. No general world editor is claimed.
+Creator previews use the existing controlled-actor initialization DTO for the
+selected Rise and mixed historical-quay profiles. They create disposable worlds
+and no saved campaigns. Durable create/retry/restore remains proposed; Store's
+POSIX replacement/synchronization tests do not implement a cross-store or
+cross-process creation transaction. The launcher/native-dependent candidate and
+its paired App fixtures are excluded after a recorded Windows policy denial;
+not_executed is not a pass and no bypass is attempted.
 
-## Current inventory
+The first proposed Rise allowance remains **unselected**. The user requirement
+for finite buildings until effective expansion permission persists, but profile,
+identity, authority, transition, migration and expiry questions remain open.
+Demonstration numbers are not selected Engine policy. The unselected council or
+allowance proposal is not automatically a G02/G05 minimum acceptance requirement.
 
-| Component | Published main | Existing owner |
+## Functional residuals after this bounded increment
+
+provenance/qa/portable_convergence_3_4_9/functional_residuals.json maps each actual
+criterion to its remaining behavior or qualification. In particular, ordinary
+needs/replenishment, continuing local-institution agency, adopted consequential
+risk/recovery and sustained cross-context depth remain incomplete. Selected
+refusal/agreement, a blocked route and finite work are useful bounded foundations.
+All twelve gates remain open until the exact functional candidate meets their
+full acceptance, including required native Windows and budgeted live-provider
+checks. Passing local tests or two bounded journeys do not close all gates.
+
+A protected eligible provider route and a finite explicit budget are required
+before live evaluation. Current routine/browser/consumer checks make no provider
+calls. Existing privacy, grounded presentation, failure, cancellation, retry and
+accounting criteria are unchanged. No external deployment or paid call follows
+from this target.
+
+## Existing ownership and preserved work
+
+| Component | Existing owner thread | Scope |
 | --- | --- | --- |
-| Joined | 7327290fbb057ad320cfeb3a009e4138944b078c | Coordinator |
-| Engine | ecca8094a2d2cdb8a11e018a085487288b26e88d | 01a164cf-5c1b-74ae-a63e-ff93cc9d10da |
-| App | c04ba5524ae95316c7e826fc63085a4916d7dd67 | 01a164a6-687b-723a-ac81-acb55e3d50d2 |
-| Catalog | a18cb48928da25d40d057a182c69f71ef149ce80 | 01a164ac-89ba-72ff-b5b3-32cca95ec0c7 |
+| Engine | 01a164cf-5c1b-74ae-a63e-ff93cc9d10da | Engine/Core runtime and contracts |
+| App | 01a164a6-687b-723a-ac81-acb55e3d50d2 | Host, presentation, preview and persistence UI |
+| Catalog | 01a164ac-89ba-72ff-b5b3-32cca95ec0c7 | Source proposals, actor/evaluator fixtures and consumers |
 
-All mains were fetched and the coordinator clones were clean and matched their
-remote mains. App pins match the selected Engine/Catalog. No newer component
-branch delivers the missing work. The Emergent branch is preserved; the existing
-Creator handoff branch is already included in App main.
+The existing owners accepted separate file scopes through the supported relay
+and authored review refs through their authorized repository connector. The
+coordinator admitted and tested exact commits in isolated synthetic snapshots.
+Old failed executors remain inaccessible, with dirty/unpushed/common-store states
+unknown. They are untouched and unadopted; later recovery requires CMRR of unique
+work before checkout/adoption. No replacement owners, source-service transfer,
+locked configuration change or unchanged startup retry is used.
 
-The reviewed Saves fix remains [draft PR2](https://github.com/KingSav3ge/WorldWard/pull/2).
-Its tested source is `2f4ca609372555148a1f7fbc7ad48ec22860ed70`; retained-test
-receipt-only successor is `fe09d17eb986e1b130f3b9d764177ae16f2b1ad7`. The App
-owner recommended adoption through the supported relay but has not adopted,
-executed tests, approved, merged or pushed it. Coordinator results are available
-in that PR and remain attributed to their tested source.
+The supported environment editor published setup path corrections successfully,
+but that did not recover old component executors. The healthy coordinator's
+runtime is separate evidence. A repository mismatch ordinal does not identify a
+hidden expected/actual name pair. Existing failures require supported executor
+recovery with snapshots preserved; do not guess mappings or expand access.
 
-## Ordered owner handoff
+## Continuation and publication
 
-1. Repair existing owner provisioning and obtain actual local root, branch,
-   HEAD, dirty/staged/untracked and unpushed-work receipts. Preserve snapshots,
-   saves and settings before any checkout/adoption write. No replacement owners.
-2. App adopts the reviewed Saves source/test in its component only after that
-   preservation checkpoint. Catalog authors the fictional Rise profile and
-   independent failure/recovery cases. Engine resolves the expansion DTO and
-   Creator contract gaps; implement the authored profile through existing Core
-   records after its terms are selected. These scopes do not overlap.
-3. App consumes delivered Engine DTOs with exact Engine/Catalog pins, preserves
-   the chronological tale/drafts, and qualifies real browser/HTTP journeys.
-   Independent Catalog consumers check the delivered behavior. Keep needs,
-   continuing agency and consequence work moving across the shared contexts;
-   Rise alone cannot satisfy the functional target.
-4. Review each delivered exact pin and all twelve criteria. Only then assemble
-   and qualify a release candidate through the existing integration gate.
+The original initial plan is preserved byte-for-byte in
+provenance/coordination/target_5_0/INITIAL_PLAN_3f174ff.md. Existing owner handoffs
+continue to reference its immutable link:
+https://github.com/KingSav3ge/WorldWard/blob/3f174ffad14e2219c483dd5366bb56254e08a401/TARGET_5_0.md.
+Its dated pending statuses are superseded by the actual receipts, not rewritten.
+Repository reports do not wake chats or prove task completion.
 
-Read [Engine](provenance/coordination/target_5_0/ENGINE.md),
-[App](provenance/coordination/target_5_0/APP.md) and
-[Catalog](provenance/coordination/target_5_0/CATALOG.md) for bounded continuations.
-Work orders are available for relay; no direct dispatch or owner acceptance of
-this new cycle is claimed. The completed 3.4.8 COORDINATION.json is preserved
-byte-for-byte under provenance/qa/completed_cycles/unification-3.4.8.json. The
-live cycle now requires fresh deliveries; historical approvals do not qualify it.
+For any next source increment, first inspect exact current main, owner activity
+and compatible pins. Agree bounded nonoverlapping ownership; preserve snapshots,
+saves and settings. Review exact deliveries and actual evidence before ordinary
+component main merges. Coordinator alone assembles the matching joined set after
+the integration gate, fresh operation capture, joined regression, real browser
+and independent consumers, and clean extracted-package checks. Every unified
+main push increments the edition; the next after 3.4.9 is 3.5.0 Pre-Alpha unless a
+substantial exact candidate meets the requested functional Alpha criteria.
 
-## Provisioning and remaining action
-
-Each direct owner thread read was attempted once and failed at the chat bridge.
-The last supported owner relay reported Engine github_repository_name_mismatch
-at entry 1/4, with expected/actual names hidden, and App/Catalog startup failure.
-These are relayed failure states; current owner workspace parity is unknown.
-The healthy coordinator environment cannot repair their locked configurations.
-
-The environment owner/platform must obtain each failed attempt/configuration
-identity, expose Engine's expected/actual repository name and stable-ID pair,
-and repair the verified binding through its supported workflow. The ordinal
-does not identify which repository is wrong. Preserve existing selections and
-workspace snapshots. Apply a shared fix to App/Catalog only if their metadata
-proves the same cause. Validate startup once after confirmed repair and return
-the preservation receipts before source writes. No unchanged startup retries.
-
-## Publication checkpoint
-
-A 5.0 release requires a fresh same-candidate operation capture, joined regression,
-browser and independent consumers, clean extracted package, native Windows and
-the remaining functional evidence. Ordinary local work uses no provider. A live
-evaluation requires an eligible protected route and explicit finite budget;
-this instruction grants no paid evaluation. No external deployment or PR approval.
-
-Keep VERSION.json and COMPONENTS.json at the actual published baseline in this
-planning branch. A routine joined maintenance publication would increment to
-3.4.9; 5.0.0 is the requested major target after qualification. Every main push
-increments the edition, including guide-only pushes. No generated ZIP is needed
-for this instruction update. Preserve original archives, history, saves/settings,
-one authoritative Core, nine K owners and six Directors. Do not retry the denied
-Vercel source transfer or mix DLVA files.
+No force push, PR approval, protection bypass, permanent original-data deletion,
+Vercel source transfer, external deployment or DLVA mixing is authorized. Keep
+original archives, accurate evidence, history, personal settings and saves.
+Replace superseded generated distributions only after their replacements pass.

@@ -276,5 +276,13 @@
   ],
   "runtime_tests_executed_by_this_update": false,
   "live_inference_authorized": false,
-  "owner_dispatch_claimed": false
+  "owner_dispatch_claimed": false,
+  "finite_pre_alpha_convergence": {
+    "version": "3.4.9",
+    "status": "in_review",
+    "record": "CONSOLIDATION_3_4_9.md",
+    "new_feature_work": "stopped",
+    "qualified_alpha": false
+  },
+  "source_only_owner_route": "existing owners accepted bounded separate review refs via supported relay; no old-local adoption"
 }

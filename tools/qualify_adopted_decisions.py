@@ -36,7 +36,7 @@ def main():
     parser.add_argument('--selection',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     args = parser.parse_args();selected = json.loads(args.selection.read_text())
-    assert selected['fixture_id'] in {'coordinator-adopted-decisions-3.4.7-1','coordinator-adopted-decisions-3.4.8-1'}
+    assert selected['fixture_id'] in {'coordinator-adopted-decisions-3.4.7-1','coordinator-adopted-decisions-3.4.8-1','coordinator-adopted-decisions-3.4.9-1'}
     if args.source_root:
         root = args.source_root.resolve();components = json.loads((root/'COMPONENTS.json').read_text())
         assert all(components[k]['commit'] == selected['components'][k] for k in ('engine','app','catalog'))
