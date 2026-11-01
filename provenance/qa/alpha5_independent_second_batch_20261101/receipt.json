@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "kind": "coordinator-independent-second-batch-evidence",
+  "first_batch_receipt_commit": "7b2e20292c1afb83e9e251cf94f45d65e6f3b09f",
+  "repositories": {
+    "engine": "KingSav3ge/Fulcrum-Engine",
+    "app": "KingSav3ge/WORLDWARD-APP-WEB",
+    "joined": "KingSav3ge/WorldWard"
+  },
+  "engine_runtime": {
+    "candidate": "4f85d2183bd85757eb81febfc2952bda481f709b",
+    "base": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "accepted_scope": [
+      "IRGS_3_3/runtime/settlement_runtime.py",
+      "IRGS_3_3/runtime/test_material_reservation_regression.py",
+      "IRGS_3_3/release.json",
+      "engine/EXISTING_MATERIAL_RESERVATIONS_REVIEW.md"
+    ],
+    "ahead": 4,
+    "behind": 0,
+    "focused_commands": [
+      {
+        "command": [
+          "python",
+          "-B",
+          "-m",
+          "unittest",
+          "test_material_reservation_regression",
+          "test_settlement",
+          "test_ordinary_invitation_decision",
+          "test_world_draft",
+          "-v"
+        ],
+        "exit_code": 0,
+        "output": "engine-runtime-focused-tests.txt",
+        "elapsed_seconds": 2.173
+      },
+      {
+        "command": [
+          "python",
+          "-B",
+          "tools/verify_components.py",
+          "--component",
+          "engine"
+        ],
+        "exit_code": 0,
+        "output": "engine-runtime-integrity.json",
+        "elapsed_seconds": 0.317
+      }
+    ],
+    "focused_tests_passed": 24,
+    "component_integrity": "verified",
+    "prepared_hashes": "direct source SHA256 matches; only settlement_runtime hash modified and new regression-test hash added",
+    "safe_suite": {
+      "candidate": "4f85d2183bd85757eb81febfc2952bda481f709b",
+      "tests_run": 815,
+      "passed": 814,
+      "failures": 0,
+      "errors": 0,
+      "skipped": [
+        {
+          "test": "test_suite.SuiteTests.test_legacy_ast_save_load_does_not_rewrite",
+          "reason": "Coverage capture uses synthetic fixtures only; external historical saves are not opened"
+        }
+      ],
+      "successful": true,
+      "external_private_fixture_opened": false,
+      "source_policy": "existing coordinator coverage_capture.EXTERNAL_FIXTURE_TEST/_PolicySkip",
+      "operation_capture_claimed": false
+    },
+    "safe_suite_command": "PYTHONDONTWRITEBYTECODE=1 python -B $EVIDENCE/run-engine-safe-suite.py $ENGINE_SNAPSHOT/IRGS_3_3/runtime $EVIDENCE/engine-runtime-safe-summary.json",
+    "behavior": "Existing active-material reservation calculation extracted without new state, allowance, authority, profile or public DTO; R00 and non-Rise regressions pass.",
+    "qualification": "bounded regression only; no all-branch or Alpha claim"
+  },
+  "app_store_characterization": {
+    "candidate": "f8bfa2853d348b7371439d07fc19e0ec9cb92767",
+    "base": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+    "engine_pin": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "catalog_pin": "a18cb48928da25d40d057a182c69f71ef149ce80",
+    "scope": [
+      "CHAT_CONTINUATION.md",
+      "IRGS_Web/release.json",
+      "IRGS_Web/tests/test_store_write_characterization.py"
+    ],
+    "commands": [
+      {
+        "command": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "IRGS_Web/tests",
+          "-p",
+          "test_store_write_characterization.py",
+          "-v"
+        ],
+        "exit_code": 1,
+        "output": "app-store-characterization-tests.txt",
+        "elapsed_seconds": 0.216
+      },
+      {
+        "command": [
+          "python3",
+          "-B",
+          "tools/verify_components.py",
+          "--component",
+          "app"
+        ],
+        "exit_code": 0,
+        "output": "app-store-integrity.json",
+        "elapsed_seconds": 15.543
+      }
+    ],
+    "prescribed_test_result": {
+      "status": "failed_before_test_methods",
+      "loader_errors": 1,
+      "methods_executed": 0,
+      "skipped": 0,
+      "error": "ModuleNotFoundError: No module named 'core_world'",
+      "cause": "assistance imports CoreWorld before server Engine bootstrap when the runtime is absent from PYTHONPATH"
+    },
+    "diagnostic": {
+      "same_source": true,
+      "additional_environment": "PYTHONPATH=IRGS_Web:Engine/IRGS_3_3/runtime",
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "IRGS_Web/tests",
+        "-p",
+        "test_store_write_characterization.py",
+        "-v"
+      ],
+      "methods_passed": 4,
+      "skipped": 0,
+      "failures": 0,
+      "platform": "Linux/POSIX",
+      "confirmed_primitive": "pre-replace faults preserve prior record/absence; parent-sync fault can leave complete visible replacement; sync-only confirmation preserves bytes"
+    },
+    "component_integrity": "verified; exact declared and staged dependencies match",
+    "actionable_owner_report": "https://github.com/KingSav3ge/WORLDWARD-APP-WEB/pull/3#issuecomment-6561914470",
+    "owner_fix_required": "Correct test bootstrap or specify the complete supported import environment; retain the original failure.",
+    "limitations": [
+      "No runtime endpoint or Creator transaction added",
+      "No filesystem/process-crash qualification",
+      "Windows confirmation case is not exercised on this Linux executor",
+      "No old owner-workspace adoption"
+    ]
+  },
+  "stable_app_additional_browser": {
+    "candidate": "197d41a910b37b5c8b27d0f7dc9224b068244364",
+    "engine_pin": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "catalog_pin": "a18cb48928da25d40d057a182c69f71ef149ce80",
+    "command": [
+      "node",
+      "tools/qualify_interface_port.js",
+      "$EVIDENCE/app-interface-browser.json"
+    ],
+    "source_helper": "the exact App candidate owns this helper; no later Store/preview source mixed in",
+    "result": {
+      "status": "passed",
+      "desktop_width": 1568,
+      "mobile_width": 390,
+      "concepts": 44,
+      "reading_preferences_survive_reload": true,
+      "drawers_escape_and_focus": true,
+      "reviewed_character_creation": true,
+      "posts_before_explicit_creation": 0,
+      "explicit_creations": 1,
+      "original_fixture_saves_unchanged": true,
+      "local_assets_only": true,
+      "provider_calls": 0,
+      "browser_errors": 0
+    }
+  },
+  "creator_docs": {
+    "original_reviewed_candidate": "4053b5a2454b10cbe539b57ae265aaf6f34a5979",
+    "revised_factual_contract": "7d17ec6212f283df88f49c6ffc993b77df5a6e45",
+    "classification": "proposed prose; no executable endpoint or test qualification"
+  },
+  "evidence_scope": "Existing coordinator Linux executor, accepted single-writer candidate scopes, fresh synthetic stores. Commands use exact admitted snapshots; placeholders redact local output/source paths only.",
+  "raw_log_identities": {
+    "engine-runtime-focused-tests.txt": {
+      "bytes": 4401,
+      "sha256": "eb3d4de7aacdd8a42fca2c0653f858aee3e9a3a4df8726b0268974d81e18fb5a"
+    },
+    "engine-runtime-integrity.json": {
+      "bytes": 177,
+      "sha256": "8f387515b0280326c221b2ece417fffee226a28cef035adb10fb07b983df44bc"
+    },
+    "engine-runtime-safe-tests.txt": {
+      "bytes": 136524,
+      "sha256": "306496e7ac22e4dfe318bae3b28c80bd7960373d3a0c629550a827e1490b3a49"
+    },
+    "engine-runtime-safe-summary.json": {
+      "bytes": 549,
+      "sha256": "f0438f5c2543ad78364dd46c53a06e8d68abed8a7f410d0b288cb58ef3e66c17"
+    },
+    "app-store-characterization-tests.txt": {
+      "bytes": 1377,
+      "sha256": "6ff0e12a4b8e67e7bcec14a3bc4634d20ff603af404988c1c73e9a82a15085d9"
+    },
+    "app-store-diagnostic-explicit-runtime-tests.txt": {
+      "bytes": 874,
+      "sha256": "1651b8ade827b18a29353ae9276725f0b9ef95cc3f1fa97b754850141151fd9a"
+    },
+    "app-store-integrity.json": {
+      "bytes": 4753,
+      "sha256": "de6426fd6b7dd3e6ed7855f6e12c93a5592334cf1babf95c41a067d581e13c7e"
+    },
+    "app-interface-browser.json": {
+      "bytes": 4889,
+      "sha256": "4b1b2109c1edaad2e03ae6a92b67b81e7fd7a77f9a4014993877390073a6f009"
+    },
+    "app-interface-browser-log.txt": {
+      "bytes": 503,
+      "sha256": "c0d192c3dd7c7376b67a96d5f2957d44409d0361f46184fbfdbdb5ca013a0683"
+    }
+  },
+  "preservation": {
+    "published_main": "7327290fbb057ad320cfeb3a009e4138944b078c",
+    "version": "3.4.8",
+    "observer_pid": 15578,
+    "candidate_sources_unmodified": true,
+    "stable_app_engine_pin_not_moved_to_runtime_candidate": true,
+    "old_owner_snapshots_untouched": true,
+    "component_or_joined_adoption": false
+  },
+  "all_twelve_gates": "remain unqualified; see functional_gaps.md",
+  "not_executed": [
+    "Native Windows",
+    "Live/paid providers",
+    "Full compatible joined candidate",
+    "Clean extracted release package"
+  ],
+  "recording_only": "No test rerun for receipt publication; first-batch source receipts unchanged."
+}

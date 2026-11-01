@@ -1,0 +1,23 @@
+Second batch retained execution excerpts. Exact source identities and full command forms are in receipt.json.
+
+engine-runtime-focused-tests.txt:
+Ran 24 tests in 1.821s
+OK
+
+engine-runtime-safe-tests.txt:
+Ran 815 tests in 113.107s
+OK (skipped=1)
+
+app-store-diagnostic-explicit-runtime-tests.txt:
+Ran 4 tests in 0.011s
+OK
+
+app-store-characterization-tests.txt:
+ModuleNotFoundError: No module named core_world
+Ran 1 unittest loader case; four Store methods did not execute.
+FAILED (errors=1)
+
+Engine and App Store component integrity: verified.
+Stable App197d41a real interface browser: passed;1568 desktop/390 mobile;44 concepts;0 provider calls;0 browser errors.
+The explicit-runtime Store diagnostic passed4 methods/0 skips, without modifying f8bfa28.
+The original discovery failure was retained and relayed to the sole App owner.
