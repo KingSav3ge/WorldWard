@@ -1,3 +1,14 @@
+## Requested 5.0 coordination target — 1 November 2026
+
+The user requests the **5.0** iteration. Read [TARGET_5_0.md](TARGET_5_0.md),
+[TARGET_5_0.json](TARGET_5_0.json) and the live COORDINATION.json before new work.
+Published source remains 3.4.8; 5.0.0 is unqualified. Existing Engine/App/Catalog
+owners and source boundaries remain. App PR2 has a relay-reported source
+recommendation and accessible retained evidence, but no component adoption.
+Owner preservation/provisioning is still required. Handoffs are prepared for relay;
+no new owner dispatch or acceptance is claimed. The 3.4.8 coordination snapshot
+is preserved under provenance/qa/completed_cycles/unification-3.4.8.json.
+
 # Continue WorldWard coordination — 3.4.8
 
 WorldWard **3.4.8 Pre-Alpha**. Previous release field: **3.3.3**.

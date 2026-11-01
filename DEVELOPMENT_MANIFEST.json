@@ -51,8 +51,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 17343,
-      "sha256": "a7c7c6ad1dd774879862a5e4b58753797e4e98b56342e72ac2d65df58c9a7379"
+      "bytes": 18032,
+      "sha256": "40fa77caf5f402314a336fd430d1e2a1192f403cccf5275ac287f0e407015db5"
     },
     {
       "path": "AI_PROVIDER_REVIEW.md",
@@ -151,8 +151,8 @@
     },
     {
       "path": "CHAT_CONTINUATION.md",
-      "bytes": 2501,
-      "sha256": "78e01a6ba59dcf4be49089f90b32e5b7f4a553ee57f95510d3056dad560a1b9e"
+      "bytes": 3190,
+      "sha256": "4ae480ec3778e58698a073d5dffb4421a6b2455ca79f6725dd974734c652e63b"
     },
     {
       "path": "COMMUNICATION_BRIDGE.md",
@@ -191,13 +191,13 @@
     },
     {
       "path": "COORDINATION.json",
-      "bytes": 11727,
-      "sha256": "4b31970082d1da2852053942f8df3068da8c20f3db3df876f12abed7f1e48d97"
+      "bytes": 5037,
+      "sha256": "aae13b8f0c53856dc1ddccd6a0d8f0259d585a0f66d6c1082d415d908ae4fe6b"
     },
     {
       "path": "COORDINATION.md",
-      "bytes": 11478,
-      "sha256": "a86d3b7d069c676e41cde19c03165b0f0c515f758d1f0ce433129f9bf782220d"
+      "bytes": 12167,
+      "sha256": "2c417df9735924703d5780d1bd7301791b5dee40d035c3bc64503aba67d105e8"
     },
     {
       "path": "COORDINATOR_REVIEW_2026_10_28.json",
@@ -216,8 +216,8 @@
     },
     {
       "path": "COORDINATOR_WORK_ORDER.md",
-      "bytes": 2502,
-      "sha256": "239765df2b932f26a0450cc5932ed9d7121a8c2c923df82a0d1569fa680992bb"
+      "bytes": 3191,
+      "sha256": "b6a2bd8bfc3d54799d8cb94f4e2ada6407818908c2d729d5656218d9599a4b4b"
     },
     {
       "path": "COVERAGE1_VALIDATION.json",
@@ -231,13 +231,13 @@
     },
     {
       "path": "DEVELOPMENT.md",
-      "bytes": 2497,
-      "sha256": "74f9af04accffe4587196cdbda0f1212fdef31a645af45d25b5f5100bad7b1c5"
+      "bytes": 3186,
+      "sha256": "1a5eeaaa4bbf31302c56e068474bf2bc5183bc6dee3b7b8823559a586e5462d6"
     },
     {
       "path": "DEVELOPMENT_HANDOFFS.md",
-      "bytes": 1598,
-      "sha256": "711f02d7e1d14652feac5c0543e73ea47e6e3eed34b5bf161a01c270aa788f09"
+      "bytes": 2287,
+      "sha256": "106fd08d7fda4d9baa1b2523864606fe283f5d9ff383017c4e19aca2d3be9365"
     },
     {
       "path": "DEVELOPMENT_HISTORY_2026-10-25.md",
@@ -4095,6 +4095,16 @@
       "sha256": "9a80a651880a052013b479f0fe34abce1794a991079eeffa1ef1fb14626469cc"
     },
     {
+      "path": "TARGET_5_0.json",
+      "bytes": 8928,
+      "sha256": "8bcc0c20467007bcc08953aa86b609c1008c9576dd7cb261038c7b9229159ff4"
+    },
+    {
+      "path": "TARGET_5_0.md",
+      "bytes": 6662,
+      "sha256": "869f9f03c5f87c2c28ab76f583c4a49fb900b775bd338aadb29e5d79f271de13"
+    },
+    {
       "path": "UNIFICATION_3_4_8.md",
       "bytes": 3453,
       "sha256": "050f2dfc7b85b9c416e5c0484a9d0d599b80fbb8d3979b60190669fd0599b41d"
@@ -5030,6 +5040,26 @@
       "sha256": "e9ad627dab5bc95e720aae312839ce699d65e3c440dbe75f8b4b62e46d52f385"
     },
     {
+      "path": "provenance/coordination/target_5_0/APP.md",
+      "bytes": 2602,
+      "sha256": "5d6d5138699e11e00447eff8d7348ec06e749f7fbb5e855326b71596dc2d66fb"
+    },
+    {
+      "path": "provenance/coordination/target_5_0/CATALOG.md",
+      "bytes": 2393,
+      "sha256": "f222f6571ea0f37bfdd9aed0197e64b0d23fb0e0e426c83da18985aa0562b62e"
+    },
+    {
+      "path": "provenance/coordination/target_5_0/CHECKPOINT.json",
+      "bytes": 1901,
+      "sha256": "b238b6fc11544bc038b5a39ddc56abe978679c6869e52c31c1fbdfe99cf907a6"
+    },
+    {
+      "path": "provenance/coordination/target_5_0/ENGINE.md",
+      "bytes": 2202,
+      "sha256": "28fe7148cf0296bb48d6b2a97ee926724d28053c045dbc0d32ad6ea0e1819a2b"
+    },
+    {
       "path": "provenance/core_consolidation_validation/cloud_QA_59f2434.json",
       "bytes": 5168,
       "sha256": "74c826ff0bb672a4dafbb39c89d07979295c4add993e0b261499a7f2474cf218"
@@ -5313,6 +5343,11 @@
       "path": "provenance/qa/completed_cycles/story-flow-3.4.5_coordination.json",
       "bytes": 11259,
       "sha256": "1375736e497482f97929b5922a61488e69f9fdff2ac8c24a4bed8273baca8cb0"
+    },
+    {
+      "path": "provenance/qa/completed_cycles/unification-3.4.8.json",
+      "bytes": 11727,
+      "sha256": "4b31970082d1da2852053942f8df3068da8c20f3db3df876f12abed7f1e48d97"
     },
     {
       "path": "provenance/qa/component_review_2026_10_22.json",

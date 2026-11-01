@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "kind": "coordinator_target_register",
+  "cycle_id": "worldward-5.0-functional-01",
+  "requested_target": "5.0.0",
+  "qualified": false,
+  "classification": "unqualified_development_target",
+  "current_published": {
+    "version": "3.4.8",
+    "joined_commit": "7327290fbb057ad320cfeb3a009e4138944b078c",
+    "previous_version": "3.3.3"
+  },
+  "baseline_components": {
+    "engine": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+    "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+    "catalog": "a18cb48928da25d40d057a182c69f71ef149ce80"
+  },
+  "release_candidate": null,
+  "foundation_requirements_source": "ALPHA_4_0_ACCEPTANCE.json",
+  "foundation_gate_policy": "Carry forward the existing functional criteria and stable A4 IDs; the requested number does not qualify a release or require an intervening 4.0 publication.",
+  "gates": [
+    {
+      "id": "A4-G01",
+      "title": "Installation, launch and protected setup",
+      "mandatory": true,
+      "owners": [
+        "app",
+        "coordinator"
+      ],
+      "tasks": [
+        "A4-APP-01",
+        "A4-APP-07"
+      ],
+      "acceptance": "Clean normal launch, correct build/dependency identity, understandable offline and missing-config paths; no developer world seeding.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G02",
+      "title": "Honest ordinary playable starts",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "catalog",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-01",
+        "A4-APP-02",
+        "A4-CAT-02"
+      ],
+      "acceptance": "Reviewed atomic creation gives real actor/location/knowledge/capabilities; unsupported starts remain limited.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G03",
+      "title": "Reviewed supported player intents",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-03",
+        "A4-APP-03"
+      ],
+      "acceptance": "Suggestions and own responses map to exact versioned attempts, commit only on acceptance, and preserve unsupported/ambiguous intent.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G04",
+      "title": "Material constraints, movement and time",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-02",
+        "A4-ENG-06",
+        "A4-APP-04"
+      ],
+      "acceptance": "Selected movement/perception, work/needs/recovery, stock and commitments persist across interruption; no invented time/resources.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G05",
+      "title": "Communication, consent and obligations",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app",
+        "catalog"
+      ],
+      "tasks": [
+        "A4-ENG-01",
+        "A4-ENG-04",
+        "A4-APP-02",
+        "A4-CAT-01"
+      ],
+      "acceptance": "Normal-start participants/channels and real social consequences keep received testimony, offer, consent and fulfillment distinct.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G06",
+      "title": "Continuing NPC and institutional agency",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-05",
+        "A4-APP-04"
+      ],
+      "acceptance": "At least one NPC and local institution act on legitimate knowledge/authority/shared resources and alter later choices across continuation.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G07",
+      "title": "Consequential selected risk/conflict and recovery",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "catalog",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-06",
+        "A4-APP-04",
+        "A4-CAT-02",
+        "A4-CAT-03"
+      ],
+      "acceptance": "An adopted bounded profile supports consequential success/failure/withdrawal and persistent recovery, not narrator truth writes.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G08",
+      "title": "Grounded AI-enabled play and failure handling",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app",
+        "catalog"
+      ],
+      "tasks": [
+        "A4-ENG-07",
+        "A4-APP-01",
+        "A4-APP-05",
+        "A4-CAT-04"
+      ],
+      "acceptance": "One protected provider completes a budgeted live synthetic cycle; invalid output, cancellation, timeout, outage and budget exhaustion remain safe; routine calls zero.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G09",
+      "title": "Durability, concurrency, retry and restore",
+      "mandatory": true,
+      "owners": [
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-ENG-08",
+        "A4-APP-06",
+        "A4-CAT-03"
+      ],
+      "acceptance": "Atomic result/state, immutable original receipt, no duplication, lost-reply recovery, stale handling and restore fencing in multi-session play.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G10",
+      "title": "Sustained cross-campaign product journeys",
+      "mandatory": true,
+      "owners": [
+        "catalog",
+        "engine",
+        "app"
+      ],
+      "tasks": [
+        "A4-CAT-02",
+        "A4-CAT-03",
+        "A4-CAT-05"
+      ],
+      "acceptance": "Two independent ordinary contexts from distinct families including non-Rise personal play; actual different constraints, evolving consequences and retained R00 regressions.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G11",
+      "title": "Usable browser and Windows distribution",
+      "mandatory": true,
+      "owners": [
+        "app",
+        "coordinator"
+      ],
+      "tasks": [
+        "A4-APP-06",
+        "A4-APP-07"
+      ],
+      "acceptance": "Actual browser plus native Windows clean-package launch, responsive/keyboard controls, truthful status/time, saves and actionable errors.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    },
+    {
+      "id": "A4-G12",
+      "title": "Qualified exact compatible release",
+      "mandatory": true,
+      "owners": [
+        "coordinator",
+        "engine",
+        "app",
+        "catalog"
+      ],
+      "tasks": [
+        "A4-ENG-08",
+        "A4-APP-07",
+        "A4-CAT-05"
+      ],
+      "acceptance": "One exact compatible set/pins with all mandatory gates reviewed, scoped DEV/C2 evidence, preserved archives, clean package and no blocking ordinary-play/privacy/data-loss defect.",
+      "qualification_state": "not_qualified",
+      "evidence": [],
+      "reviewer": null
+    }
+  ],
+  "rise_expansion": {
+    "task": "RISE-EXPANSION-01",
+    "requirement_adopted": true,
+    "authored_fictional_numerical_profile": "pending_catalog_delivery",
+    "runtime_implementation": "not_observed",
+    "qualified": false
+  },
+  "creator": {
+    "task": "WB-APP-01",
+    "preview": "proposed_not_implemented",
+    "durable_create": "held_pending_durability_and_restore_contracts",
+    "general_world_builder_claimed": false
+  },
+  "outside_minimum_scope": [
+    "Co-op and public multiplayer",
+    "Store, marketplace and monetization",
+    "All 44 concepts playable",
+    "All eight Rise families playable",
+    "Complete grand-strategy/national economy or worldwide military simulation",
+    "Every AI provider or specialist model",
+    "Unspecified general combat beyond the adopted Alpha profile"
+  ],
+  "qualification_requirements": [
+    "Preserved owner-local root/HEAD/dirty/unpushed-state receipts before adoption.",
+    "Exact new Engine/App/Catalog SHAs and matching App Engine/Catalog gitlinks.",
+    "Coordinator review and passing integration gate for this cycle.",
+    "Fresh authoritative Core operation capture and scoped DEV/C2 evidence.",
+    "Joined Core/Web/tooling regressions, real browser journeys and independent Catalog consumers.",
+    "Clean extracted-package checks and actual native Windows evidence.",
+    "Explicit scoped budget and eligible protected route before live-provider qualification.",
+    "All gate evidence tied to one exact compatible candidate; blocked or skipped mandatory gates remain open."
+  ],
+  "runtime_tests_executed_by_this_update": false,
+  "live_inference_authorized": false,
+  "owner_dispatch_claimed": false
+}
