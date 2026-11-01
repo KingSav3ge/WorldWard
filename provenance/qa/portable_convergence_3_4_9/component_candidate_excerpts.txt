@@ -1,0 +1,11 @@
+Component exact-source test logs retained outside source; SHA256s bind their contents.
+Full Web:288 run,281 passed,7 Windows PowerShell skips,0 failures/errors.
+DOM:168 checks. Real Creator1360/390,Story1568/390 and Saves journey passed.
+Two three-process compatible ordinary journeys passed; strict exit2 held/G10 unqualified.
+No live calls/native Windows/personal save/Creator durability claim.
+
+
+----------------------------------------------------------------------
+Ran 288 tests in 195.727s
+
+OK (skipped=7)

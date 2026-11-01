@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "app_candidate": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4",
+  "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+  "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+  "full_web": {
+    "run": 288,
+    "passed": 281,
+    "skipped": 7,
+    "failures": 0,
+    "errors": 0,
+    "skip_reason": "Seven installed-launcher tests require native Windows PowerShell"
+  },
+  "dom": 168,
+  "browser_creator": {
+    "candidate": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4",
+    "status": "passed",
+    "phase": "mobile-late-preview",
+    "checks": [
+      {
+        "viewport": "desktop",
+        "width": 1360,
+        "profiles": [
+          "rise-r00",
+          "historical-quay"
+        ],
+        "preview_edit_cancel": true,
+        "independent_profile_drafts": true,
+        "advanced_details": true,
+        "late_preview_navigation_fenced": true,
+        "story_draft_preserved": true,
+        "campaign_directory_bytes_unchanged": true
+      },
+      {
+        "viewport": "mobile",
+        "width": 390,
+        "profiles": [
+          "rise-r00",
+          "historical-quay"
+        ],
+        "preview_edit_cancel": true,
+        "independent_profile_drafts": true,
+        "advanced_details": true,
+        "late_preview_navigation_fenced": true,
+        "story_draft_preserved": true,
+        "campaign_directory_bytes_unchanged": true
+      }
+    ],
+    "browser_errors": [],
+    "provider_attempts": 0,
+    "external_requests": [],
+    "preview_dtos": [
+      {
+        "profile_id": "rise-r00",
+        "schema": "irgs-world-initialization-preview-1",
+        "private_keys": [],
+        "committed": false,
+        "identities_reusable": false
+      },
+      {
+        "profile_id": "historical-quay",
+        "schema": "irgs-world-initialization-preview-1",
+        "private_keys": [],
+        "committed": false,
+        "identities_reusable": false
+      },
+      {
+        "profile_id": "rise-r00",
+        "schema": "irgs-world-initialization-preview-1",
+        "private_keys": [],
+        "committed": false,
+        "identities_reusable": false
+      },
+      {
+        "profile_id": "rise-r00",
+        "schema": "irgs-world-initialization-preview-1",
+        "private_keys": [],
+        "committed": false,
+        "identities_reusable": false
+      },
+      {
+        "profile_id": "historical-quay",
+        "schema": "irgs-world-initialization-preview-1",
+        "private_keys": [],
+        "committed": false,
+        "identities_reusable": false
+      },
+      {
+        "profile_id": "rise-r00",
+        "schema": "irgs-world-initialization-preview-1",
+        "private_keys": [],
+        "committed": false,
+        "identities_reusable": false
+      }
+    ],
+    "initial_campaign_files": 4
+  },
+  "browser_saves": {
+    "status": "passed",
+    "baseline_app_asset_commit": null,
+    "live_provider_calls": 0,
+    "browser_errors": [],
+    "checks": [
+      "Two normal committed actions update the Saves card without reload or extra writes",
+      "Repeated Saves/Continue navigation preserves the draft and exact saved bytes",
+      "Reload retains the same current card revision without changing the saved world"
+    ],
+    "phase": "actions",
+    "authoritative_revision": 2,
+    "saved_card_text": "S\nSaves summary regression\n\nSaved campaign \u00b7 revision 2\n\nContinue story"
+  },
+  "browser_story": {
+    "status": "passed",
+    "contexts": [
+      {
+        "context": "authored_scene",
+        "entries": 4,
+        "chronological": true,
+        "choices_and_composer_below_tale": true,
+        "one_reading_viewport": true,
+        "review_cancel_no_effect": true,
+        "one_confirmed_commit": true,
+        "draft_and_reload_preserved": true,
+        "widths": [
+          1568,
+          390
+        ]
+      },
+      {
+        "context": "settlement",
+        "entries": 5,
+        "chronological": true,
+        "choices_and_composer_below_tale": true,
+        "one_reading_viewport": true,
+        "review_cancel_no_effect": true,
+        "one_confirmed_commit": true,
+        "draft_and_reload_preserved": true,
+        "widths": [
+          1568,
+          390
+        ]
+      }
+    ],
+    "known_view_replay": null,
+    "browser_errors": 0,
+    "provider_calls": 0,
+    "external_requests": 0,
+    "user_saves_opened": false
+  },
+  "compatible_consumer": {
+    "source": {
+      "mode": "compatible",
+      "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+      "app": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4",
+      "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+      "catalog_base": "a18cb48928da25d40d057a182c69f71ef149ce80",
+      "authored_baseline": {
+        "engine": "ecca8094a2d2cdb8a11e018a085487288b26e88d",
+        "app": "c04ba5524ae95316c7e826fc63085a4916d7dd67",
+        "catalog": "a18cb48928da25d40d057a182c69f71ef149ce80"
+      },
+      "app_engine_pin": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+      "app_catalog_pin": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+      "engine_override": false,
+      "catalog_override": false,
+      "admission": "accepted_exact_sources",
+      "committed_pins_match_tested_sources": true
+    },
+    "runtime_tests": {
+      "run": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "successful": true,
+      "failure_details": []
+    },
+    "g10_qualified": false,
+    "gate_status": "held"
+  },
+  "hashes": {
+    "app-final-command-results.json": "a59ebc9b8341a8f3557d1d46eb8768db9fdb74dbb19f5db15b716c8d14cbf584",
+    "app-final-full-web.txt": "e1fd42dc660e1c466271fce2f044d3fe00bdbb0b17c5c5b116931f1abfe9052f",
+    "app-final-dom.txt": "006fc4b861b36164a2997497dc83a7634014cd027c5ebde91b23968acf69c778",
+    "app-final-integrity.json": "17b649fb7fde3dd62c3729b8bb08974bc62a686f0b70a350fb17ac7bd31cd119",
+    "preview-browser-final-report.json": "5b1b981ab772bd75b59222d87f50820bfde8c3eb0e5e58196e42e044d4a16de7",
+    "app-final-saves-browser.json": "dc954ac8ff9f8b5c0b36c0518a6f2211f939b432ce31ff48977c26fb6a261971",
+    "app-final-story-browser.json": "3fea0b1a57662ec40a60d8748e6a29ea542972253365dc215f2d6e5a7ddddfae",
+    "final-compatible-consumer.json": "2ac915a1ca0063dac54e96388a32371456f659e73d268533c75d70762635006d"
+  },
+  "native_windows": "not executed",
+  "live_provider_calls": 0,
+  "alpha_qualified": false,
+  "merge_ready": true,
+  "runtime_source_unchanged_after_tests": true,
+  "evidence_scope": "Exact final App candidate and committed dependency main pins. Actual App merge/main readback is separately verified before joined import."
+}

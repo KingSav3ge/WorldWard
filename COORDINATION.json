@@ -49,7 +49,7 @@
   "selected_components": {
     "engine": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
     "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
-    "app": null
+    "app": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4"
   },
   "reviews": {
     "engine": {
@@ -93,13 +93,31 @@
       ]
     },
     "app": {
-      "status": "pending",
-      "commit": null,
+      "status": "approved",
+      "commit": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4",
       "deliverable": "component_update",
-      "checks": []
+      "scope": "accepted finite App consolidation at exact final dependency pins; actual main publication pending",
+      "checks": [
+        {
+          "name": "Exact source/97-entry manifest,3.4.9 edition and committed Engine/Catalog pins reviewed",
+          "status": "passed"
+        },
+        {
+          "name": "Full Web288 run/281 pass/7 explicit Windows skips;168 DOM checks and integrity pass",
+          "status": "passed"
+        },
+        {
+          "name": "Actual Saves/Story/Creator desktop/mobile browser checks preserve bytes/drafts; no live provider",
+          "status": "passed"
+        },
+        {
+          "name": "Exact compatible Catalog consumer2 bounded journeys pass/strictheld; no Alpha claim",
+          "status": "passed"
+        }
+      ]
     }
   },
-  "integration_status": "held_final_app_pins_and_combined_checks",
+  "integration_status": "ready_isolated_candidate_assembly_actual_app_main_pending",
   "component_source_integration_performed": false,
   "current_published_version": "3.4.8",
   "target_version": "3.4.9",
@@ -138,5 +156,6 @@
     "Component CI has no statuses/workflow execution, not a pass",
     "Direct owner bridge unavailable; actual source ownership/admissions relayed",
     "Reports and work orders do not wake chats"
-  ]
+  ],
+  "publication_hold": "App main must be confirmed and compared tree-identical before joined main push"
 }

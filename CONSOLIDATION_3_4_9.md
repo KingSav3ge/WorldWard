@@ -23,3 +23,18 @@ All twelve original A4 acceptance criteria remain unqualified under the 5.0 targ
 ## Preservation and ownership
 
 The existing Engine/App/Catalog owners authored separate review candidates through their authorized repository connector. This coordinator executes synthetic tests and owns joined assembly. Failed owner executors/snapshots remain intact; their roots, dirty/unpushed state and common stores remain unknown and no unknown local work is adopted. Later recovery requires CMRR before adopting unique local changes. Component repositories, Git history, original archives, accurate evidence, user saves/settings and private source boundaries are preserved. DLVA is separate. No PR approval, force push, Vercel transfer, external deployment or paid inference is performed.
+
+## Reproduce current checks
+
+From the exact clean joined source, use Python3.12+ without optimization and synthetic stores only. Preserve proxy/CA and existing private configuration; the local checks require no provider. Raw execution output goes outside source except the intentionally versioned operation register/log.
+
+```sh
+python -B tools/verify_development.py
+python -B tools/build_operation_register.py --check engine/qualification/operation_register.json
+python -B tools/qa_irgs.py --source-root "$PWD" --commit "$(git rev-parse HEAD)" --output /tmp/worldward-joined-qa/report.json
+node tools/qualify_saves_revision.js /tmp/worldward-saves.json
+node tools/qualify_creator_preview.js /tmp/worldward-preview-fresh "$(git rev-parse HEAD)"
+node tools/qualify_story_flow.js /tmp/worldward-story.json
+```
+
+The Creator browser helper requires a new external evidence directory and selects the visible desktop account control or mobile menu before switching workspace. It uses normal Campaign Workshop navigation, exact profile forms, separate drafts and held real responses; it never force-clicks or mutates workspace mode directly. Failed harness runs are not product failures. Chromium/Playwright must already be available; these Linux browser checks are not native Windows qualification. The original independent Catalog sustained consumer remains in its component repository under tools/tests; joined imports only Catalog-owned data/design paths under the existing source boundary. Its exact source SHA and compatible-set execution are retained separately.
