@@ -3687,7 +3687,7 @@
     {
       "path": "IRGS_Web/release.json",
       "bytes": 9399,
-      "sha256": "786e6bef8f94465602d9a5c30c6c8f26aab00631831824a28bc632f14cc3faad"
+      "sha256": "892d73f6e8de03f08da9f7d23d4a0dea68fcd940ab6f2b3bca375804df9415bc"
     },
     {
       "path": "IRGS_Web/responses/README.md",
@@ -3711,8 +3711,8 @@
     },
     {
       "path": "IRGS_Web/static/app.js",
-      "bytes": 145902,
-      "sha256": "96fd8ad2baf4509f686f88d338ebbfba63e1dc632688c446f38c1e345d71fad9"
+      "bytes": 146185,
+      "sha256": "68feeaba35cd2f34f3071964cbe36eb8f5aa130b7f9334115aee674937071c2f"
     },
     {
       "path": "IRGS_Web/static/catalogue.js",
@@ -3891,8 +3891,8 @@
     },
     {
       "path": "IRGS_Web/tests/test_gameplay_ui.js",
-      "bytes": 167181,
-      "sha256": "49019c9b461a646bf8fd25c5cb0f198ea58cd11c79de83a19a590d9aa960f82a"
+      "bytes": 169982,
+      "sha256": "7f88a71b93aab3ba2a1163a8a624f778e99927f972118a9f572ca27cf838d663"
     },
     {
       "path": "IRGS_Web/tests/test_historical_multipart.py",
@@ -5718,6 +5718,11 @@
       "path": "tools/qualify_rise_offer_ui.js",
       "bytes": 12055,
       "sha256": "6bc1c3153c10ea5e2c8149bd22904f883ae8b42342268164eeba1fe79cb4868f"
+    },
+    {
+      "path": "tools/qualify_saves_revision.js",
+      "bytes": 7206,
+      "sha256": "9b407158094987cb61c4c666ed4829f65e293a14c72945d23f5dcebba8bc1ea9"
     },
     {
       "path": "tools/qualify_shared_responses.js",

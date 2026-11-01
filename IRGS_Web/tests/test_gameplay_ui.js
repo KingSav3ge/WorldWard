@@ -452,6 +452,37 @@ async function test(name,fn){await fn();results.push('PASS '+name);}
   const pending=h.context.document.querySelectorAll('[data-resume-campaign]')[0].click();h.run("changeView('home')");release();await pending;
   assert.equal(h.run('view'),'home');assert.equal(h.calls.length,1);assert.equal(h.calls[0].body,undefined);
  });
+
+ await test('Saved journey cards use the latest loaded host revision rather than an original action receipt',async()=>{
+  const h=environment(),latest={...projection('A'),name:'Fresh host title',revision:18};
+  h.run("token='token';campaignSummaries=[{id:'A',name:'Old title',revision:0,profile_id:'retained-profile'},{id:'B',name:'Other world',revision:4}];current="+JSON.stringify(projection('A'))+";$('#campaign').value='A';$('#declaration').value='My unsent words';");
+  h.setFetch(path=>{assert.equal(path,'/api/playthrough/A?actor_id=PC');return h.reply(latest);});
+  await h.run("finishAction({endpoint:'action',body:{id:'A',actor:'PC',request_id:'old-receipt'}},{status:'completed_successfully',revision:2,outcome:{summary:'Original stored result'}})");
+  h.run("changeView('saves')");
+  const markup=h.elements.get('content').innerHTML;
+  assert(markup.includes('Fresh host title'));assert(markup.includes('revision 18'));assert(!markup.includes('revision 2<'));
+  assert.equal(h.run("campaignSummaries.find(item=>item.id==='B').revision"),4);
+  assert.equal(h.run("campaignSummaries.find(item=>item.id==='A').profile_id"),'retained-profile');
+  assert.equal(h.elements.get('declaration').value,'My unsent words');
+  assert.equal(h.calls.length,1);assert.equal(h.calls[0].body,undefined);
+ });
+ await test('A host-restored lower revision replaces a stale higher saved-card revision without adding a campaign',async()=>{
+  const h=environment();h.run("token='token';campaignSummaries=[{id:'A',name:'Before restore',revision:18}];");
+  h.setFetch(()=>h.reply({...projection('A'),name:'Restored host title',revision:3}));
+  await h.run("openCampaign('A')");h.run("changeView('saves')");
+  assert(h.elements.get('content').innerHTML.includes('revision 3'));assert(!h.elements.get('content').innerHTML.includes('revision 18'));
+  h.run('campaignSummaries=[]');await h.run("openCampaign('A')");assert.equal(h.run('campaignSummaries.length'),0);
+  assert(h.calls.every(call=>call.body===undefined));
+ });
+ await test('A superseded playthrough read cannot change another saved-card revision',async()=>{
+  const h=environment();let release;
+  h.run("token='token';campaignSummaries=[{id:'A',name:'A',revision:0},{id:'B',name:'B',revision:0}];");
+  h.setFetch(path=>path.endsWith('/A')?new Promise(resolve=>release=()=>resolve(h.reply({...projection('A'),revision:99}))):h.reply({...projection('B'),revision:7}));
+  const older=h.run("openCampaign('A')");await h.run("openCampaign('B')");release();await older;
+  assert.equal(h.run('current.id'),'B');assert.equal(h.run("campaignSummaries.find(item=>item.id==='A').revision"),0);
+  assert.equal(h.run("campaignSummaries.find(item=>item.id==='B').revision"),7);
+  assert(h.calls.every(call=>call.body===undefined));
+ });
  await test('Reading-room tools show received records and exact zero inventory without seeded character statistics',async()=>{
   const h=environment(),p={...projection('A'),inventory:[{name:'Recorded timber',quantity:0}],chronicle:[{kind:'received_evidence',text:'Received <script>words</script>'}]};h.run('current='+JSON.stringify(p)+";view='story';render();");
   const side=h.elements.get('context-content').innerHTML,tools=h.elements.get('play-tools-content').innerHTML;
