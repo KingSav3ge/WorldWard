@@ -20,7 +20,12 @@ ACTIONS = [
     ('invite', 'Discuss moving with Oren', 'At the commons; communicate your established camp and receive Oren’s response.'),
     ('arrange_departure', 'Arrange Oren’s departure', 'At the commons after consent; Oren travels with private goods and joins only on arrival.'),
     ('wait_hour', 'Let one hour pass', 'Advance qualified work, travel and provision; return at the first completion or provision boundary.'),
-    ('inspect', 'Inspect your surroundings', 'Read local committed facts. No elapsed time.')]
+    ('inspect', 'Inspect your surroundings', 'Read local committed facts. No elapsed time.'),
+    # Opt-in reviewed needs profile rise-needs-1. Without it these attempts fail safely.
+    ('feed_household', 'Feed your household', 'At your stores; each hungry member present eats one free grain portion, never the protected seed.'),
+    ('rest', 'Rest', 'You and idle household members here rest: two hours with a completed shelter, otherwise four.'),
+    ('request_relief', 'Ask Elin for relief', 'At the commons after a recorded shortfall; Elin decides, and relief is owed back as footpath upkeep.'),
+    ('path_upkeep', 'Work on the footpath', 'At the clearing while relief is owed; up to one hour of upkeep, needing no materials.')]
 
 
 def household_of(s, actor):
@@ -47,7 +52,7 @@ def _reserved_material(s, household, material, *, excluding=None):
     Internal Core accounting only; this does not reserve a building place,
     establish an allowance, transfer stock, or expose another actor's records.
     """
-    return sum(p['timber'] if material == 'timber' else 1 if material == 'axe' else 0
+    return sum(p['timber'] if material == 'timber' else p.get('axe', 1) if material == 'axe' else 0
                for key, p in s['projects'].items()
                if key != excluding and p['household'] == household and p['status'] == 'active')
 
@@ -84,8 +89,31 @@ def _worker_free(s, worker, excluding=None):
     assert not any(worker in a['actors'] for a in s.get('activities', {}).values()), 'unmapped capacity booking holds this worker'
 
 
+def _needs_on(s):
+    return isinstance(s.get('needs_rules'), dict)
+
+
+def _tired(s, actor):
+    return (_needs_on(s) and actor in s['needs']
+            and s['needs'][actor]['worked_since_rest'] >= s['needs_rules']['fatigue_work_seconds'])
+
+
+def _can_work(s, worker):
+    if not _needs_on(s) or worker not in s['needs']: return
+    assert not s['needs'][worker]['hungry'], 'a hungry person cannot start work until fed'
+    assert not _tired(s, worker), 'a tired person cannot start work until rested'
+
+
+def _open_obligation(s, household):
+    found = [o for o in s.get('relief_obligations', {}).values()
+             if o['debtor'] == household and o['status'] == 'open']
+    assert len(found) <= 1
+    return found[0] if found else None
+
+
 def _start(s, household, worker, *, resume=False):
     model = s['settlement_model']
+    _can_work(s, worker)
     _permission(s, household, 'temporary_dwelling')
     assert location(s, worker) == 'clearing' and household in s['settlements']['camp']['households']
     assert worker in s['households'][household]['members']
@@ -115,6 +143,20 @@ def inspect_local(s, actor, at, key):
         members = sum(len(s['households'][h]['members']) for h in s['settlements']['camp']['households'])
         places = sum(a['places'] for a in s['assets'].values() if a['site'] == site)
         messages.append(f'The camp has {members} residents and {places} completed shelter places. Shelter shortage: {max(0, members-places)}.')
+    if _needs_on(s) and actor in s['needs']:
+        # Only the actor's own household members who are here are described.
+        household = household_of(s, actor)
+        limit = s['needs_rules']['fatigue_work_seconds']
+        for member in s['households'][household]['members']:
+            if location(s, member) != site: continue
+            need = s['needs'][member]
+            state = [w for w, on in (('hungry', need['hungry']), ('tired', need['worked_since_rest'] >= limit)) if on]
+            messages.append(f"{s['actors'][member]['name']}: {' and '.join(state) if state else 'fed and rested'} "
+                            f"({need['worked_since_rest'] // 60} of {limit // 60} work minutes since rest).")
+        obligation = _open_obligation(s, household)
+        if obligation:
+            left = obligation['owed_seconds'] - obligation['discharged_seconds']
+            messages.append(f'You owe Steward Elin {left // 60} minutes of footpath upkeep for relief grain.')
     notice(s, actor, at, key, ' '.join(messages) or 'You inspect the local surroundings; no new physical effects occur.')
 
 
@@ -130,6 +172,13 @@ def _advance(s, seconds, *, causal_at=None):
     candidates.extend(travel_boundaries(s, now))
     candidates.extend(now + p['duration'] - p['worked'] for p in s['projects'].values() if p['status'] == 'active')
     candidates.extend(m['arrive_at'] for m in s['migrations'].values() if m['status'] == 'transit')
+    if _needs_on(s):
+        # Fatigue is a material boundary: work stops when the limit is reached.
+        limit = s['needs_rules']['fatigue_work_seconds']
+        candidates.extend(now + limit - s['needs'][p['worker']]['worked_since_rest']
+                          for p in s['projects'].values()
+                          if p['status'] == 'active' and p['worker'] in s['needs']
+                          and s['needs'][p['worker']]['worked_since_rest'] < limit)
     end = min(candidates)
     assert end > now
     delta = end - now
@@ -138,17 +187,39 @@ def _advance(s, seconds, *, causal_at=None):
     for key, project in s['projects'].items():
         if project['status'] != 'active': continue
         h = project['household']
+        worker = project['worker']
+        if project['kind'] == 'upkeep':
+            # Footpath upkeep needs only its worker on site; no materials or tools.
+            if location(s, worker) != project['site']:
+                project['status'] = 'held'; continue
         # Revocation or unavailable inputs holds only this project. Retain work.
-        if (location(s, project['worker']) != project['site']
+        elif (location(s, worker) != project['site']
                 or s['stock_accounts'][h]['site'] != project['site']
                 or s['stocks'][h].get('timber', 0) < project['timber']
                 or s['stocks'][h].get('axe', 0) < 1):
+            project['status'] = 'held'; continue
+        if _needs_on(s) and worker in s['needs'] and (s['needs'][worker]['hungry'] or _tired(s, worker)):
             project['status'] = 'held'; continue
         if project['kind'] == 'shelter':
             try: _permission(s, h, 'temporary_dwelling')
             except (AssertionError, KeyError):
                 project['status'] = 'held'; continue
         project['worked'] += delta
+        if _needs_on(s) and worker in s['needs']:
+            s['needs'][worker]['worked_since_rest'] += delta
+        if project['kind'] == 'upkeep':
+            if project['worked'] == project['duration']:
+                project['status'] = 'complete'
+                obligation = s['relief_obligations'][project['obligation']]
+                obligation['discharged_seconds'] += project['duration']
+                if obligation['discharged_seconds'] >= obligation['owed_seconds']:
+                    obligation['status'] = 'discharged'
+                    obligation['discharged_at'] = end
+            elif _tired(s, worker):
+                project['status'] = 'held'
+            continue
+        if project['worked'] != project['duration'] and _tired(s, worker):
+            project['status'] = 'held'
         if project['worked'] == project['duration']:
             _consume(s, h, 'timber', project['timber'], 'project:' + key, 'accepted ' + project['kind'])
             project['status'] = 'complete'
@@ -169,6 +240,16 @@ def _advance(s, seconds, *, causal_at=None):
             local = sum(location(s, a) == s['stock_accounts'][h]['site'] for a in household['members'])
             delivered = min(max(0, _free(s, h, 'grain')), local * model['grain_per_person'])
             if delivered: _consume(s, h, 'grain', delivered, f'provision:{end}:{h}', 'household provision')
+            if _needs_on(s):
+                # Delivered portions go to local members in membership order.
+                present = [a for a in household['members'] if location(s, a) == s['stock_accounts'][h]['site']]
+                fed = set(present[:delivered // model['grain_per_person']])
+                for member in household['members']:
+                    s['needs'][member]['hungry'] = member not in fed
+                    if member not in fed:
+                        for project in s['projects'].values():
+                            if project['worker'] == member and project['status'] == 'active':
+                                project['status'] = 'held'
             s['provision']['assessments'][f'{end}:{h}'] = {'household': h, 'at': end, 'demand': demand,
                 'delivered': delivered, 'deficit': demand-delivered}
         s['provision']['next_at'] += model['provision_interval_seconds']
@@ -279,6 +360,105 @@ def operate_settlement_action(core, s, at, p):
         s['actors']['oren']['current']['location'] = 'route:commons-clearing'
         s['stock_accounts']['oren-home']['site'] = 'route:commons-clearing'
         message = 'Oren departs with private supplies. Membership and local service demand change only on arrival.'
+    elif action == 'feed_household':
+        assert _needs_on(s), 'the reviewed needs profile is required'
+        model = s['settlement_model']
+        assert s['stock_accounts'][household]['site'] == site, 'your household stores must be here'
+        hungry = [a for a in s['households'][household]['members']
+                  if location(s, a) == site and s['needs'][a]['hungry']]
+        count = min(len(hungry), max(0, _free(s, household, 'grain')) // model['grain_per_person'])
+        assert count >= 1, 'a hungry member and free grain are required'
+        for member in hungry[:count]:
+            _consume(s, household, 'grain', model['grain_per_person'], f'feed:{key}:{member}', 'eating after a shortfall')
+            s['needs'][member]['hungry'] = False
+        names = ', '.join(s['actors'][a]['name'] for a in hungry[:count])
+        unfed = len(hungry) - count
+        message = (f'{names} eat from the household stores. The protected seed grain is untouched.'
+                   + (f' {unfed} remain hungry; no free grain is left.' if unfed else ''))
+    elif action == 'rest':
+        assert _needs_on(s), 'the reviewed needs profile is required'
+        _worker_free(s, actor)
+        resting = []
+        for member in s['households'][household]['members']:
+            if location(s, member) != site: continue
+            try: _worker_free(s, member)
+            except AssertionError: continue
+            resting.append(member)
+        rules = s['needs_rules']
+        sheltered = any(a['household'] == household and a['site'] == site and a['kind'] == 'shelter'
+                        for a in s['assets'].values())
+        remaining = rules['rest_seconds_sheltered' if sheltered else 'rest_seconds_unsheltered']
+        total = remaining
+        while remaining: remaining -= _advance(s, remaining, causal_at=at)
+        for member in resting:
+            s['needs'][member]['worked_since_rest'] = 0
+        names = ', '.join(s['actors'][a]['name'] for a in resting)
+        message = (f'{names} rest for {total // 3600} hours' + (' in your shelter.' if sheltered else ' without shelter.')
+                   + ' Fatigue is cleared.' + (' Hunger is not changed by resting.' if any(s['needs'][a]['hungry'] for a in resting) else ''))
+    elif action == 'request_relief':
+        assert _needs_on(s), 'the reviewed needs profile is required'
+        # Elin's relief decision belongs to the actual NPC. Recheck current
+        # existence and control rather than assuming the setup persists.
+        from player_actions import _present
+        assert 'elin' not in core.player_ids(s) and _present(s, 'elin')
+        assert site == 'commons' and location(s, 'elin') == site
+        steward = s['organizations']['steward']
+        assert steward['active'] and steward.get('store') == 'steward-store'
+        rules = s['needs_rules']
+        assessments = [a for k, a in s['provision']['assessments'].items() if a['household'] == household]
+        latest = max(assessments, key=lambda a: a['at']) if assessments else None
+        latest_key = f"{latest['at']}:{household}" if latest else None
+        relieved = {o['shortfall'] for o in s['relief_obligations'].values() if o['debtor'] == household}
+        store = s['stocks']['steward-store'].get('grain', 0)
+        # Steward Elin's authored decision, made from her own records and store.
+        if latest is None or latest['deficit'] <= 0:
+            message = 'Elin declines. The commons store gives relief only after a recorded provision shortfall.'
+        elif latest_key in relieved:
+            message = 'Elin declines. She has already given relief for this shortfall.'
+        elif _open_obligation(s, household):
+            message = 'Elin declines. She will give no further relief until the footpath upkeep you owe is finished.'
+        elif store <= 0:
+            message = 'Elin declines. The commons relief store is empty.'
+        else:
+            members = len(s['households'][household]['members'])
+            grain = min(rules['relief_grain_per_member'] * members, store)
+            s['stocks']['steward-store']['grain'] -= grain
+            s['stocks'][household]['grain'] = s['stocks'][household].get('grain', 0) + grain
+            s['relief_transfers'][key] = {'material': 'grain', 'quantity': grain, 'from': 'steward-store',
+                'to': household, 'elapsed_seconds': s['elapsed_time']['seconds'], 'source_ref': rules['source_ref']}
+            owed = -(-grain // 2) * rules['upkeep_seconds_per_two_grain']
+            s['relief_obligations'][key] = {'debtor': household, 'creditor': 'steward', 'kind': 'footpath_upkeep',
+                'grain': grain, 'owed_seconds': owed, 'discharged_seconds': 0, 'status': 'open',
+                'shortfall': latest_key, 'created_at': s['elapsed_time']['seconds'], 'source_ref': rules['source_ref']}
+            message = (f'Elin lends {grain} grain portions from the commons store, and you carry them to your household stores. '
+                       f'You owe {owed // 3600} hour(s) of footpath upkeep at the clearing. She will give no further relief until it is done.')
+    elif action == 'path_upkeep':
+        assert _needs_on(s), 'the reviewed needs profile is required'
+        assert site == 'clearing', 'the footpath upkeep is at the clearing'
+        obligation_key = next((k for k, o in s['relief_obligations'].items()
+                               if o['debtor'] == household and o['status'] == 'open'), None)
+        assert obligation_key is not None, 'no footpath upkeep is owed'
+        obligation = s['relief_obligations'][obligation_key]
+        _can_work(s, actor)
+        unfinished = [k for k, p in s['projects'].items() if p['kind'] == 'upkeep'
+                      and p['obligation'] == obligation_key and p['status'] in ('held', 'paused')]
+        if unfinished:
+            project_key = unfinished[0]
+            assert s['projects'][project_key]['worker'] == actor
+            _worker_free(s, actor, project_key)
+            s['projects'][project_key]['status'] = 'active'
+        else:
+            _worker_free(s, actor)
+            scheduled = sum(p['duration'] for p in s['projects'].values()
+                            if p['kind'] == 'upkeep' and p['obligation'] == obligation_key)
+            remaining = obligation['owed_seconds'] - scheduled
+            assert remaining > 0, 'all owed upkeep is already scheduled'
+            project_key = 'upkeep:' + key
+            s['projects'][project_key] = {'household': household, 'worker': actor, 'site': 'clearing',
+                'kind': 'upkeep', 'duration': min(s['needs_rules']['upkeep_project_seconds'], remaining),
+                'worked': 0, 'timber': 0, 'axe': 0, 'status': 'active', 'obligation': obligation_key,
+                'source_ref': s['needs_rules']['source_ref'], 'authority': 'explicit-player-request'}
+        message = 'You begin footpath upkeep at the clearing. The owed work is not finished until the time is worked.'
     elif action == 'wait_hour':
         delta = _advance(s, 3600, causal_at=at)
         message = f'{delta} elapsed seconds pass. You retain control at this process boundary.'
@@ -295,7 +475,31 @@ def validate_settlement(s):
     assert type(s['elapsed_time']['seconds']) is int and s['elapsed_time']['seconds'] >= 0
     all_members = [a for h in s['households'].values() for a in h['members']]
     assert len(all_members) == len(set(all_members)) and set(all_members) <= set(s['actors'])
-    assert set(s['stocks']) == set(s['stock_accounts']) == set(s['households'])
+    assert set(s['stocks']) == set(s['stock_accounts']) and set(s['households']) <= set(s['stocks'])
+    for account in set(s['stocks']) - set(s['households']):
+        # Only a reviewed institution store may hold stock outside a household.
+        assert _needs_on(s) and account == 'steward-store'
+        assert s['stock_accounts'][account]['institution'] in s['organizations']
+    if _needs_on(s):
+        rules = s['needs_rules']
+        all_people = {a for h in s['households'].values() for a in h['members']}
+        assert set(s['needs']) == all_people
+        for need in s['needs'].values():
+            assert type(need['hungry']) is bool and type(need['worked_since_rest']) is int
+            assert 0 <= need['worked_since_rest'] <= rules['fatigue_work_seconds']
+        for o in s['relief_obligations'].values():
+            assert o['debtor'] in s['households'] and o['status'] in ('open', 'discharged')
+            assert 0 <= o['discharged_seconds'] and o['owed_seconds'] > 0
+            assert (o['status'] == 'discharged') == (o['discharged_seconds'] >= o['owed_seconds'])
+        assert all(sum(o['status'] == 'open' for o in s['relief_obligations'].values() if o['debtor'] == h) <= 1
+                   for h in s['households'])
+        for p in s['projects'].values():
+            if p['status'] == 'active' and p['worker'] in s['needs']:
+                assert not s['needs'][p['worker']]['hungry'] and not _tired(s, p['worker']), 'needs hold work'
+            if p['kind'] == 'upkeep':
+                assert p['obligation'] in s['relief_obligations'] and p['timber'] == 0 and p['axe'] == 0
+    else:
+        assert not any(p['kind'] == 'upkeep' for p in s['projects'].values())
     for h, household in s['households'].items():
         assert type(household['seed_reserve']) is int and household['seed_reserve'] >= 0
         assert s['stock_accounts'][h]['household'] == h
@@ -310,6 +514,7 @@ def validate_settlement(s):
     for h in s['households']:
         assert _free(s, h, 'timber') >= 0 and _free(s, h, 'axe') >= 0, 'finite shared reservations'
     for key, a in s['assets'].items():
+        assert s['projects'][a['project']]['kind'] != 'upkeep'
         assert s['projects'][a['project']]['status'] == 'complete'
         assert 'project:' + key in s['material_flows']
     for m in s['migrations'].values():

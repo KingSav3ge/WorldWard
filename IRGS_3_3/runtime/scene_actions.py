@@ -192,7 +192,15 @@ def operate_scene_action(core, state, at, params, *, committed_duration=None):
         assert destination in state['stocks'], 'actual receiving tray required'
         quantity = state['stocks'][actor][material]
         assert type(quantity) is int and quantity >= 0, 'actual carried dispatch count required'
-        if quantity < 1:
+        deadline = action.get('deadline_seconds')
+        if deadline is not None:
+            assert type(deadline) is int and deadline > 0 and _text(action['expired_text'])
+        if deadline is not None and quantity >= 1 and elapsed['seconds'] + duration > deadline:
+            # Selected authored deadline: the attempt takes its time and fails.
+            status = 'completed_unsuccessfully'
+            summary = action['expired_text']
+            observations.append(summary)
+        elif quantity < 1:
             status = 'completed_unsuccessfully'
             summary = action['failure_text']
             observations.append(summary)

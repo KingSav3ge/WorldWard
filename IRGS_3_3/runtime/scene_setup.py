@@ -13,6 +13,8 @@ from irgs_reference import digest
 
 
 PACK = Path(__file__).resolve().parents[1] / 'data' / 'solo_quay_opening.json'
+DEADLINE_OPENING = 'quay-deadline-v1'
+DEADLINE_SECONDS = 180
 
 
 def _pack():
@@ -62,6 +64,24 @@ def _selected_pack(state, opening_id=None):
                     'failure_text': 'The worker declines to take custody of the dispatch.',
                     'decision_policy': 'quay-contact-declines-carry-v1',
                     'contact_id': 'FICTIONAL-QUAY-CONTACT'}
+        elif opening_id == DEADLINE_OPENING:
+            # User-adopted authored need (engine/NEEDS_AND_RELIEF_RULES.md).
+            pack['id'] = opening_id
+            pack['title'] = 'A dispatch against the hour'
+            pack['description'] += ' This variant adds an authored delivery deadline.'
+            pack['review'] += (f' The clerk accepts the dispatch only if the hand-over completes within '
+                f'{DEADLINE_SECONDS} authored seconds of the opening. A later attempt still takes its time, '
+                'fails, and leaves the dispatch with you; the delivery then stays closed.')
+            pack['scope'] += (f' Selected delivery deadline: {DEADLINE_SECONDS} seconds. Missing it closes the '
+                'delivery; no payment, punishment, office or historical consequence is inferred.')
+            pack['map_text'] += (f' The clerk accepts the dispatch only within {DEADLINE_SECONDS} seconds '
+                'of your start.')
+            pack['source_ref'] = 'authored-solo-opening:' + opening_id
+            deliver = pack['actions']['deliver-dispatch']
+            deliver['deadline_seconds'] = DEADLINE_SECONDS
+            deliver['description'] += f' The clerk accepts it only within {DEADLINE_SECONDS} seconds of your start.'
+            deliver['expired_text'] = ('The clerk no longer accepts dispatches; the time allowed has passed. '
+                'You still carry the sealed dispatch. No dispatch was handed over.')
         return pack
     from historical_campaigns import SNAPSHOTS
     if (entry not in SNAPSHOTS or state.get('binding', {}).get('scenario_id') != 'hundred-years-war'
@@ -84,6 +104,7 @@ def opening_options(state):
     if (state.get('historical_start', {}).get('entry_id') or state.get('binding', {}).get('entry_id')) == 'hyw-1415':
         packs.append(_selected_pack(state, 'quay-contact-v1'))
         packs.append(_selected_pack(state, 'quay-contact-decision-v1'))
+        packs.append(_selected_pack(state, DEADLINE_OPENING))
     return [{**{key: copy.deepcopy(pack[key]) for key in
                 ('id', 'title', 'description', 'requirements', 'review', 'scope')},
              'content_sha256': digest(pack), 'fictional': True,

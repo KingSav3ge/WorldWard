@@ -14,6 +14,22 @@ COMMUNICATION_SOURCE = 'authored-fictional:greywater-reach:local-introductions:v
 INTRODUCTIONS = {'elin': 'I am Steward Elin.', 'oren': 'I am Oren.'}
 OFFER_PROFILE = 'founder-household-offer-v1'
 OFFER_SOURCE = 'authored-fictional:greywater-reach:founder-household-offer:v1'
+NEEDS_PROFILE = 'rise-needs-1'
+NEEDS_SOURCE = 'adopted-user-rule:rise-needs-1:2026-11-24'
+# User-adopted, uncalibrated fictional rules (engine/NEEDS_AND_RELIEF_RULES.md).
+NEEDS_RULES = {
+    'id': NEEDS_PROFILE, 'source_ref': NEEDS_SOURCE, 'status': 'adopted fictional rule; uncalibrated',
+    'fatigue_work_seconds': 14400, 'rest_seconds_sheltered': 7200, 'rest_seconds_unsheltered': 14400,
+    'relief_store_grain': 8, 'relief_grain_per_member': 2,
+    'upkeep_seconds_per_two_grain': 3600, 'upkeep_project_seconds': 3600,
+    'summary': ('Hunger: a member left unfed at a provision boundary is hungry and cannot work until fed. '
+                'Fatigue: after 4 hours of work since resting a person is tired and cannot work; rest takes '
+                '2 hours with a completed shelter, otherwise 4 hours. Relief: after a recorded shortfall Steward '
+                'Elin may lend 2 grain portions per member from a finite 8-portion store, owed back as 1 hour of '
+                'footpath upkeep per 2 portions; she refuses further relief while upkeep is owed.'),
+    'limits': ['No injury, illness or death is inferred from hunger or fatigue.',
+               'Eating is assigned no elapsed time by this rule.',
+               'Relief lends existing steward stock; it creates no grain.']}
 FAMILIES = [
     ('H01', 'Eastern Sicily'), ('H02', 'Augusta Emerita district'),
     ('H03', 'Silesian village foundation'), ('H04', 'Musashino reclamation'),
@@ -46,11 +62,14 @@ def templates():
 
 
 def preview(choices):
-    if not isinstance(choices, dict) or set(choices) not in (FIELDS, FIELDS | {'offer_profile'}):
+    optional = {'offer_profile', 'needs_profile'}
+    if not isinstance(choices, dict) or not FIELDS <= set(choices) <= FIELDS | optional:
         raise ValueError('Review every setup field; unsupported choices cannot be inferred')
     choices = copy.deepcopy(choices)
     if 'offer_profile' in choices and choices['offer_profile'] != OFFER_PROFILE:
         raise ValueError('Select a supported optional offer profile')
+    if 'needs_profile' in choices and choices['needs_profile'] != NEEDS_PROFILE:
+        raise ValueError('Select a supported optional needs profile')
     if choices['template_id'] != 'R00':
         raise ValueError('This start family has no qualified executable opening yet')
     for field in ('founder_name', 'household_name', 'settlement_name', 'region_name', 'date_label'):
@@ -89,6 +108,8 @@ def preview(choices):
             'mandate_id': 'founder-household-offer', 'account': 'founder-home',
             'scope': 'Attempt offers from the founder household only; Core checks custody on proposal and free stock on fulfillment.',
             'notice': 'An offer grants no recipient consent, acceptance, transfer, reserved stock or NPC decision.'}
+    if choices.get('needs_profile') == NEEDS_PROFILE:
+        review['needs_setup'] = copy.deepcopy(NEEDS_RULES)
     review['review_digest'] = digest(review)
     return review
 
@@ -149,6 +170,18 @@ def initialize(choices, review_digest, campaign_id):
     if c['company'] == 'two_households':
         person('mira', 'Mira', 'mira-home')
         account('mira-home', {'grain': 8, 'timber': 3, 'axe': 1})
+    if c.get('needs_profile') == NEEDS_PROFILE:
+        # Opt-in reviewed rules. The relief store is an existing conserved
+        # institution account at the commons, not new stock.
+        s['needs_rules'] = copy.deepcopy(NEEDS_RULES)
+        s['needs'] = {a: {'hungry': False, 'worked_since_rest': 0}
+                      for h in s['households'].values() for a in h['members']}
+        s['stocks']['steward-store'] = {'grain': NEEDS_RULES['relief_store_grain']}
+        s['stock_accounts']['steward-store'] = {'institution': 'steward', 'site': 'commons', 'source_ref': NEEDS_SOURCE}
+        s['opening_stock']['grain'] += NEEDS_RULES['relief_store_grain']
+        s['organizations']['steward']['store'] = 'steward-store'
+        s['relief_obligations'] = {}
+        s['relief_transfers'] = {}
     s['households']['founder-home']['name'] = c['household_name']
     s['households']['oren-home']['name'] = 'Oren household'
     if 'mira-home' in s['households']: s['households']['mira-home']['name'] = 'Mira household'

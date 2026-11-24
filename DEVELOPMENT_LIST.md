@@ -1,5 +1,17 @@
 # IRGS continuation development list
 
+## Accepted 3.4.9 checkpoint — recorded 9 November 2026
+
+Engine PR #1 is merged at `e7b7212f0d339eb186eac401edd8da2bf6db1359`.
+The bounded material-reservation and current-NPC-control checks are delivered;
+Creator durability is a proposed contract, not an executable host feature.
+[The continuation record](engine/CONSOLIDATION_3_4_9_STATUS.md) identifies exact
+executed source, results, retained failures, exclusions and remaining scope.
+Earlier dated evidence below remains historical. Follow current
+CHAT_CONTINUATION.md and COORDINATOR_WORK_ORDER.md before selecting new work;
+do not repeat the merge or treat an unselected fictional policy as adopted.
+
+
 **29 October — non-Rise selected decision:** the separately reviewed mixed quay
 opening `quay-contact-decision-v1` lets the fictional worker explicitly decline
 a carry request while preserving custody, actor-scoped testimony and the existing

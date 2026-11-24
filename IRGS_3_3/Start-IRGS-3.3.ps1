@@ -62,15 +62,47 @@ function Confirm-IrgsRelease([string]$PythonPath, [string]$SuiteFolder) {
     }
 }
 
+function Test-IrgsPython([string]$Command, [string[]]$Prefix) {
+    # Returns the interpreter path only when it actually runs and is Python 3.12+.
+    # The Microsoft Store "python" alias and older installations fail this probe.
+    try {
+        $probe = & $Command @Prefix -c 'import sys; print(sys.version_info[:2] >= (3, 12)); print(sys.executable)' 2>$null
+    } catch {
+        return $null
+    }
+    if ($LASTEXITCODE -ne 0) { return $null }
+    $lines = @($probe)
+    if ($lines.Count -lt 2 -or ([string]$lines[0]).Trim() -ne 'True') { return $null }
+    $path = ([string]$lines[1]).Trim()
+    if (-not $path -or -not (Test-Path -LiteralPath $path)) { return $null }
+    return $path
+}
+
+function Resolve-IrgsPython {
+    $bundled = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
+    if (Test-Path -LiteralPath $bundled) { return $bundled }
+    $candidates = @(
+        @{Command = 'python'; Prefix = @()},
+        @{Command = 'python3'; Prefix = @()},
+        @{Command = 'py'; Prefix = @('-3')}
+    )
+    foreach ($candidate in $candidates) {
+        $found = Get-Command $candidate.Command -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+        if (-not $found) { continue }
+        $path = Test-IrgsPython $found.Source $candidate.Prefix
+        if ($path) { return $path }
+    }
+    throw ("IRGS needs Python 3.12 or newer, and none was found. No host was started.`n" +
+        "Install Python from https://www.python.org/downloads/ and tick 'Add python.exe to PATH', " +
+        "then run Start-IRGS.cmd again. The Microsoft Store 'python' shortcut alone is not enough.")
+}
+
 function Start-IrgsWebsite([int]$HostPort, [bool]$OpenBrowser, [int]$WaitSeconds) {
     $suiteFolder = $PSScriptRoot
     $hostFolder = Join-Path (Split-Path $suiteFolder -Parent) 'IRGS_Web'
     if ($AppRoot) { $hostFolder = $AppRoot }
     $hostEntry = Join-Path $hostFolder 'server.py'
-    $suitePython = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
-    if (-not (Test-Path -LiteralPath $suitePython)) {
-        $suitePython = (Get-Command python -CommandType Application -ErrorAction Stop).Source
-    }
+    $suitePython = Resolve-IrgsPython
     $mutex = New-Object System.Threading.Mutex($false, "Local\IRGS-Core-3.3-Port-$HostPort")
     $held = $false
     try {
