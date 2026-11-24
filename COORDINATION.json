@@ -54,20 +54,22 @@
   "reviews": {
     "engine": {
       "status": "approved",
-      "commit": "e7b7212f0d339eb186eac401edd8da2bf6db1359",
+      "commit": "4b94ec7755a950fc97e083d29f51b3772cb12fe1",
       "deliverable": "component_update",
-      "scope": "finite portable Pre-Alpha source; no Alpha qualification",
+      "scope": "adopted needs/relief/quay-deadline rules and unexecuted launcher Python check; no Alpha qualification",
+      "approval_basis": "Approved directly by the user in Claude Code session 01FgNyEUBfZkGCtsdpFsXcPa on 2026-11-24; source PR unmerged at approval",
+      "source_pr": "https://github.com/KingSav3ge/Fulcrum-Engine/pull/3",
       "checks": [
         {
-          "name": "Exact source/edition/merge tree reviewed; actual main3.4.9",
+          "name": "Engine runtime suite: 831 run, 830 pass, one private-save policy skip",
           "status": "passed"
         },
         {
-          "name": "37 focused and820 safe runtime run/819 pass/one private-save policy skip at unchanged runtimecc6f967",
+          "name": "qualify_shared_systems 35/35; irgs verify and component integrity verified",
           "status": "passed"
         },
         {
-          "name": "Component integrity verified; launcher excluded",
+          "name": "Codex review finding (Elin control/presence) fixed with regression test",
           "status": "passed"
         }
       ]
@@ -94,28 +96,25 @@
     },
     "app": {
       "status": "approved",
-      "commit": "e3a321b31cf5518cf2c3972702e0fa8e7d601cf0",
+      "commit": "e1c82751520f1db1b9718b16803c285b96d5a3b4",
       "deliverable": "component_update",
-      "scope": "Actual merged main is tree-identical to accepted finite App candidate; exact pins retained",
+      "scope": "optional Rise needs setup choice and Engine pin 4b94ec7; no Alpha qualification",
+      "approval_basis": "Approved directly by the user in Claude Code session 01FgNyEUBfZkGCtsdpFsXcPa on 2026-11-24; source PR unmerged at approval",
+      "source_pr": "https://github.com/KingSav3ge/WORLDWARD-APP-WEB/pull/7",
       "checks": [
         {
-          "name": "Exact source/97-entry manifest,3.4.9 edition and committed Engine/Catalog pins reviewed",
+          "name": "App suite against Engine b0f2cfe: 288 run, 281 pass, 7 Windows-only skips; 168 DOM checks",
           "status": "passed"
         },
         {
-          "name": "Full Web288 run/281 pass/7 explicit Windows skips;168 DOM checks and integrity pass",
+          "name": "App component verification with committed Engine pin 4b94ec7",
           "status": "passed"
         },
         {
-          "name": "Actual Saves/Story/Creator desktop/mobile browser checks preserve bytes/drafts; no live provider",
-          "status": "passed"
-        },
-        {
-          "name": "Exact compatible Catalog consumer2 bounded journeys pass/strictheld; no Alpha claim",
+          "name": "Chromium isolated-host needs setup and action exposure",
           "status": "passed"
         }
-      ],
-      "tested_candidate": "afaecd13ef5d92ab61be1c0ef6be2bc3d80192b4"
+      ]
     }
   },
   "integration_status": "qualified_portable_pre_alpha_subject_to_exact_final_package_gate",
@@ -180,5 +179,12 @@
     "independent_mechanics": 8,
     "browsers": "Saves,Creator,Story,interface passed",
     "strict_sustained_consumer": "2 passed; held, G10 unqualified"
+  },
+  "user_direct_join": {
+    "date": "2026-11-24",
+    "engine": "4b94ec7755a950fc97e083d29f51b3772cb12fe1",
+    "app": "e1c82751520f1db1b9718b16803c285b96d5a3b4",
+    "catalog": "7ef54aba82d292f1a487e0253d8479abdc78dfda",
+    "note": "User-directed join on WorldWard branch claude/laughing-brown-pkbs04; not a main publication. Native Windows and live-provider checks remain outstanding; launcher change unexecuted."
   }
 }
