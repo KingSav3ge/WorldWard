@@ -5835,6 +5835,11 @@
       "sha256": "d66323cf98dfa8f128b8870a2f70b5383fa95b4ea83ac797476e0a3554c6ed50"
     },
     {
+      "path": "tools/build_claude_artifact.py",
+      "bytes": 8986,
+      "sha256": "b4456c3ce70be8fe8f749fb807f4eab21d86a202ee356d9467acf480befdf5f9"
+    },
+    {
       "path": "tools/build_operation_register.py",
       "bytes": 16317,
       "sha256": "515517db98384bf1dd8bd2f339647c8fb22f4d35b68746478e9a7fde4ace536c"

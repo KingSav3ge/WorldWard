@@ -1,0 +1,49 @@
+<title>WorldWard</title>
+<style>
+/* Boot overlay only; the game uses WorldWard's own styles below. */
+:root { --ww-boot-bg: #15120f; --ww-boot-fg: #efe6d6; --ww-boot-muted: #a99c88; --ww-boot-accent: #d08a5c; --ww-boot-line: #3a3229; --ww-ok: #8fc79f; --ww-warn: #e0a85a; color-scheme: dark; }
+/* Single dark look, matching WorldWard's own default reading theme. */
+body { background: var(--ww-boot-bg); color: var(--ww-boot-fg); }
+#ww-boot { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; background: var(--ww-boot-bg); color: var(--ww-boot-fg);
+  padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px) max(16px, env(safe-area-inset-left, 0px)); }
+#ww-boot .ww-card { max-width: 30rem; display: grid; gap: .75rem; text-align: left; font: 15px/1.5 Georgia, "Times New Roman", serif; }
+#ww-boot .ww-mark { font: 600 .72rem/1 ui-monospace, "SFMono-Regular", Menlo, monospace; letter-spacing: .18em; text-transform: uppercase; color: var(--ww-boot-accent); }
+#ww-boot h1 { margin: 0; font: 600 2rem/1.1 Georgia, "Times New Roman", serif; text-wrap: balance; }
+#ww-boot p { margin: 0; color: var(--ww-boot-muted); }
+#ww-boot-status { color: var(--ww-boot-fg) !important; }
+#ww-boot[data-state="error"] #ww-boot-status { color: var(--ww-warn) !important; }
+#ww-boot-detail { font: .8rem/1.4 ui-monospace, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; border-top: 1px solid var(--ww-boot-line); padding-top: .5rem; }
+#ww-boot .ww-bar { height: 2px; background: var(--ww-boot-line); overflow: hidden; }
+#ww-boot .ww-bar::after { content: ""; display: block; width: 30%; height: 100%; background: var(--ww-boot-accent); animation: ww-slide 1.4s ease-in-out infinite; }
+#ww-boot[data-state="error"] .ww-bar { display: none; }
+@keyframes ww-slide { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+@media (prefers-reduced-motion: reduce) { #ww-boot .ww-bar::after { animation: none; width: 100%; } }
+#ww-save { position: fixed; z-index: 900; right: calc(12px + env(safe-area-inset-right, 0px)); bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  max-width: min(22rem, calc(100vw - 24px)); font: .72rem/1.3 ui-monospace, Menlo, monospace; padding: .3rem .55rem; border: 1px solid var(--ww-boot-line);
+  background: var(--ww-boot-bg); color: var(--ww-boot-muted); border-radius: 3px; pointer-events: none; }
+#ww-save[data-state="saving"] { color: var(--ww-boot-fg); }
+#ww-save[data-state="saved"] { color: var(--ww-ok); }
+#ww-save[data-state="error"] { color: var(--ww-warn); }
+</style>
+<style>{{APP_STYLES}}</style>
+<div id="ww-boot" role="status" aria-live="polite">
+  <div class="ww-card">
+    <span class="ww-mark">T!DEMARCH Studios · Fulcrum Engine</span>
+    <h1>WorldWard</h1>
+    <p id="ww-boot-status">Starting…</p>
+    <div class="ww-bar" aria-hidden="true"></div>
+    <p>The game runs entirely in this page. Your saves are kept in your Claude account. Claude can suggest which listed action matches words you type; you always review and confirm before anything happens.</p>
+    <p id="ww-boot-detail" hidden></p>
+  </div>
+</div>
+<p id="ww-save" hidden></p>
+{{APP_BODY}}
+<script type="application/json" id="ww-config">{{CONFIG}}</script>
+<script type="text/x-python" id="ww-bridge">{{BRIDGE_PY}}</script>
+<script type="text/x-python" id="ww-assist">{{ASSIST_PY}}</script>
+<!-- The fetch layer must exist before Pyodide's loader captures fetch. -->
+<script>{{BOOT_JS}}</script>
+<script src="https://cdn.jsdelivr.net/npm/pyodide@{{PYODIDE_VERSION}}/pyodide.asm.js" integrity="{{ASM_SRI}}" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/pyodide@{{PYODIDE_VERSION}}/pyodide.js" integrity="{{LOADER_SRI}}" crossorigin="anonymous"></script>
+<script>document.body.dataset.reading = 'dark'; document.body.dataset.design = 'emergent-tome';</script>
+{{APP_SCRIPTS}}
